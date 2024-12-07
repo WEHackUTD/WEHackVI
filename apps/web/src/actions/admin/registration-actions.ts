@@ -14,6 +14,10 @@ const defaultRegistrationToggleSchema = z.object({
 	enabled: z.boolean(),
 });
 
+const defaultRSVPLimitSchema = z.object({
+	rsvpLimit: z.number(),
+});
+
 export const toggleRegistrationEnabled = adminAction
 	.schema(defaultRegistrationToggleSchema)
 	.action(async ({ parsedInput: { enabled }, ctx: { user, userId } }) => {
@@ -50,4 +54,12 @@ export const toggleRSVPs = adminAction
 		await redis.set(`${process.env.HK_ENV}_config:registration:allowRSVPs`, enabled);
 		revalidatePath("/admin/toggles/registration");
 		return { success: true, statusSet: enabled };
+	});
+
+export const setRSVPLimit = adminAction
+	.schema(defaultRSVPLimitSchema)
+	.action(async ({ parsedInput: { rsvpLimit }, ctx: { user, userId } }) => {
+		await redis.set(`${process.env.HK_ENV}_config:registration:maxRSVPs`, rsvpLimit);
+		revalidatePath("/admin/toggles/registration");
+		return { success: true, statusSet: rsvpLimit };
 	});

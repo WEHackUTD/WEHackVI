@@ -36,3 +36,11 @@ export function parseRedisBoolean(
 	if (typeof value === "boolean") return value;
 	return defaultValue !== undefined ? defaultValue : false;
 }
+
+export function parseRedisNumber(value: string | null, defaultValue: number) {
+	if (value && !isNaN(parseInt(value))) {
+		return parseInt(value);
+	} else {
+		return defaultValue;
+	}
+}
