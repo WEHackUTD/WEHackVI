@@ -48,7 +48,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						<Button variant={"outline"}>Hacker Profile</Button>
 					</Link>
 
-					<Link href="mailto:${user.email}">
+					<Link href={`mailto:${user.email}`}>
 						<Button variant={"outline"}>Email Hacker</Button>
 					</Link>
 
