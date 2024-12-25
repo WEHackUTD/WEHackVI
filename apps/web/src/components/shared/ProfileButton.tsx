@@ -19,7 +19,7 @@ import { DropdownSwitcher } from "@/components/shared/ThemeSwitcher";
 import DefaultDropdownTrigger from "../dash/shared/DefaultDropDownTrigger";
 import MobileNavBarLinks from "./MobileNavBarLinks";
 import { getUser } from "db/functions";
-import { clientLogOut } from "@/lib/utils/client/shared";
+import { clientLogOut } from "@/lib/utils/server/user";
 import { useRouter } from "next/router";
 import NavBarLinksGrouper from "./NavBarLinksGrouper";
 
