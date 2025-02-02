@@ -63,7 +63,7 @@ export const columns: ColumnDef<EventRow>[] = [
 		header: "Scanner",
 		cell: ({ row }) => (
 			<Link href={`/admin/scanner/${row.original.id}`}>
-				<Button>Scanner</Button>
+				<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">Scanner</Button>
 			</Link>
 		),
 	},
@@ -72,7 +72,7 @@ export const columns: ColumnDef<EventRow>[] = [
 		header: "View",
 		cell: ({ row }) => (
 			<Link href={`/schedule/${row.original.id}`}>
-				<Button>View</Button>
+				<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">View</Button>
 			</Link>
 		),
 	},
@@ -86,7 +86,7 @@ export const columns: ColumnDef<EventRow>[] = [
 					!row.original.isSuperAdmin && "pointer-events-none",
 				)}
 			>
-				<Button disabled={!row.original.isSuperAdmin}>Edit</Button>
+				<Button disabled={!row.original.isSuperAdmin} className="bg-[#D09C51] hover:bg-[#CCBA97]">Edit</Button>
 			</Link>
 		),
 	},
