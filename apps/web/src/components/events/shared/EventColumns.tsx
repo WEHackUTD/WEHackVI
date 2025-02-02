@@ -90,4 +90,18 @@ export const columns: ColumnDef<EventRow>[] = [
 			</Link>
 		),
 	},
+	{
+		accessorKey: "Edit",
+		header: "Edit",
+		cell: ({ row }) => (
+			<Link
+				href={`/admin/events/edit/${row.original.id}`}
+				className={cn(
+					!row.original.isSuperAdmin && "pointer-events-none",
+				)}
+			>
+				<Button disabled={!row.original.isSuperAdmin}>Edit</Button>
+			</Link>
+		),
+	},
 ];
