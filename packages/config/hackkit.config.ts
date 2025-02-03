@@ -780,7 +780,7 @@ const c = {
 	hackathonName: "WEHack",
 	itteration: "V",
 	siteUrl: "https://www.wehackutd.com", // Do not have a trailing slash
-	defaultMetaDataDescription: "WEHack 2024 is coming in April 2025",
+	defaultMetaDataDescription: "WEHack 2025 is coming in April 2025",
 	botName: "WEHack",
 	botParticipantRole: "Participant",
 	hackathonTimezone: "America/Chicago",
@@ -830,10 +830,10 @@ const c = {
 	issueEmail: "wehackutd@gmail.com",
 	links: {
 		discord: "https://go.rowdyhacks.org/discord",
-		instagram: "https://instagram.com/rowdyhacks",
-		facebook: "https://facebook.com/rowdyhacks",
-		twitter: "https://twitter.com/rowdyhacks",
-		github: "https://github.com/acmutsa",
+		instagram: "https://www.instagram.com/wehackutd",
+		facebook: "https://www.facebook.com/WEHackUTD/",
+		twitter: "https://x.com/wehackutd",
+		github: "https://github.com/WEHack-UTD2-0",
 		guide: "https://go.rowdyhacks.org/discord",
 	},
 	icon: {
@@ -878,7 +878,7 @@ const c = {
 	noResumeProvidedURL:
 		"https://static.acmutsa.org/No%20Resume%20Provided.pdf",
 	// Come in and change this date to whenever the hackathon starts
-	startDate: new Date(new Date(2025, 3, 5).setHours(9)),
+	startDate: new Date(new Date(2025, 3, 6).setHours(0)),
 	prettyLocation: "Engineering and Computer Science West (ECSW)",
 	roleBadges: {
 		hacker: {
