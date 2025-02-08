@@ -13,7 +13,7 @@ export default function DashNavItem({ name, path }: DashNavItemProps) {
 	return (
 		<Link href={path}>
 			<button
-				className={`h-full whitespace-nowrap border-b-2 px-3 text-sm transition-colors duration-150 ${
+				className={`h-full md:whitespace-nowrap border-b-2 px-2 md:px-3 text-sm transition-colors duration-150  ${
 					(currPath.startsWith(path) &&
 						path !== "/admin" &&
 						path !== "/dash") ||

@@ -58,7 +58,7 @@ export default async function RsvpPage({
 		return (
 			<>
 				<ClientToast />
-				<main className="pt-30 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center bg-backgroudn">
+				<main className="pt-48 md:pt-32 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center bg-backgroudn">
 					<div className="max-w-screen fixed left-1/2 top-[calc(50%+7rem)] h-[40vh] w-[800px]"></div>
 					<h2 className="text-4xl font-extrabold">
 						{c.hackathonName}

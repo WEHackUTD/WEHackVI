@@ -33,8 +33,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
 	return (
 		<main className="mx-auto max-w-5xl pt-20">
-			<div className="mb-5 grid w-full grid-cols-3">
-				<div className="flex items-center">
+			<div className="mb-5 md:grid w-full md:grid-cols-3">
+				<div className="flex items-center ml-5 md:ml-0">
 					<div>
 						<h2 className="flex items-center gap-x-2 text-3xl font-bold tracking-wide">
 							<Info />
@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						{/* <p className="text-sm text-muted-foreground">{users.length} Total Users</p> */}
 					</div>
 				</div>
-				<div className="col-span-2 flex items-center justify-end gap-2">
+				<div className="md:col-span-2 flex items-center justify-center md:justify-end gap-2 px-3 mt-5 md:px-0 md:mt-0">
 					<Link href={`/@${user.hackerTag}`} target="_blank">
 						<Button variant={"outline"}>Hacker Profile</Button>
 					</Link>
@@ -62,7 +62,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					)}
 				</div>
 			</div>
-			<div className="mt-20 grid min-h-[500px] w-full grid-cols-3">
+			<div className="mt-20 md:grid min-h-[500px] w-full md:grid-cols-3 flex flex-col items-center px-6">
 				<div className="flex h-full w-full max-w-[250px] flex-col items-center">
 					<div className="relative aspect-square h-min w-full overflow-hidden rounded-full">
 						<Image
@@ -90,7 +90,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						</Badge>
 					</div>
 				</div>
-				<div className="col-span-2 overflow-x-hidden">
+				<div className="flex flex-col col-span-2 overflow-x-hidden mt-14 md:mt-0">
 					<PersonalInfo user={user} />
 					<ProfileInfo user={user} />
 					<AccountInfo user={user} />

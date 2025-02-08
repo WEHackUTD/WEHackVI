@@ -30,7 +30,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 								className="object-cover"
 							/>
 						</div>
-						<h1 className="mt-2 text-2xl font-bold">
+						<h1 className="mt-2 md:mt-7 text-2xl font-bold">
 							{user.firstName} {user.lastName}
 						</h1>
 						<div className="mt-1 flex items-center gap-x-2">
@@ -89,17 +89,17 @@ export default async function ({ params }: { params: { tag: string } }) {
 								</Link>
 							)}
 					</div>
-					<div className="col-span-4 mt-5 flex flex-col justify-center md:ml-14">
-						<h3 className="font-bold md:text-2xl">About</h3>
-						<p>
+					<div className="col-span-4 mt-5 flex flex-col justify-center md:ml-32">
+						<h3 className="font-bold text-2xl">About</h3>
+						<p className="text-xl font-medium">
 							<Balancer>{user.bio}</Balancer>
 						</p>
 						{user.skills && (user.skills as string[]).length > 0 ? (
 							<>
-								<h3 className="mt-4 font-bold md:text-2xl">
+								<h3 className="mt-4 font-bold text-2xl">
 									Skills
 								</h3>
-								<p>{(user.skills as string[]).join(", ")}</p>
+								<p className="text-xl font-medium">{(user.skills as string[]).join(", ")}</p>
 							</>
 						) : null}
 					</div>

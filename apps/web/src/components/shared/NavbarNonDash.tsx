@@ -67,12 +67,12 @@ export default async function NavbarNonDash({
 							) : (
 								<>
 									<Link href={"/sign-in"}>
-										<Button className="primary-btn w-full bg-[#909634] px-5 py-3 text-[#FFE9D7] hover:bg-[#909634]">
+										<Button className="primary-btn w-full bg-[#A6CDC4] px-5 py-3 text-[#282738] hover:bg-[#6e8d85]">
 											Sign In
 										</Button>
 									</Link>
 									<Link href={"/register"}>
-										<Button className="primary-btn w-full bg-[#909634] px-5 py-3 text-[#FFE9D7] hover:bg-[#909634]">
+										<Button className="primary-btn w-full bg-[#A6CDC4] px-5 py-3 text-[#282738] hover:bg-[#6e8d85]">
 											Register
 										</Button>
 									</Link>

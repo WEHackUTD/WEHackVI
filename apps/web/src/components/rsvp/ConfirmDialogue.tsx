@@ -58,7 +58,7 @@ export default function ConfirmDialogue({ hasRsvped }: { hasRsvped: boolean }) {
 				</div>
 			) : (
 				<div className="relative flex aspect-video w-full max-w-[500px] flex-col items-center justify-center rounded-xl pb-60 backdrop-blur transition dark:bg-white/[0.08]">
-					<p className="absolute bottom-0 px-10 pb-40 text-center text-sm text-[#F03C2D]">
+					<p className="absolute bottom-0 px-10 pb-40 text-center text-xl text-[#F03C2D]">
 						Make sure you only RSVP if you are certain you can
 						attend the event!
 					</p>
