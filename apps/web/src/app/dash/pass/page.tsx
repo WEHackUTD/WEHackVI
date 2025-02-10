@@ -17,7 +17,7 @@ interface EventPassProps {
 	user: Hacker;
 	clerk: NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 	qrPayload: string;
-	guild: string;
+	guild: number;
 }
 
 export default async function Page() {
@@ -31,7 +31,34 @@ export default async function Page() {
 		userID: user.id,
 		createdAt: new Date(),
 	});
-	const guild = Object.keys(c.groups)[userDbRecord.hackerData.group];
+	// const guild = Object.keys(c.groups)[userDbRecord.hackerData.group];
+
+	const dietaryGroup =  {
+		"Vegan": 1,
+		"Gluten-Free": 1, 
+		"Vegetarian": 2, 
+		"Halal": 2,
+		"None": 3,
+	}
+
+	var groupNumber = 3; // for those who put eggs, wheat, none, etc
+	// assign hackers groups based on their dietary restriction
+	const dietaryRestrictions = Array.isArray(userDbRecord.dietRestrictions) ? userDbRecord.dietRestrictions : [];
+	// console.log(dietaryRestrictions)
+	for (let i = 0; i < dietaryRestrictions.length; i++) {
+		if(dietaryRestrictions[i] === "Vegan" || dietaryRestrictions[i] === "Gluten-Free") {
+			groupNumber = 1;
+			break;
+		}
+		else if(dietaryRestrictions[i] === "Vegetarian" || dietaryRestrictions[i] === "Halal") {
+			groupNumber = 2;
+			break;
+		}
+		else {
+			continue;
+		}
+	}
+	// console.log(groupNumber)
 
 	return (
 		<div className="flex min-h-[calc(100vh-7rem)] items-center justify-center bg-nav">
@@ -40,7 +67,7 @@ export default async function Page() {
 					user={userDbRecord}
 					qrPayload={qrPayload}
 					clerk={user}
-					guild={guild}
+					guild={groupNumber}
 				/>
 			</TiltWrapper>
 		</div>
@@ -67,9 +94,9 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 						<h3 className="text-center font-mono text-sm">
 							@{user.hackerTag}
 						</h3>
-						{/* <h3 className="text-center font-mono text-sm">
-							{guild}
-						</h3> */}
+						<h3 className="text-center font-mono text-sm">
+							Group {guild}
+						</h3>
 					</div>
 				</div>
 				<div className="event-pass-img relative mt-12 flex w-full">
