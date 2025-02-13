@@ -126,8 +126,8 @@ function Cell({
 }) {
 	return (
 		<div>
-			<p className="whitespace-nowrap font-bold">{title}</p>
-			<p className="whitespace-nowrap">{value.toString()}</p>
+			<p className="whitespace-nowrap font-bold text-2xl">{title}</p>
+			<p className="whitespace-nowrap text-xl">{value.toString()}</p>
 		</div>
 	);
 }

@@ -20,9 +20,9 @@ export default async function ({ params }: { params: { tag: string } }) {
 			<NavbarNonDash title={"Profile"} />
 			<div className="max-w-screen relative flex min-h-screen items-center justify-center bg-nav">
 				<div className="absolute top-0 h-[50vh] w-[60vw] -translate-y-[22vh]" />
-				<div className="grid min-h-[45vh] w-full max-w-5xl flex-col justify-center md:grid-cols-5 md:justify-start md:gap-x-2 md:pl-11">
-					<div className="flex flex-col justify-center">
-						<div className="relative aspect-square w-full overflow-hidden rounded-full">
+				<div className="flex flex-col px-10 min-h-[45vh] w-full max-w-5xl justify-center md:ml-20 md:grid md:grid-cols-5 md:justify-start md:gap-x-2 md:pl-11">
+					<div className="flex flex-wrap justify-center">
+						<div className="relative aspect-square w-full overflow-hidden rounded-full max-w-60 md:max-w-80">
 							<Image
 								fill
 								src={user.profilePhoto}
@@ -30,11 +30,11 @@ export default async function ({ params }: { params: { tag: string } }) {
 								className="object-cover"
 							/>
 						</div>
-						<h1 className="mt-2 text-2xl font-bold">
+						<h1 className="mt-2 md:mt-7 text-2xl font-bold break-normal text-center">
 							{user.firstName} {user.lastName}
 						</h1>
-						<div className="mt-1 flex items-center gap-x-2">
-							<h2 className="font-mono text-lg text-muted-foreground">
+						<div className="mt-1 flex flex-col items-center gap-y-2">
+							<h2 className="font-mono text-lg text-center text-muted-foreground break-words break-all">
 								@{user.hackerTag}
 							</h2>
 							<RoleBadge role={user.role} />
@@ -89,17 +89,17 @@ export default async function ({ params }: { params: { tag: string } }) {
 								</Link>
 							)}
 					</div>
-					<div className="col-span-4 mt-5 flex flex-col justify-center md:ml-14">
-						<h3 className="font-bold md:text-2xl">About</h3>
-						<p>
+					<div className="col-span-4 mt-5 flex flex-col justify-center md:ml-32">
+						<h3 className="font-bold text-2xl">About</h3>
+						<p className="text-xl font-medium">
 							<Balancer>{user.bio}</Balancer>
 						</p>
 						{user.skills && (user.skills as string[]).length > 0 ? (
 							<>
-								<h3 className="mt-4 font-bold md:text-2xl">
+								<h3 className="mt-4 font-bold text-2xl">
 									Skills
 								</h3>
-								<p>{(user.skills as string[]).join(", ")}</p>
+								<p className="text-xl font-medium">{(user.skills as string[]).join(", ")}</p>
 							</>
 						) : null}
 					</div>

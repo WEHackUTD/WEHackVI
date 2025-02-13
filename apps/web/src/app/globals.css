@@ -137,7 +137,7 @@ body {
     overflow-x: hidden;
 }
 .App {
-    background-image: url("/img/static/images/landing-page-background-1.webp");
+    background-image: url("/img/static/images/optimized-background.webp");
     background-size: 100% auto; /* Adjust width */
     background-repeat: repeat;
     background-position: center;

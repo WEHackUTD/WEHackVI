@@ -141,16 +141,21 @@ export default async function ProfileButton() {
 				align="end"
 				forceMount
 			>
-				<DropdownMenuLabel className="font-normal">
+				<DropdownMenuLabel className="font-normal break-words break-all">
 					<div className="flex flex-col space-y-1">
-						<p className="text-sm font-medium leading-none">{`${user.firstName} ${user.lastName}`}</p>
-						<p className="text-xs leading-none text-muted-foreground">
+						<p className="text-xl font-medium leading-none">{`${user.firstName} ${user.lastName}`}</p>
+						<p className="text-xl flex flex-row leading-none text-border">
 							@{user.hackerTag}
 						</p>
 					</div>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator className="bg-[rgb(228,228,231)]" />
 				<DropdownMenuGroup>
+					<Link href={`/dash`}>
+						<DropdownMenuItem className="cursor-pointer">
+							Dashboard
+						</DropdownMenuItem>
+					</Link>
 					<Link href={`/@${user.hackerTag}`}>
 						<DropdownMenuItem className="cursor-pointer">
 							Profile
