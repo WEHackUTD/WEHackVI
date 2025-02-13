@@ -20,9 +20,9 @@ export default async function ({ params }: { params: { tag: string } }) {
 			<NavbarNonDash title={"Profile"} />
 			<div className="max-w-screen relative flex min-h-screen items-center justify-center bg-nav">
 				<div className="absolute top-0 h-[50vh] w-[60vw] -translate-y-[22vh]" />
-				<div className="grid min-h-[45vh] w-full max-w-5xl flex-col justify-center md:grid-cols-5 md:justify-start md:gap-x-2 md:pl-11">
-					<div className="flex flex-col justify-center">
-						<div className="relative aspect-square w-full overflow-hidden rounded-full">
+				<div className="flex flex-col px-10 min-h-[45vh] w-full max-w-5xl justify-center md:ml-20 md:grid md:grid-cols-5 md:justify-start md:gap-x-2 md:pl-11">
+					<div className="flex flex-wrap justify-center">
+						<div className="relative aspect-square w-full overflow-hidden rounded-full max-w-60 md:max-w-80">
 							<Image
 								fill
 								src={user.profilePhoto}
@@ -30,11 +30,11 @@ export default async function ({ params }: { params: { tag: string } }) {
 								className="object-cover"
 							/>
 						</div>
-						<h1 className="mt-2 md:mt-7 text-2xl font-bold">
+						<h1 className="mt-2 md:mt-7 text-2xl font-bold break-normal text-center">
 							{user.firstName} {user.lastName}
 						</h1>
-						<div className="mt-1 flex items-center gap-x-2">
-							<h2 className="font-mono text-lg text-muted-foreground">
+						<div className="mt-1 flex flex-col items-center gap-y-2">
+							<h2 className="font-mono text-lg text-center text-muted-foreground break-words break-all">
 								@{user.hackerTag}
 							</h2>
 							<RoleBadge role={user.role} />

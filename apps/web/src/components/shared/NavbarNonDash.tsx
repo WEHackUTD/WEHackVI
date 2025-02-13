@@ -29,7 +29,7 @@ export default async function NavbarNonDash({
 	const registrationIsComplete =
 		user != null && (await getUser(user.id)) != undefined;
 	return (
-		<div className="fixed z-50 w-screen">
+		<div className="fixed z-50 w-screen pt-[0.1rem]">
 			<div className={cn(`relative top-0 z-50 h-16 w-screen`, className)}>
 				<div className="mx-auto grid h-full w-full max-w-7xl grid-flow-col grid-cols-2 px-2 sm:px-5 lg:max-w-full lg:px-5">
 					<div className="col-span-3 flex items-center justify-start gap-x-5 pl-4 md:pl-0">
@@ -43,11 +43,11 @@ export default async function NavbarNonDash({
 						</Link>
 
 						<div className="h-[45%] w-[2px] rotate-[25deg] bg-muted-foreground" />
-						<h2 className="font-bold tracking-wide">{title}</h2>
+						<h2 className="font-bold tracking-wide text-lg">{title}</h2>
 					</div>
 
 					<div className="flex items-center justify-between space-x-5 pr-2 md:justify-center md:pr-0">
-						<div className="gap-x-4 md:flex">
+						<div className="gap-x-4 hidden md:flex">
 							{user ? (
 								<>
 									<Link

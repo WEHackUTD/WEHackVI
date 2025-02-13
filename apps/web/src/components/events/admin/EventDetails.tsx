@@ -21,10 +21,10 @@ export default function EventFull({ event }: { event: Event }) {
 					}, transparent)`,
 				}}
 			/>
-			<div className="relative z-10 mx-auto min-h-[calc(100vh-7rem)] w-full max-w-3xl p-2 pt-[15vh]">
-				<div className="mb-2 flex items-center gap-x-2">
+			<div className="relative z-10 mx-auto min-h-[calc(100vh-7rem)] w-full max-w-3xl p-5 pt-[20vh]">
+				<div className="mb-2 flex flex-col items-left gap-y-2">
 					<Badge
-						className="text-md"
+						className="text-md max-w-fit"
 						variant={"outline"}
 						style={{
 							borderColor:
@@ -35,7 +35,7 @@ export default function EventFull({ event }: { event: Event }) {
 					>
 						{event.type}
 					</Badge>
-					<p className="text-xs font-bold md:text-sm">{`${formatInTimeZone(
+					<p className="text-md font-bold md:text-lg">{`${formatInTimeZone(
 						event.startTime,
 						userTimeZone,
 						"EEEE MMMM do",
@@ -49,11 +49,11 @@ export default function EventFull({ event }: { event: Event }) {
 				<h1 className="mb-2 text-7xl font-black">
 					<Balancer>{event.title}</Balancer>
 				</h1>
-				<h2 className="mb-20 text-lg font-bold">
+				<h2 className="mb-10 text-xl font-bold">
 					Hosted by {event.host}
 				</h2>
-				<h3 className="mb-2 font-bold">Description:</h3>
-				<p>
+				<h3 className="mb-2 text-2xl font-bold">Description:</h3>
+				<p className="text-xl">
 					<Balancer>{event.description}</Balancer>
 				</p>
 			</div>

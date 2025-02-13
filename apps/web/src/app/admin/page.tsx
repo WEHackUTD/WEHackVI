@@ -33,7 +33,7 @@ export default async function Page() {
 		<div className="mx-auto w-full max-w-7xl px-4 pt-12">
 			<div className="w-full px-2">
 				<h2 className="text-xl font-bold">Welcome,</h2>
-				<h1 className="text-5xl font-black text-hackathon">
+				<h1 className="text-5xl font-black text-hackathon break-words break-all">
 					{adminUser.firstName}
 				</h1>
 			</div>
