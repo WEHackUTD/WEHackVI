@@ -21,7 +21,7 @@ export default async function ({ params }: { params: { tag: string } }) {
 			<div className="max-w-screen relative flex min-h-screen items-center justify-center bg-nav">
 				<div className="absolute top-0 h-[50vh] w-[60vw] -translate-y-[22vh]" />
 				<div className="flex flex-col px-10 min-h-[45vh] w-full max-w-5xl justify-center md:ml-20 md:grid md:grid-cols-5 md:justify-start md:gap-x-2 md:pl-11">
-					<div className="flex flex-wrap justify-center">
+					<div className="flex flex-col flex-wrap items-center justify-center">
 						<div className="relative aspect-square w-full overflow-hidden rounded-full max-w-60 md:max-w-80">
 							<Image
 								fill
