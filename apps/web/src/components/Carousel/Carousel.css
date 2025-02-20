@@ -45,7 +45,35 @@ div.carousel{
     height: 30rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 450px) {
+
+    .slider {
+        height: 13rem;
+        width: 13rem;
+    }
+    .dot {
+        height: 2rem;
+        width: 2rem;
+    }
+    .text-container {
+        height: 16rem;
+        width: 18rem;
+        margin-bottom: 4px;
+        p {
+            font-size: medium;
+            line-height: 1.5;
+        }
+    }
+    .button-grp {
+        width: 13rem;
+    }
+    .sticker{
+        width: 17rem;
+    }
+
+}
+
+@media screen and (min-width:451px) and (max-width: 600px) {
 
     .slider {
         height: 20rem;
