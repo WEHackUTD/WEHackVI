@@ -65,7 +65,7 @@ const dataColOne = [
 
     {
         question: "When and where is WEHack?",
-        answer: "WEHack 2025 will be held in person in the Engineering and Computer Science West (ECSW) building at the University of Texas at Dallas. WEHack 2025 dates will be released soon!",
+        answer: "WEHack 2025 will be held in person in the Engineering and Computer Science West (ECSW) building at the University of Texas at Dallas. WEHack 2025 will be on April 5th - 6th.",
     },
 
     {

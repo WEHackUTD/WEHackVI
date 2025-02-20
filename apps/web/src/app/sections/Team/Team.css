@@ -1,109 +1,81 @@
-.team-title {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto;
-    margin-bottom: 1rem;
-    filter: drop-shadow(5px 5px 15px #992444); 
-  }
-  
-  .position-text {
-    margin-top: 5px;
-    color: #992444;
-    font-size : 20px; 
-  }
-  
-  .role-text {
-    color: #282738;
-    font-size : 18px; 
-  }
-    
-  .img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-  }
-  
-  .polaroid-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding:20px;
-  }
-  
+.position-text {
+  margin-top: 5px;
+  color: #992444;
+  font-size: 20px;
+}
+
+.role-text {
+  color: #301814;
+  font-size: 18px;
+}
+
+.polaroid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding:20px;
+}
+
+.polaroid {
+  background-color: white;
+  border-radius: 7px;
+  border: 2px solid #D2AF71;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  padding: 10px 10px 20px 10px;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.polaroid-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.polaroid-text {
+  text-align: center;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
   .polaroid {
-    background-color: white;
-    border-radius: 7px;
-    border: 2px solid #D2AF71;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    padding: 10px 10px 20px 10px;
-    width: 230px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: calc(50% - 20px); 
   }
-  
-  .polaroid-image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-  
-  .polaroid-text {
-    text-align: center;
-    font-size: 14px;
-  }
-  
-  /* @media (max-width: 1200px) {
-    .polaroid {
-      width: calc(20% - 20px); 
-    }
-  }
-  
-  @media (max-width: 900px) {
-    .polaroid {
-      width: calc(33.33% - 20px); 
-    }
-  }*/
-  
-  @media (max-width: 600px) {
-    .polaroid {
-      width: calc(50% - 20px); 
-    }
-  }
-  
-  @media (max-width: 400px) {
-    .polaroid {
-      width: 100%;
-    }
-  }
-  
-  .nav-button {
-    width: 250px; 
-    height: auto; 
-    margin-top: 5px; 
-    transition: transform 0.2s ease; 
-  }
-  
-  .nav-button:hover {
-    transform: scale(1.1); 
-    filter: drop-shadow(0 0 5px #D2AF71); 
-  }
+}
 
-  .glow-team {
-    /* filter: drop-shadow(0 0 20px #992444); */
-    transform: rotate(6deg);
+@media (max-width: 400px) {
+  .polaroid {
+    width: 100%;
   }
+}
 
-  .Team-title {
-    /* text-shadow: 0rem 0rem 3rem white; */
-      /* text-shadow: 0rem 0rem 3rem white; */
-      background-color: #A6CDC4;
-      padding:2rem;
-      border-radius:20px;
-      border: 8px solid #992444;
-      filter: drop-shadow(-10px 10px #992444);
-      box-shadow: 0px 0px 40px #992444;
-  }
+.nav-button {
+  width: 250px;
+  height: auto;
+  margin-top: 5px;
+  transition: transform 0.2s ease;
+}
+
+.nav-button:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px #D2AF71);
+}
+
+.glow-team {
+  filter: drop-shadow(0 0 20px #992444);
+  transform: rotate(6deg);
+}
+
+.polaroid.loading {
+  opacity: 0.5; 
+  transition: opacity 0.5s;
+}
+
+.polaroid.loaded {
+  opacity: 1; 
+}
