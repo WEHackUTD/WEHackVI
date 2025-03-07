@@ -71,7 +71,7 @@ const dataColOne = [
     
     {
         question: "How do I apply?",
-        answer:    `Registration for WEHack 2025 is now open! Hackers can register via the link at the top of the page. Sign up to be a mentor <a href="http://www.tinyurl.com/wehack-25-mentor" target="_blank" class="text-blue-500 underline">here</a>. Volunteer applications will be posted soon!`,
+        answer:    `Registration for WEHack 2025 is now open! Hackers can register via the link at the top of the page. Sign up to be a mentor <a href="http://www.tinyurl.com/wehack-25-mentor" target="_blank" class="text-[#A6CDC4] underline">here</a>. Volunteer applications will be posted soon!`,
     },
 
     {
