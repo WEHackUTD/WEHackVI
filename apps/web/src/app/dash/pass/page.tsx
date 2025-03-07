@@ -41,22 +41,38 @@ export default async function Page() {
 		"None": 3,
 	}
 
-	var groupNumber = 3; // for those who put eggs, wheat, none, etc
+	var groupNumber = 1; // for those who put eggs, wheat, none, etc
 	// assign hackers groups based on their dietary restriction
 	const dietaryRestrictions = Array.isArray(userDbRecord.dietRestrictions) ? userDbRecord.dietRestrictions : [];
 	// console.log(dietaryRestrictions)
-	for (let i = 0; i < dietaryRestrictions.length; i++) {
-		if(dietaryRestrictions[i] === "Vegan" || dietaryRestrictions[i] === "Gluten-Free") {
-			groupNumber = 1;
-			break;
-		}
-		else if(dietaryRestrictions[i] === "Vegetarian" || dietaryRestrictions[i] === "Halal") {
-			groupNumber = 2;
-			break;
-		}
-		else {
-			continue;
-		}
+	// for (let i = 0; i < dietaryRestrictions.length; i++) {
+	// 	if(dietaryRestrictions.includes("Vegan") || dietaryRestrictions.includes("Gluten-Free")) {
+	// 		groupNumber = 1;
+	// 		break;
+	// 	}
+	// 	else if(dietaryRestrictions[i] === "Vegetarian" || dietaryRestrictions[i] === "Halal") {
+	// 		groupNumber = 2;
+	// 		break;
+	// 	}
+	// 	else if(dietaryRestrictions[i] === "None" && dietaryRestrictions.length === 1) {
+	// 		groupNumber = 3;
+	// 		break;
+	// 	}
+	// 	else {
+	// 		continue;
+	// 	}
+	// }
+	if(dietaryRestrictions.includes("Vegan") || dietaryRestrictions.includes("Gluten-Free")) {
+		groupNumber = 1;
+	}
+	else if(dietaryRestrictions.includes("Vegetarian") || dietaryRestrictions.includes("Halal")) {
+		groupNumber = 2;
+	}
+	else if (dietaryRestrictions.includes("None") && dietaryRestrictions.length == 1) {
+		groupNumber = 3;
+	}
+	else {
+		groupNumber = 1;
 	}
 	// console.log(groupNumber)
 
@@ -95,7 +111,11 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 							@{user.hackerTag}
 						</h3>
 						<h3 className="text-center font-mono text-sm">
-							Group {guild}
+							{(() => {
+								if (guild === 1) return "Group Cassette";
+								if (guild === 2) return "Group Jukebox";
+								if (guild === 3) return "Group Disco";
+							})()}
 						</h3>
 					</div>
 				</div>
@@ -124,11 +144,11 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 						</div>
 						<div className="flex h-full w-full flex-col items-center justify-center gap-y-1">
 							<p className="font-mono text-xs">
-								{/* {`${format(
+								{`${format(
 								c.startDate,
 								"h:mma, MMM d, yyyy",
-							)}`} */}
-								9:00 AM, April 6, 2025
+							)}`}
+								{/* 9:00 AM, April 5, 2025 */}
 							</p>
 							<p className="px-10 text-center font-mono text-xs">
 								{c.prettyLocation}

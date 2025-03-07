@@ -20,7 +20,7 @@ export class Carousel extends React.Component {
 
             >
                 <div className="flex flex-row justify-items-center justify-center flex-wrap">
-                    <div className="row mx-4">
+                    <div className="row mx-2 md:mx-4">
                         <Slider className="slider mx-4 border-solid border-4 border-[#992444] rounded-md shadow-lg">
                             <Slide index={0}>
                                 <img className="slider "
@@ -47,14 +47,14 @@ export class Carousel extends React.Component {
                         <div className="button-grp my-3 mx-4 flex flex-row  h-10 items-center justify-between">
                             <ButtonBack
                                 className='slider-btn text-center text-[#A6CDC4] font-medium text-2xl lg:text-2xl'>&lt;</ButtonBack>
-                            <Dot slide={0} className=" mt-0.5"><img
+                            <Dot slide={0} className="dot mt-0.5"><img
 
                                 src={"/img/static/images/gold-vinyl.png"} loading="eager" alt={"carousel dot"}></img>
                             </Dot>
-                            <Dot slide={1} className=" mt-0.5"><img
+                            <Dot slide={1} className="dot mt-0.5"><img
 
                                 src={"/img/static/images/blue-vinyl.png"} loading="eager" alt={"carousel dot"}></img></Dot>
-                            <Dot slide={2} className="mt-0.5" ><img
+                            <Dot slide={2} className="dot mt-0.5" ><img
 
                                 src={"/img/static/images/red-vinyl.png"} loading="eager" alt={"carousel dot"}></img></Dot>
                             <ButtonNext
