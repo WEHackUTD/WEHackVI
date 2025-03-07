@@ -25,6 +25,13 @@
     justify-content: flex-start;
 }
 
+.mentor-app {
+  filter: drop-shadow(0rem 0rem 0.7rem #A6CDC4);
+}
+.mentor-app:hover {
+  filter: drop-shadow(0rem 0rem 1rem #A6CDC4);
+}
+
 /* .jumbo-group {
   display: flex;
   flex-wrap: wrap;

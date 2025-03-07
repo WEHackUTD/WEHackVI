@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import '../../sections/Jumbotron/Jumbotron.css'; // Import the Jumbotron CSS
+import Button from '@/components/Button/Button';
 
 function Countdown() {
   const [days, setDays] = useState(0);
@@ -36,9 +37,15 @@ function Countdown() {
 
   return (
     <section className='timer-container flex justify-center'>
-      <div className="timer-group pt-10 -mt-20 pb-24 md:-mt-20 md:pb-32">
-        <div className="countdown">
-          <div className="circle-container large">
+      <div className="timer-group pt-10 -mt-20 pb-24 md:-mt-20 md:pb-32 ">
+        <div className="flex flex-row justify-center pt-7">
+          <a href="http://www.tinyurl.com/wehack-25-mentor" className="mentor-app text-md md:text-3xl mt-2" target="_blank">
+            <button className="primary-btn bg-[#A6CDC4] text-[#282738] py-4 px-5 md:px-10">Mentor Applications</button>
+          </a>
+        </div>
+        
+        <div className="countdown md:pt-10">
+          <div className="circle-container large flex flex-row justify-center">
                 <div className="circle bg-[rgba(255,233,215,0.68)] animate-pulse">
                   <p>{days}</p>
                 </div>
