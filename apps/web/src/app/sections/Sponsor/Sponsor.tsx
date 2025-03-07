@@ -2,14 +2,14 @@ import React from 'react';
 import './Sponsor.css';
 
 const sponsors = [
-  { default: '/img/static/images/sponsors/cbre_gold.png', hover: '/img/static/images/sponsors/cbre_gold.png', tier: 'gold', link: 'https://www.cbre.com/' },
-  { default: '/img/static/images/sponsors/verizon_gold.svg', hover: '/img/static/images/sponsors/verizon_gold.svg', tier: 'gold', link: 'https://www.verizon.com/' },
-  { default: '/img/static/images/sponsors/bcbstx_silver.png', hover: '/img/static/images/sponsors/bcbstx_silver.png', tier: 'silver', link: 'https://www.hcsc.com/' },
-  { default: '/img/static/images/sponsors/capital_one_silver.png', hover: '/img/static/images/sponsors/capital_one_silver.png', tier: 'silver', link: 'https://www.capitalone.com/' },
-  { default: '/img/static/images/sponsors/jpmc_bronze.png', hover: '/img/static/images/sponsors/jpmc_bronze.png', tier: 'bronze', link: 'https://www.jpmorganchase.com/' },
-  { default: '/img/static/images/sponsors/statefarm_bronze.png', hover: '/img/static/images/sponsors/statefarm_bronze.png', tier: 'bronze', link: 'https://www.statefarm.com/' },
-  { default: '/img/static/images/sponsors/axxess_bronze.png', hover: '/img/static/images/sponsors/axxess_bronze.png', tier: 'bronze', link: 'https://www.axxess.com/' },
-  { default: '/img/static/images/sponsors/the_bridge_bronze.png', hover: '/img/static/images/sponsors/the_bridge_bronze.png', tier: 'bronze', link: 'https://www.thebridge.com/' },
+  { default: '/img/static/images/sponsors/cbre_gold.png', hover: '/img/static/images/sponsors/cbre_gold.png', tier: 'gold', link: 'https://careers.cbre.com/en_US/careers/SearchJobs/?9577=%5B17276%5D&9577_format=10224&listFilterMode=1&jobRecordsPerPage=6&' },
+  { default: '/img/static/images/sponsors/verizon_gold.svg', hover: '/img/static/images/sponsors/verizon_gold.svg', tier: 'gold', link: 'https://mycareer.verizon.com/jobs/' },
+  { default: '/img/static/images/sponsors/bcbstx_silver.png', hover: '/img/static/images/sponsors/bcbstx_silver.png', tier: 'silver', link: 'https://careers.hcsc.com/search-jobs' },
+  { default: '/img/static/images/sponsors/capital_one_silver.png', hover: '/img/static/images/sponsors/capital_one_silver.png', tier: 'silver', link: 'https://www.capitalonecareers.com/search-jobs' },
+  { default: '/img/static/images/sponsors/jpmc_bronze.png', hover: '/img/static/images/sponsors/jpmc_bronze.png', tier: 'bronze', link: 'https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/requisitions' },
+  { default: '/img/static/images/sponsors/statefarm_bronze.png', hover: '/img/static/images/sponsors/statefarm_bronze.png', tier: 'bronze', link: 'https://jobs.statefarm.com/main/jobs' },
+  { default: '/img/static/images/sponsors/axxess_bronze.png', hover: '/img/static/images/sponsors/axxess_bronze.png', tier: 'bronze', link: 'https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=153b5e8f-6e7c-4b07-a07b-70fec40037cb&ccId=19000101_000001&type=MP&lang=en_US' },
+  { default: '/img/static/images/sponsors/the_bridge_bronze.png', hover: '/img/static/images/sponsors/the_bridge_bronze.png', tier: 'bronze', link: 'https://thebridge.com/careers/' },
   { default: '/img/static/images/sponsors/codepath_bronze.png', hover: '/img/static/images/sponsors/codepath_bronze.png', tier: 'bronze', link: 'https://www.codepath.org/' },
   { default: '/img/static/images/sponsors/dfw_atw_bronze.png', hover: '/img/static/images/sponsors/dfw_atw_bronze.png', tier: 'bronze', link: 'https://www.dfwatw.org/' }
 ];
