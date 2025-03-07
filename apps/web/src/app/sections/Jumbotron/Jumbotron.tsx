@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import './Jumbotron.css'
+import Button from '@/components/Button/Button';
 
 function Jumbotron() {
   const [days, setDays] = useState(0);
@@ -41,11 +42,7 @@ function Jumbotron() {
           <h4 className='jumbo-text text-[#B4A498] text-xs font-semibold md:text-base font-serif lg:text-2xl'>WEHack 2025 Presents</h4>
           <h1 className='jumbo-title text-[#FFE9D7] text-3xl md:text-5xl lg:text-7xl animate-pulse'>Timeless Moments Await</h1>
           <h2 className='jumbo-text font-black text-[#A6CDC4] text-base sm:text-1xl md:1xl lg:text-4xl'>April 5th-6th</h2>
-
-                <div className='jumbo-buttons flex flex-row items-start space-x-4 mt-4 gap-1.3'>
-                  {/* <Button link={'https://events.mlh.io/events/11456-wehack'} buttonText={'Interest Form'}/> */}
-                  {/* <Button link={'https://live.wehackutd.com/'} buttonText={'WEHack Portal'}/> */}
-                </div>
+          {/* <Button link={'http://www.tinyurl.com/wehack-25-mentor'} buttonText={'Mentor Applications'}/> */}
 
                 {/* Countdown Timer Here */}
 

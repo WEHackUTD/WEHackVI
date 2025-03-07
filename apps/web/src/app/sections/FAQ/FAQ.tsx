@@ -80,7 +80,7 @@ const dataColOne = [
     
     {
         question: "How do I apply?",
-        answer: "Hackers can register via the link at the top of the page. Mentor applications will be posted soon! Registration for WEHack 2025 will be released in December 2024.",
+        answer: "Hackers can register via the link at the top of the page. Mentor can register via the link at the top of the page! Registration for WEHack 2025 will be released in December 2024.",
     },
 
     {
@@ -102,7 +102,7 @@ const dataColTwo =  [
 
     {
         question: "How can I be a mentor at WEHack?",
-        answer: "Mentor applications will be released soon! Please note that if you are a mentor, you cannot be a hacker at WEHack.",        
+        answer: "Mentor applications have been released and can be found at the top of the page! Please note that if you are a mentor, you cannot be a hacker at WEHack.",        
     },
 
     {

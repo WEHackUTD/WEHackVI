@@ -372,6 +372,7 @@ const schools = [
 	"The University of Zagreb",
 	"The University of the Pacific",
 	"The Université de Sherbrooke",
+	"Texas Woman's University",
 	"Thomas Edison State College",
 	"Trent University",
 	"Trinity College",
