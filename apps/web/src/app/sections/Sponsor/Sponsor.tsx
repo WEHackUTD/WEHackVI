@@ -10,7 +10,7 @@ const sponsors = [
   { default: '/img/static/images/sponsors/statefarm_bronze.png', hover: '/img/static/images/sponsors/statefarm_bronze.png', tier: 'bronze', link: 'https://jobs.statefarm.com/main/jobs' },
   { default: '/img/static/images/sponsors/axxess_bronze.png', hover: '/img/static/images/sponsors/axxess_bronze.png', tier: 'bronze', link: 'https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=153b5e8f-6e7c-4b07-a07b-70fec40037cb&ccId=19000101_000001&type=MP&lang=en_US' },
   { default: '/img/static/images/sponsors/the_bridge_bronze.png', hover: '/img/static/images/sponsors/the_bridge_bronze.png', tier: 'bronze', link: 'https://thebridge.com/careers/' },
-  { default: '/img/static/images/sponsors/codepath_bronze.png', hover: '/img/static/images/sponsors/codepath_bronze.png', tier: 'bronze', link: 'https://www.codepath.org/' },
+  { default: '/img/static/images/sponsors/codepath_bronze.png', hover: '/img/static/images/sponsors/codepath_bronze.png', tier: 'bronze', link: 'https://www.codepath.org/plan-your-codepath' },
   { default: '/img/static/images/sponsors/dfw_atw_bronze.png', hover: '/img/static/images/sponsors/dfw_atw_bronze.png', tier: 'bronze', link: 'https://www.dfwatw.org/' }
 ];
 
