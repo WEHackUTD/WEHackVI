@@ -183,11 +183,19 @@
 
   .Sponsor-container {
     padding: 4rem;
-}
+  }
 
-.sponsor-text {
+  .sponsor-text {
     font-size: large;
-}
+  }
+
+  .Sponsor-logo.gold {
+    /* width: 280px;
+    height: 200px;
+    border: 2px solid #D09C51;
+    box-shadow: 0rem 0rem 1rem rgb(255, 202, 86); */
+  }
+  
 }
 
 .sponsor-title {
