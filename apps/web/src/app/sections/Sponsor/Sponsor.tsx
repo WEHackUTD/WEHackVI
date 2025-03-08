@@ -31,7 +31,7 @@ function Sponsor() {
         </div>
         <h1 className='Sponsor-title text-[#CCBA97] text-center text-4xl md:text-5xl lg:text-5xl pb-7 md:pb-15 md:pb-20'>2025 Sponsors</h1>*/}
         
-        <div className="flex flex-col justify-center gap-y-10 items-center">
+        <div className="flex flex-col justify-center gap-y-10 items-center w-full">
           <div className='gold-sponsors flex flex-col justify-center gap-7 md:flex-row md:flex-1'>
             {goldSponsors.map((logo, index) => (
               <a
