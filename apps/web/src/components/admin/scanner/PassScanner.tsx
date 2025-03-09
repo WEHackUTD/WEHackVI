@@ -71,17 +71,16 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-		if (scan && scan.count >= 1) {
+
+		if (scan) {
 			return alert("User has already scanned in!");
-		}
-		else if (scan) {
-			runScanAction({
-				eventID: event.id,
-				userID: scan.userID,
-				countToSet: scan.count + 1,
-				alreadyExists: true,
-				creationTime: new Date(timestamp),
-			});
+			// runScanAction({
+			// 	eventID: event.id,
+			// 	userID: scan.userID,
+			// 	countToSet: scan.count + 1,
+			// 	alreadyExists: true,
+			// 	creationTime: new Date(timestamp),
+			// });
 		} else {
 			// TODO: make this a little more typesafe
 			runScanAction({
