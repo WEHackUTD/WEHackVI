@@ -72,8 +72,7 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 		if (scan && scan.count >= 1) {
-			toast.error("User has already scanned in!");
-			return;
+			return alert("User has already scanned in!");
 		}
 		else if (scan) {
 			runScanAction({
@@ -108,10 +107,6 @@ export default function PassScanner({
 								const params = new URLSearchParams(
 									searchParams.toString(),
 								);
-								if (scan && scan.count >= 1) {
-									toast.error("User has already scanned in!");
-									return;
-								}
 								if (!params.has("user")) {
 									setScanLoading(true);
 									const qrParsedData =
