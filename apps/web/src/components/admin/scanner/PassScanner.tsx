@@ -73,9 +73,9 @@ export default function PassScanner({
 		}
 
 		if (hasScanned) {
-			toast.error("User has already scanned in!");
-			router.replace(`${path}`);
-			// return alert("User has already scanned in!");
+			// toast.error("User has already scanned in!");
+			// router.replace(`${path}`);
+			return alert("User has already scanned in!");
 			// runScanAction({
 			// 	eventID: event.id,
 			// 	userID: scan.userID,
