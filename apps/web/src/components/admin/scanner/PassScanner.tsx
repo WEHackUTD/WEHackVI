@@ -71,7 +71,11 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-		if (scan) {
+		if (scan && scan.count >= 1) {
+			toast.error("User has already scanned in!");
+			return;
+		}
+		else if (scan) {
 			runScanAction({
 				eventID: event.id,
 				userID: scan.userID,
@@ -104,6 +108,10 @@ export default function PassScanner({
 								const params = new URLSearchParams(
 									searchParams.toString(),
 								);
+								if (scan && scan.count >= 1) {
+									toast.error("User has already scanned in!");
+									return;
+								}
 								if (!params.has("user")) {
 									setScanLoading(true);
 									const qrParsedData =
@@ -178,12 +186,12 @@ export default function PassScanner({
 										</span>{" "}
 										{register}
 									</h2>
-									<h2>
+									{/* <h2>
 										<span className="font-bold">
 											Guild:
 										</span>{" "}
 										{guild}
-									</h2>
+									</h2> */}
 								</DrawerDescription>
 							</DrawerHeader>
 							<DrawerFooter>
