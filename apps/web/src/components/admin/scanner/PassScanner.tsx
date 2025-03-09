@@ -72,7 +72,7 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 
-		if (hasScanned) {
+		if (scan) {
 			return alert("User has already scanned in!");
 			// runScanAction({
 			// 	eventID: event.id,
