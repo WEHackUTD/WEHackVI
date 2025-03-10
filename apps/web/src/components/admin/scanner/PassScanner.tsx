@@ -80,6 +80,8 @@ export default function PassScanner({
 				eventID: event.id,
 				userID: localScan.userID,
 			});
+			
+			console.log(isDuplicate);
 			if(isDuplicate) {
 				setLocalScan({
 					...localScan,
