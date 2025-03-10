@@ -84,6 +84,25 @@ export default function PassScanner({
 				  toast.error("This user has already been scanned.");
 				  return;
 			}
+			else {
+				// TODO: make this a little more typesafe
+				setLocalScan({
+					userID: scanUser?.clerkID as string,
+					count: 1,
+					eventID: event.id,
+					creationTime: new Date(timestamp),
+				  } as Scan & { creationTime: Date });
+	
+				runScanAction({
+					eventID: event.id,
+					userID: scanUser?.clerkID as string,
+					countToSet: 1,
+					alreadyExists: false,
+					creationTime: new Date(timestamp),
+				});
+			}
+			toast.success("Successfully Scanned User In");
+			router.replace(`${path}`);
 
 		// if (localScan) {
 		// 	console.log('inside localScan ', localScan);
@@ -108,46 +127,46 @@ export default function PassScanner({
 		// 		  });
 		// 		  return;
 		// 	}
-		if(scan) {
-			const isDuplicate = await getScan({
-				eventID: event.id,
-				userID: scan.userID,
-			});
-			console.log(isDuplicate);
-			if(isDuplicate) {
-				setLocalScan({
-					...scan,
-					count: scan.count,
-				  });
-				  toast.error("This user has already been scanned.");
-				  runScanAction({
-					eventID: event.id,
-					userID: scanUser?.clerkID as string,
-					countToSet: scan.count,  
-					alreadyExists: true,
-					creationTime: new Date(timestamp),
-				  });
-				  return;
-			}
-		} else {
-			// TODO: make this a little more typesafe
-			setLocalScan({
-				userID: scanUser?.clerkID as string,
-				count: 1,
-				eventID: event.id,
-				creationTime: new Date(timestamp),
-			  } as Scan & { creationTime: Date });
+		// if(scan) {
+		// 	const isDuplicate = await getScan({
+		// 		eventID: event.id,
+		// 		userID: scan.userID,
+		// 	});
+		// 	console.log(isDuplicate);
+		// 	if(isDuplicate) {
+		// 		setLocalScan({
+		// 			...scan,
+		// 			count: scan.count,
+		// 		  });
+		// 		  toast.error("This user has already been scanned.");
+		// 		  runScanAction({
+		// 			eventID: event.id,
+		// 			userID: scanUser?.clerkID as string,
+		// 			countToSet: scan.count,  
+		// 			alreadyExists: true,
+		// 			creationTime: new Date(timestamp),
+		// 		  });
+		// 		  return;
+		// 	}
+		// } else {
+		// 	// TODO: make this a little more typesafe
+		// 	setLocalScan({
+		// 		userID: scanUser?.clerkID as string,
+		// 		count: 1,
+		// 		eventID: event.id,
+		// 		creationTime: new Date(timestamp),
+		// 	  } as Scan & { creationTime: Date });
 
-			runScanAction({
-				eventID: event.id,
-				userID: scanUser?.clerkID as string,
-				countToSet: 1,
-				alreadyExists: false,
-				creationTime: new Date(timestamp),
-			});
-		}
-		toast.success("Successfully Scanned User In");
-		router.replace(`${path}`);
+		// 	runScanAction({
+		// 		eventID: event.id,
+		// 		userID: scanUser?.clerkID as string,
+		// 		countToSet: 1,
+		// 		alreadyExists: false,
+		// 		creationTime: new Date(timestamp),
+		// 	});
+		// }
+		// toast.success("Successfully Scanned User In");
+		// router.replace(`${path}`);
 	}
 
 	return (
