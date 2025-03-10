@@ -83,14 +83,14 @@ export default function PassScanner({
 			console.log(scan);
 			toast.error("User has already been scanned!");
 			// router.replace(`${path}`);
+			runScanAction({
+				eventID: event.id,
+				userID: scan.userID,
+				countToSet: 1,
+				alreadyExists: true,
+				creationTime: new Date(timestamp),
+			});
 			return alert("User has already been scanned!");
-			// runScanAction({
-			// 	eventID: event.id,
-			// 	userID: scan.userID,
-			// 	countToSet: scan.count + 1,
-			// 	alreadyExists: true,
-			// 	creationTime: new Date(timestamp),
-			// });
 		} else {
 			// TODO: make this a little more typesafe
 			runScanAction({
