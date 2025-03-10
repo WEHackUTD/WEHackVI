@@ -21,7 +21,6 @@ import { Button } from "@/components/shadcn/ui/button";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { getScan } from "@/actions/admin/scanner-admin-actions";
 
 /*
 
@@ -47,20 +46,13 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
-	const [scanStatus, setHasScanned] = useState(false);
-	const [alreadyScanned, setAlreadyScanned] = useState(false);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		if (scan && hasScanned) {
-			console.log("inside hasScanned");
+		if (hasScanned) {
 			setScanLoading(false);
-			setAlreadyScanned(true);
 		}
-		else {
-			setAlreadyScanned(false);
-		}
-	}, [scan, hasScanned]);
+	}, [hasScanned]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -79,37 +71,16 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-		console.log('outside if statement');
-		console.log(hasScanned);
-		console.log(alreadyScanned);
-		
-		if (alreadyScanned) {
-			toast.error("User has already been scanned!");
-			setScanLoading(false);
-      		// return alert("User has already been scanned!");
-			// const isDuplicate = await getScan({
-			// 	eventID: event.id,
-			// 	userID: scan.userID,
-			// });
-			// console.log("duplicate or not: ", isDuplicate);
-
-			// if(isDuplicate) {
-			// 	console.log('inside if statement');
-			// 	console.log(hasScanned, scan);
-			// 	toast.error("User has already been scanned!");
-			// 	return alert("User has already been scanned!");
-			// }
-			// runScanAction({
-			// 	eventID: event.id,
-			// 	userID: scan.userID,
-			// 	countToSet: 1,
-			// 	alreadyExists: true,
-			// 	creationTime: new Date(timestamp),
-			// });
+		if (scan) {
+			runScanAction({
+				eventID: event.id,
+				userID: scan.userID,
+				countToSet: scan.count + 1,
+				alreadyExists: true,
+				creationTime: new Date(timestamp),
+			});
 		} else {
 			// TODO: make this a little more typesafe
-			console.log("before scan", alreadyScanned);
-			console.log(hasScanned);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -117,12 +88,10 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
-			setAlreadyScanned(true);
-			console.log("after scan", alreadyScanned);
-			console.log(hasScanned);
-			toast.success("Successfully Scanned User In");
-			router.replace(`${path}`);
 		}
+
+		toast.success("Successfully Scanned User In");
+		router.replace(`${path}`);
 	}
 
 	return (
@@ -170,7 +139,7 @@ export default function PassScanner({
 			</div>
 			<Drawer
 				onClose={() => router.replace(path)}
-				open={alreadyScanned || scanLoading}
+				open={hasScanned || scanLoading}
 			>
 				<DrawerContent>
 					{scanLoading ? (
@@ -209,18 +178,18 @@ export default function PassScanner({
 										</span>{" "}
 										{register}
 									</h2>
-									{/* <h2>
+									<h2>
 										<span className="font-bold">
 											Guild:
 										</span>{" "}
 										{guild}
-									</h2> */}
+									</h2>
 								</DrawerDescription>
 							</DrawerHeader>
 							<DrawerFooter>
 								<Button onClick={() => handleScanCreate()}>
 									{scan
-										? "Add additional scan"
+										? "Add Additional Scan"
 										: "Scan User In"}
 								</Button>
 								<Button
