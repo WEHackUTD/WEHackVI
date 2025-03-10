@@ -62,7 +62,7 @@ export const getScan = adminAction
 					eq(scans.userID, userID),
 				),
 			});
-			return scan || null;
+			return scan;
 		},
 	);
 
