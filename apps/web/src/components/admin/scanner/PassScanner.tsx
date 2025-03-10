@@ -50,10 +50,10 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		if (hasScanned) {
+		if (scanStatus) {
 			setScanLoading(false);
 		}
-	}, [hasScanned]);
+	}, [scanStatus]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
