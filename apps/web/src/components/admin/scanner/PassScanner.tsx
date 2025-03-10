@@ -75,11 +75,13 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 
+		console.log(scan);
+		console.log(scanUser?.clerkID);
 			const isDuplicate = await getScan({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
 			});
-			console.log(scanUser?.clerkID);
+
 			console.log(isDuplicate);
 			if(isDuplicate) {
 				  toast.error("This user has already been scanned.");
@@ -87,13 +89,6 @@ export default function PassScanner({
 			}
 			else {
 				// TODO: make this a little more typesafe
-				setLocalScan({
-					userID: scanUser?.clerkID as string,
-					count: 1,
-					eventID: event.id,
-					creationTime: new Date(timestamp),
-				  } as Scan & { creationTime: Date });
-	
 				runScanAction({
 					eventID: event.id,
 					userID: scanUser?.clerkID as string,
