@@ -178,12 +178,12 @@ export default function PassScanner({
 										</span>{" "}
 										{register}
 									</h2>
-									<h2>
+									{/* <h2>
 										<span className="font-bold">
 											Guild:
 										</span>{" "}
 										{guild}
-									</h2>
+									</h2> */}
 								</DrawerDescription>
 							</DrawerHeader>
 							<DrawerFooter>
