@@ -52,11 +52,14 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		if (scanUser?.clerkID) {
+		if (hasScanned) {
 			setScanLoading(false);
-			setAlreadyScanned(scanUser.checkinTimestamp ? true : false);
+			setAlreadyScanned(true);
 		}
-	}, [scanUser]);
+		else {
+			setAlreadyScanned(false);
+		}
+	}, [hasScanned]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -69,7 +72,7 @@ export default function PassScanner({
 		Object.keys(c.groups)[scanUser?.hackerData.group || 0] ?? "None";
 	const role = scanUser?.role ? scanUser?.role : "Not Found";
 
-	async function handleScanCreate() {
+	function handleScanCreate() {
 		const params = new URLSearchParams(searchParams.toString());
 		const timestamp = parseInt(params.get("createdAt") as string);
 		if (isNaN(timestamp)) {
@@ -81,7 +84,7 @@ export default function PassScanner({
 		
 		if (alreadyScanned) {
 			toast.error("User has already been scanned!");
-      		return alert("User has already been scanned!");
+      		// return alert("User has already been scanned!");
 			// const isDuplicate = await getScan({
 			// 	eventID: event.id,
 			// 	userID: scan.userID,
@@ -103,7 +106,8 @@ export default function PassScanner({
 			// });
 		} else {
 			// TODO: make this a little more typesafe
-			await runScanAction({
+			console.log("before scan", alreadyScanned);
+			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
 				countToSet: 1,
@@ -111,6 +115,7 @@ export default function PassScanner({
 				creationTime: new Date(timestamp),
 			});
 			setAlreadyScanned(true);
+			console.log("after scan", alreadyScanned);
 			toast.success("Successfully Scanned User In");
 			router.replace(`${path}`);
 		}
