@@ -85,6 +85,7 @@ export default function PassScanner({
 		
 		if (alreadyScanned) {
 			toast.error("User has already been scanned!");
+			setScanLoading(false);
       		// return alert("User has already been scanned!");
 			// const isDuplicate = await getScan({
 			// 	eventID: event.id,
