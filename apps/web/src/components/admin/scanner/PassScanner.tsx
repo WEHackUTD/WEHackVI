@@ -21,6 +21,7 @@ import { Button } from "@/components/shadcn/ui/button";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { getScan } from "@/actions/admin/scanner-admin-actions";
 
 /*
 
@@ -66,7 +67,7 @@ export default function PassScanner({
 		Object.keys(c.groups)[scanUser?.hackerData.group || 0] ?? "None";
 	const role = scanUser?.role ? scanUser?.role : "Not Found";
 
-	function handleScanCreate() {
+	async function handleScanCreate() {
 		const params = new URLSearchParams(searchParams.toString());
 		const timestamp = parseInt(params.get("createdAt") as string);
 		if (isNaN(timestamp)) {
@@ -76,21 +77,26 @@ export default function PassScanner({
 		console.log(scan);
 		console.log(hasScanned);
 		
-		if (scan && hasScanned) {
-			// toast.error("User has already scanned in!");
-			console.log('inside if statement');
-			console.log(hasScanned);
-			console.log(scan);
-			toast.error("User has already been scanned!");
-			// router.replace(`${path}`);
-			runScanAction({
+		if (scan) {
+			const isDuplicate = await getScan({
 				eventID: event.id,
 				userID: scan.userID,
-				countToSet: 1,
-				alreadyExists: true,
-				creationTime: new Date(timestamp),
 			});
-			return alert("User has already been scanned!");
+			console.log("duplicate or not: ", isDuplicate);
+
+			if(isDuplicate) {
+				console.log('inside if statement');
+				console.log(hasScanned, scan);
+				toast.error("User has already been scanned!");
+				return alert("User has already been scanned!");
+			}
+			// runScanAction({
+			// 	eventID: event.id,
+			// 	userID: scan.userID,
+			// 	countToSet: 1,
+			// 	alreadyExists: true,
+			// 	creationTime: new Date(timestamp),
+			// });
 		} else {
 			// TODO: make this a little more typesafe
 			runScanAction({
@@ -101,12 +107,10 @@ export default function PassScanner({
 				creationTime: new Date(timestamp),
 			});
 			setHasScanned(true);
-			console.log(scanStatus);
-			console.log("creating new scan")
-			console.log(scan);
 			toast.success("Successfully Scanned User In");
 			router.replace(`${path}`);
 		}
+		console.log("scan object: ", scan);
 	}
 
 	return (
