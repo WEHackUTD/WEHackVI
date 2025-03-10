@@ -79,6 +79,7 @@ export default function PassScanner({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
 			});
+			console.log(scanUser?.clerkID);
 			console.log(isDuplicate);
 			if(isDuplicate) {
 				  toast.error("This user has already been scanned.");
