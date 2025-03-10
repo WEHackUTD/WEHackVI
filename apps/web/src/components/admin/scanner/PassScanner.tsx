@@ -47,7 +47,7 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
-	const scannedUsersRef = useRef(new Set<string>());
+	const [localScan, setLocalScan] = useState<Scan | null>(scan);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
@@ -74,18 +74,12 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 
-		const userClerkID = scanUser?.clerkID;
-        if (!userClerkID) {
-            return alert("Invalid User Data (Field: clerkID)");
-        }
-
-		if (scannedUsersRef.current.has(userClerkID)) {
-            toast.error("User has already been scanned!");
-            return;
-        }
-
-
 		if (scan) {
+			setLocalScan({
+				...scan,
+				count: scan.count + 1, // Increment the count
+			  });
+		
 			runScanAction({
 				eventID: event.id,
 				userID: scan.userID,
@@ -95,6 +89,13 @@ export default function PassScanner({
 			});
 		} else {
 			// TODO: make this a little more typesafe
+			setLocalScan({
+				userID: scanUser?.clerkID as string,
+				count: 1,
+				eventID: event.id,
+				creationTime: new Date(timestamp),
+			  } as Scan & { creationTime: Date });
+
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -103,7 +104,6 @@ export default function PassScanner({
 				creationTime: new Date(timestamp),
 			});
 		}
-        scannedUsersRef.current.add(userClerkID);
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
 	}
@@ -201,8 +201,8 @@ export default function PassScanner({
 								</DrawerDescription>
 							</DrawerHeader>
 							<DrawerFooter>
-								<Button onClick={() => handleScanCreate()} disabled={scanLoading}>
-									{scan
+								<Button onClick={() => handleScanCreate()}>
+									{localScan
 										? "Add Additional Scan"
 										: "Scan User In"}
 								</Button>
