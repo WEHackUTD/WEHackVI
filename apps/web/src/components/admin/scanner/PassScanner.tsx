@@ -72,6 +72,8 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 		router.refresh();
+		console.log(scan);
+		console.log(hasScanned);
 		if (scan) {
 			// toast.error("User has already scanned in!");
 			router.replace(`${path}`);
