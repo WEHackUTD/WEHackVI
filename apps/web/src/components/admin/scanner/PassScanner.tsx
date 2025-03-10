@@ -52,7 +52,6 @@ export default function PassScanner({
 	useEffect(() => {
 		if (hasScanned) {
 			setScanLoading(false);
-			setHasScanned(true);
 		}
 	}, [hasScanned]);
 
@@ -100,6 +99,7 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
+			setHasScanned(true);
 			console.log("creating new scan")
 			console.log(scan);
 			toast.success("Successfully Scanned User In");
