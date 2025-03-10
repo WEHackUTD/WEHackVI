@@ -74,7 +74,7 @@ export default function PassScanner({
 		router.refresh();
 		console.log(scan);
 		console.log(hasScanned);
-		if (hasScanned) {
+		if (scan) {
 			// toast.error("User has already scanned in!");
 			router.replace(`${path}`);
 			console.log(hasScanned);
