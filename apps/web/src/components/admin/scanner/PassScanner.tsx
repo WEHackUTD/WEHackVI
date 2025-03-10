@@ -75,23 +75,68 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 
-		if (localScan) {
+		if(scan) {
 			const isDuplicate = await getScan({
 				eventID: event.id,
-				userID: localScan.userID,
+				userID: scan.userID,
 			});
-			
 			console.log(isDuplicate);
 			if(isDuplicate) {
 				setLocalScan({
-					...localScan,
-					count: localScan.count,
+					...scan,
+					count: scan.count,
 				  });
 				  toast.error("This user has already been scanned.");
 				  runScanAction({
 					eventID: event.id,
 					userID: scanUser?.clerkID as string,
-					countToSet: localScan.count,  
+					countToSet: scan.count,  
+					alreadyExists: true,
+					creationTime: new Date(timestamp),
+				  });
+				  return;
+			}
+		}
+
+		// if (localScan) {
+		// 	console.log('inside localScan ', localScan);
+		// 	const isDuplicate = await getScan({
+		// 		eventID: event.id,
+		// 		userID: localScan.userID,
+		// 	});
+			
+		// 	console.log(isDuplicate);
+		// 	if(isDuplicate) {
+		// 		setLocalScan({
+		// 			...localScan,
+		// 			count: localScan.count,
+		// 		  });
+		// 		  toast.error("This user has already been scanned.");
+		// 		  runScanAction({
+		// 			eventID: event.id,
+		// 			userID: scanUser?.clerkID as string,
+		// 			countToSet: localScan.count,  
+		// 			alreadyExists: true,
+		// 			creationTime: new Date(timestamp),
+		// 		  });
+		// 		  return;
+		// 	}
+		if(scan) {
+			const isDuplicate = await getScan({
+				eventID: event.id,
+				userID: scan.userID,
+			});
+			console.log(isDuplicate);
+			if(isDuplicate) {
+				setLocalScan({
+					...scan,
+					count: scan.count,
+				  });
+				  toast.error("This user has already been scanned.");
+				  runScanAction({
+					eventID: event.id,
+					userID: scanUser?.clerkID as string,
+					countToSet: scan.count,  
 					alreadyExists: true,
 					creationTime: new Date(timestamp),
 				  });
@@ -212,7 +257,7 @@ export default function PassScanner({
 							</DrawerHeader>
 							<DrawerFooter>
 								<Button onClick={() => handleScanCreate()}>
-									{localScan
+									{scan
 										? "Add Additional Scan"
 										: "Scan User In"}
 								</Button>
