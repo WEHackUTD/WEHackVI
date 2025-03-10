@@ -80,6 +80,7 @@ export default function PassScanner({
 			console.log(hasScanned);
 			console.log(scan);
 			toast.error("User has already been scanned!");
+			router.replace(`${path}`);
 			return alert("User has already been scanned!");
 			// runScanAction({
 			// 	eventID: event.id,
