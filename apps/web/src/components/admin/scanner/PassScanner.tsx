@@ -51,7 +51,12 @@ export default function PassScanner({
 	const [alreadyScanned, setAlreadyScanned] = useState(false);
 	const { execute: runScanAction } = useAction(createScan, {});
 
-	
+	useEffect(() => {
+		if (scanUser?.clerkID) {
+			setScanLoading(false);
+			setAlreadyScanned(scanUser.checkinTimestamp ? true : false);
+		}
+	}, [scanUser]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -109,12 +114,6 @@ export default function PassScanner({
 			toast.success("Successfully Scanned User In");
 			router.replace(`${path}`);
 		}
-		useEffect(() => {
-			if (scanUser?.clerkID) {
-				setScanLoading(false);
-				setAlreadyScanned(scanUser.checkinTimestamp ? true : false);
-			}
-		}, [scanUser]);
 	}
 
 	return (
