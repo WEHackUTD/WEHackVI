@@ -107,7 +107,7 @@ export default function PassScanner({
 			toast.success("Successfully Scanned User In");
 			router.replace(`${path}`);
 		}
-		router.refresh();
+		router.replace(`${path}`);
 	}
 
 	return (
