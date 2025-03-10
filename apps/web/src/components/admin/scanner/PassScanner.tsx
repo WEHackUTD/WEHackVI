@@ -22,6 +22,7 @@ import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { useRef } from "react";
+import { getScan } from "@/actions/admin/scanner-admin-actions";
 
 /*
 
@@ -67,7 +68,7 @@ export default function PassScanner({
 		Object.keys(c.groups)[scanUser?.hackerData.group || 0] ?? "None";
 	const role = scanUser?.role ? scanUser?.role : "Not Found";
 
-	function handleScanCreate() {
+	async function handleScanCreate() {
 		const params = new URLSearchParams(searchParams.toString());
 		const timestamp = parseInt(params.get("createdAt") as string);
 		if (isNaN(timestamp)) {
@@ -75,19 +76,25 @@ export default function PassScanner({
 		}
 
 		if (localScan) {
-			setLocalScan({
-				...localScan,
-				count: localScan.count,
-			  });
-			  toast.error("This user has already been scanned.");
-			  runScanAction({
+			const isDuplicate = await getScan({
 				eventID: event.id,
-				userID: scanUser?.clerkID as string,
-				countToSet: localScan.count,  
-				alreadyExists: true,
-				creationTime: new Date(timestamp),
-			  });
-			  return;
+				userID: localScan.userID,
+			});
+			if(isDuplicate) {
+				setLocalScan({
+					...localScan,
+					count: localScan.count,
+				  });
+				  toast.error("This user has already been scanned.");
+				  runScanAction({
+					eventID: event.id,
+					userID: scanUser?.clerkID as string,
+					countToSet: localScan.count,  
+					alreadyExists: true,
+					creationTime: new Date(timestamp),
+				  });
+				  return;
+			}
 		} else {
 			// TODO: make this a little more typesafe
 			setLocalScan({
