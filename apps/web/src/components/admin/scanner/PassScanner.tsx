@@ -46,6 +46,7 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
+	const [scanStatus, setHasScanned] = useState(false);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
@@ -98,6 +99,8 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
+			setHasScanned(true);
+			console.log(scanStatus);
 			console.log("creating new scan")
 			console.log(scan);
 			toast.success("Successfully Scanned User In");
@@ -200,7 +203,7 @@ export default function PassScanner({
 							<DrawerFooter>
 								<Button onClick={() => handleScanCreate()}>
 									{scan
-										? "Add Additional Scan"
+										? "Add additional scan"
 										: "Scan User In"}
 								</Button>
 								<Button
