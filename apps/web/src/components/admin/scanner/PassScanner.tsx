@@ -79,7 +79,8 @@ export default function PassScanner({
 			console.log('inside if statement');
 			console.log(hasScanned);
 			console.log(scan);
-			return alert("User has already scanned!");
+			toast.error("User has already been scanned!");
+			return alert("User has already been scanned!");
 			// runScanAction({
 			// 	eventID: event.id,
 			// 	userID: scan.userID,
@@ -96,11 +97,11 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
+			console.log("creating new scan")
 			console.log(scan);
+			toast.success("Successfully Scanned User In");
+			router.replace(`${path}`);
 		}
-
-		toast.success("Successfully Scanned User In");
-		router.replace(`${path}`);
 	}
 
 	return (
