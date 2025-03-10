@@ -52,7 +52,7 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		if (hasScanned) {
+		if (scan && hasScanned) {
 			console.log("inside hasScanned");
 			setScanLoading(false);
 			setAlreadyScanned(true);
@@ -60,7 +60,7 @@ export default function PassScanner({
 		else {
 			setAlreadyScanned(false);
 		}
-	}, [hasScanned]);
+	}, [scan, hasScanned]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
