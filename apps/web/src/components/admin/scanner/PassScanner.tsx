@@ -75,6 +75,7 @@ export default function PassScanner({
 		console.log('outside if statement');
 		console.log(scan);
 		console.log(hasScanned);
+		
 		if (scan && hasScanned) {
 			// toast.error("User has already scanned in!");
 			console.log('inside if statement');
@@ -106,6 +107,7 @@ export default function PassScanner({
 			toast.success("Successfully Scanned User In");
 			router.replace(`${path}`);
 		}
+		router.refresh();
 	}
 
 	return (
