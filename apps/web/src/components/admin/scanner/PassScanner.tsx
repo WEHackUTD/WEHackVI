@@ -74,16 +74,16 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 
-		if (scan) {
+		if (localScan) {
 			setLocalScan({
-				...scan,
-				count: scan.count + 1, // Increment the count
+				...localScan,
+				count: localScan.count + 1, // Increment the count
 			  });
 		
 			runScanAction({
 				eventID: event.id,
-				userID: scan.userID,
-				countToSet: scan.count + 1,
+				userID: localScan.userID,
+				countToSet: localScan.count + 1,
 				alreadyExists: true,
 				creationTime: new Date(timestamp),
 			});
