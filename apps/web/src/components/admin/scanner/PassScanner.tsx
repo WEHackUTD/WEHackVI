@@ -50,10 +50,10 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		if (scanStatus) {
+		if (hasScanned) {
 			setScanLoading(false);
 		}
-	}, [scanStatus]);
+	}, [hasScanned]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -153,7 +153,7 @@ export default function PassScanner({
 			</div>
 			<Drawer
 				onClose={() => router.replace(path)}
-				open={scanStatus || scanLoading}
+				open={hasScanned || scanLoading}
 			>
 				<DrawerContent>
 					{scanLoading ? (
