@@ -53,6 +53,7 @@ export default function PassScanner({
 
 	useEffect(() => {
 		if (hasScanned) {
+			console.log("inside hasScanned");
 			setScanLoading(false);
 			setAlreadyScanned(true);
 		}
@@ -79,7 +80,7 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 		console.log('outside if statement');
-		console.log(scan);
+		console.log(hasScanned);
 		console.log(alreadyScanned);
 		
 		if (alreadyScanned) {
@@ -107,6 +108,7 @@ export default function PassScanner({
 		} else {
 			// TODO: make this a little more typesafe
 			console.log("before scan", alreadyScanned);
+			console.log(hasScanned);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -116,6 +118,7 @@ export default function PassScanner({
 			});
 			setAlreadyScanned(true);
 			console.log("after scan", alreadyScanned);
+			console.log(hasScanned);
 			toast.success("Successfully Scanned User In");
 			router.replace(`${path}`);
 		}
