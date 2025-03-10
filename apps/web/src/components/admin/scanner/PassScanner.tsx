@@ -48,13 +48,10 @@ export default function PassScanner({
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
 	const [scanStatus, setHasScanned] = useState(false);
+	const [alreadyScanned, setAlreadyScanned] = useState(false);
 	const { execute: runScanAction } = useAction(createScan, {});
 
-	useEffect(() => {
-		if (hasScanned) {
-			setScanLoading(false);
-		}
-	}, [hasScanned]);
+	
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -75,21 +72,23 @@ export default function PassScanner({
 		}
 		console.log('outside if statement');
 		console.log(scan);
-		console.log(hasScanned);
+		console.log(alreadyScanned);
 		
-		if (scan) {
-			const isDuplicate = await getScan({
-				eventID: event.id,
-				userID: scan.userID,
-			});
-			console.log("duplicate or not: ", isDuplicate);
+		if (alreadyScanned) {
+			toast.error("User has already been scanned!");
+      		return alert("User has already been scanned!");
+			// const isDuplicate = await getScan({
+			// 	eventID: event.id,
+			// 	userID: scan.userID,
+			// });
+			// console.log("duplicate or not: ", isDuplicate);
 
-			if(isDuplicate) {
-				console.log('inside if statement');
-				console.log(hasScanned, scan);
-				toast.error("User has already been scanned!");
-				return alert("User has already been scanned!");
-			}
+			// if(isDuplicate) {
+			// 	console.log('inside if statement');
+			// 	console.log(hasScanned, scan);
+			// 	toast.error("User has already been scanned!");
+			// 	return alert("User has already been scanned!");
+			// }
 			// runScanAction({
 			// 	eventID: event.id,
 			// 	userID: scan.userID,
@@ -99,18 +98,22 @@ export default function PassScanner({
 			// });
 		} else {
 			// TODO: make this a little more typesafe
-			runScanAction({
+			await runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
 				countToSet: 1,
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
-			setHasScanned(true);
+			setAlreadyScanned(true);
 			toast.success("Successfully Scanned User In");
 			router.replace(`${path}`);
 		}
-		console.log("scan object: ", scan);
+		useEffect(() => {
+			if (scanUser?.clerkID) {
+				setAlreadyScanned(scanUser.checkinTimestamp ? true : false);
+			}
+		}, [scanUser]);
 	}
 
 	return (
@@ -158,7 +161,7 @@ export default function PassScanner({
 			</div>
 			<Drawer
 				onClose={() => router.replace(path)}
-				open={hasScanned || scanLoading}
+				open={alreadyScanned || scanLoading}
 			>
 				<DrawerContent>
 					{scanLoading ? (
