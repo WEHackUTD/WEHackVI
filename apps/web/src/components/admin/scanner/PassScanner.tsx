@@ -89,7 +89,6 @@ export default function PassScanner({
 			// });
 		} else {
 			// TODO: make this a little more typesafe
-			console.log(scan);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -97,6 +96,7 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
+			console.log(scan);
 		}
 
 		toast.success("Successfully Scanned User In");
