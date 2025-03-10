@@ -75,8 +75,7 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 
-		console.log(scan);
-		console.log(scanUser?.clerkID);
+		console.log(`Checking scan for eventId: ${event.id}, userId: ${scanUser?.clerkID}, scanUser: ${scanUser}`);
 			const isDuplicate = await getScan({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
