@@ -21,6 +21,7 @@ import { Button } from "@/components/shadcn/ui/button";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useRef } from "react";
 
 /*
 
@@ -46,7 +47,7 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
-	const [scannedUsers, setScannedUsers] = useState<Set<string>>(new Set());
+	const scannedUsersRef = useRef(new Set<string>());
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
@@ -78,7 +79,7 @@ export default function PassScanner({
             return alert("Invalid User Data (Field: clerkID)");
         }
 
-		if (scannedUsers.has(userClerkID)) {
+		if (scannedUsersRef.current.has(userClerkID)) {
             toast.error("User has already been scanned!");
             return;
         }
@@ -102,8 +103,7 @@ export default function PassScanner({
 				creationTime: new Date(timestamp),
 			});
 		}
-		setScannedUsers((prev) => new Set(prev).add(userClerkID));
-
+        scannedUsersRef.current.add(userClerkID);
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
 	}
