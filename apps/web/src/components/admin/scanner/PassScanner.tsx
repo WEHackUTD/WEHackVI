@@ -87,7 +87,6 @@ export default function PassScanner({
 				alreadyExists: true,
 				creationTime: new Date(timestamp),
 			  });
-			  router.replace(`${path}`);
 			  return;
 		} else {
 			// TODO: make this a little more typesafe
