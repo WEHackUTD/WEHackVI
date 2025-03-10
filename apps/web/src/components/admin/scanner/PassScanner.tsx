@@ -74,7 +74,7 @@ export default function PassScanner({
 		console.log('outside if statement');
 		console.log(scan);
 		console.log(hasScanned);
-		if (scan) {
+		if (scan && hasScanned) {
 			// toast.error("User has already scanned in!");
 			console.log('inside if statement');
 			console.log(hasScanned);
@@ -89,6 +89,7 @@ export default function PassScanner({
 			// });
 		} else {
 			// TODO: make this a little more typesafe
+			console.log(scan);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
