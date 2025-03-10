@@ -111,6 +111,7 @@ export default function PassScanner({
 		}
 		useEffect(() => {
 			if (scanUser?.clerkID) {
+				setScanLoading(false);
 				setAlreadyScanned(scanUser.checkinTimestamp ? true : false);
 			}
 		}, [scanUser]);
