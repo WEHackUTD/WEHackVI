@@ -46,6 +46,7 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
+	const [scannedUsers, setScannedUsers] = useState<Set<string>>(new Set());
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
@@ -71,6 +72,18 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
+
+		const userClerkID = scanUser?.clerkID;
+        if (!userClerkID) {
+            return alert("Invalid User Data (Field: clerkID)");
+        }
+
+		if (scannedUsers.has(userClerkID)) {
+            toast.error("User has already been scanned!");
+            return;
+        }
+
+
 		if (scan) {
 			runScanAction({
 				eventID: event.id,
@@ -89,6 +102,7 @@ export default function PassScanner({
 				creationTime: new Date(timestamp),
 			});
 		}
+		setScannedUsers((prev) => new Set(prev).add(userClerkID));
 
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
