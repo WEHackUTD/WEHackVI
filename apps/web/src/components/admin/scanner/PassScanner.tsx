@@ -71,14 +71,22 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-		if (scan) {
-			runScanAction({
-				eventID: event.id,
-				userID: scan.userID,
-				countToSet: scan.count + 1,
-				alreadyExists: true,
-				creationTime: new Date(timestamp),
-			});
+		router.refresh();
+		console.log(scan);
+		console.log(hasScanned);
+		if (hasScanned) {
+			// toast.error("User has already scanned in!");
+			router.replace(`${path}`);
+			console.log(hasScanned);
+			console.log(scan);
+			return alert("User has already scanned!");
+			// runScanAction({
+			// 	eventID: event.id,
+			// 	userID: scan.userID,
+			// 	countToSet: scan.count + 1,
+			// 	alreadyExists: true,
+			// 	creationTime: new Date(timestamp),
+			// });
 		} else {
 			// TODO: make this a little more typesafe
 			runScanAction({
@@ -178,12 +186,12 @@ export default function PassScanner({
 										</span>{" "}
 										{register}
 									</h2>
-									<h2>
+									{/* <h2>
 										<span className="font-bold">
 											Guild:
 										</span>{" "}
 										{guild}
-									</h2>
+									</h2> */}
 								</DrawerDescription>
 							</DrawerHeader>
 							<DrawerFooter>
