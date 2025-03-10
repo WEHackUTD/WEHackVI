@@ -77,16 +77,17 @@ export default function PassScanner({
 		if (localScan) {
 			setLocalScan({
 				...localScan,
-				count: localScan.count + 1, // Increment the count
+				count: localScan.count,
 			  });
-		
-			runScanAction({
+			  toast.error("This user has already been scanned.");
+			  runScanAction({
 				eventID: event.id,
-				userID: localScan.userID,
-				countToSet: localScan.count + 1,
+				userID: scanUser?.clerkID as string,
+				countToSet: localScan.count,  
 				alreadyExists: true,
 				creationTime: new Date(timestamp),
-			});
+			  });
+			  return;
 		} else {
 			// TODO: make this a little more typesafe
 			setLocalScan({
