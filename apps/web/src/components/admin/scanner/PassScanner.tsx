@@ -71,7 +71,7 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-
+		router.refresh();
 		if (scan) {
 			// toast.error("User has already scanned in!");
 			router.replace(`${path}`);
