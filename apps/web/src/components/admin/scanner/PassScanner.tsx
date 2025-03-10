@@ -75,28 +75,15 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 
-		if(scan) {
 			const isDuplicate = await getScan({
 				eventID: event.id,
-				userID: scan.userID,
+				userID: scanUser?.clerkID as string,
 			});
 			console.log(isDuplicate);
 			if(isDuplicate) {
-				setLocalScan({
-					...scan,
-					count: scan.count,
-				  });
 				  toast.error("This user has already been scanned.");
-				  runScanAction({
-					eventID: event.id,
-					userID: scanUser?.clerkID as string,
-					countToSet: scan.count,  
-					alreadyExists: true,
-					creationTime: new Date(timestamp),
-				  });
 				  return;
 			}
-		}
 
 		// if (localScan) {
 		// 	console.log('inside localScan ', localScan);
