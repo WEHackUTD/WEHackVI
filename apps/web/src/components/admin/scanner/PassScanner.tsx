@@ -52,7 +52,6 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		
 		if (hasScanned) {
 			setScanLoading(false);
 			// router.refresh();
