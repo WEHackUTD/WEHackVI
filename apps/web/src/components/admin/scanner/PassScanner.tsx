@@ -56,7 +56,6 @@ export default function PassScanner({
 	useEffect(() => {
 		if (hasScanned) {
 			setScanLoading(false);
-			setAlreadyScanned(scan);
 		}
 	}, [hasScanned]);
 
@@ -157,6 +156,7 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
+			setAlreadyScanned(scan);
 		}
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
