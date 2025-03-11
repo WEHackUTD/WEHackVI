@@ -95,6 +95,7 @@ export default function PassScanner({
 			// });
 		} else {
 			// TODO: make this a little more typesafe
+			setCurrentScan(null);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
