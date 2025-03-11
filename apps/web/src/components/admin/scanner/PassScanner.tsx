@@ -52,9 +52,9 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		router.replace(`${path}`);
 		if (hasScanned) {
 			setScanLoading(false);
+			router.refresh();
 		}
 		if(scan) {
 			setCurrentScan(scan);
