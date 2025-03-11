@@ -52,9 +52,10 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
+		
 		if (hasScanned) {
 			setScanLoading(false);
-			router.refresh();
+			// router.refresh();
 		}
 		if(scan) {
 			setCurrentScan(scan);
@@ -63,6 +64,7 @@ export default function PassScanner({
 		else {
 			console.log("old scan: ", scan);
 		}
+		router.refresh();
 		
 	}, [hasScanned, scan]);
 
