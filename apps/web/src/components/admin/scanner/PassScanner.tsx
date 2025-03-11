@@ -48,13 +48,21 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
+	const [currentScan, setCurrentScan] = useState(scan);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
 		if (hasScanned) {
 			setScanLoading(false);
 		}
-		console.log("new scan: ", scan);
+		if(scan) {
+			setCurrentScan(scan);
+			console.log("new scan: ", scan);
+		}
+		else {
+			console.log("old scan: ", scan);
+		}
+		
 	}, [hasScanned, scan]);
 
 	const searchParams = useSearchParams();
