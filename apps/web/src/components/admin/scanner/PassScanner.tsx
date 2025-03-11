@@ -91,6 +91,21 @@ export default function PassScanner({
 			toast.error("This user has already been scanned.");
 			console.log('value of alreadyScanned (duplicate): ', alreadyScanned);
 			return;
+		}
+
+		if(scan) {
+			const isDuplicate = await getScan({
+				eventID: event.id,
+				userID: scan.userID,
+			});
+			
+			console.log('value of isDuplicate: ', isDuplicate);
+			if(isDuplicate && Object.keys(isDuplicate).length > 0) {
+				toast.error("This user has already been scanned.");
+				console.log('value of alreadyScanned (duplicate): ', alreadyScanned);
+				return;
+			}
+	
 		} else {
 			runScanAction({
 				eventID: event.id,
@@ -99,9 +114,10 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
-			toast.success("Successfully Scanned User In");
-			router.replace(`${path}`);
 		}
+		toast.success("Successfully Scanned User In");
+		router.replace(`${path}`);
+		
 			// const isDuplicate = await getScan({
 			// 	eventID: event.id,
 			// 	userID: scanUser?.clerkID as string,
@@ -192,8 +208,6 @@ export default function PassScanner({
 								);
 								if (!params.has("user")) {
 									setScanLoading(true);
-									setHasScanned(true);
-									console.log('have i been scanned ', scanned);
 									// setAlreadyScanned(scan);
 									const qrParsedData =
 										superjson.parse<QRDataInterface>(
