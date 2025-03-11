@@ -57,6 +57,7 @@ export default function PassScanner({
 			router.refresh();
 		}
 		if(scan) {
+			setScanLoading(true);
 			setCurrentScan(scan);
 			console.log("new scan: ", scan);
 		}
