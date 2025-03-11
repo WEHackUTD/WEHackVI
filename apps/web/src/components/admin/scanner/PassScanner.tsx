@@ -281,7 +281,7 @@ export default function PassScanner({
 							</DrawerHeader>
 							<DrawerFooter>
 								<Button onClick={() => handleScanCreate()}>
-									{alreadyScanned
+									{scan
 										? "Add Additional Scan"
 										: "Scan User In"}
 								</Button>
