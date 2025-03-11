@@ -57,6 +57,9 @@ export default function PassScanner({
 		if (hasScanned) {
 			setScanLoading(false);
 		}
+		console.log('hasScanned: ', hasScanned);
+		console.log('scan: ', scan);
+		console.log('inside effect', alreadyScanned);
 		if (scan) {
 			setAlreadyScanned(scan);
 		}
@@ -138,7 +141,7 @@ export default function PassScanner({
 				  toast.error("This user has already been scanned.");
 				  setAlreadyScanned(isDuplicate.data ?? null);
 				  console.log('value of isDuplicate', isDuplicate);
-				  console.log('value of alreadyScanned: ', alreadyScanned);
+				  console.log('value of alreadyScanned (duplicate): ', alreadyScanned);
 				  setHasScanned(true);
 				//   runScanAction({
 				// 	eventID: event.id,
@@ -161,6 +164,7 @@ export default function PassScanner({
 				creationTime: new Date(timestamp),
 			});
 			setAlreadyScanned(scan);
+			console.log('value of alreadyScanned (new scan): ', alreadyScanned);
 		}
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
