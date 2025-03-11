@@ -124,10 +124,10 @@ export default function PassScanner({
 		// 		  });
 		// 		  return;
 		// 	}
-		if(scan) {
+		if(alreadyScanned) {
 			const isDuplicate = await getScan({
 				eventID: event.id,
-				userID: scan.userID,
+				userID: alreadyScanned.userID,
 			});
 			console.log(isDuplicate);
 			if(isDuplicate && Object.keys(isDuplicate).length > 0) {
