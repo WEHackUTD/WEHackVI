@@ -57,7 +57,6 @@ export default function PassScanner({
 			// router.refresh();
 		}
 		if(scan) {
-			setCurrentScan(scan);
 			console.log("new scan: ", scan);
 		}
 		else {
@@ -84,7 +83,7 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-		if (currentScan) {
+		if (scan) {
 			toast.error("User already scanned in!");
 			return;
 			// runScanAction({
@@ -96,7 +95,7 @@ export default function PassScanner({
 			// });
 		} else {
 			// TODO: make this a little more typesafe
-			setCurrentScan(null);
+			// setCurrentScan(null);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -117,7 +116,6 @@ export default function PassScanner({
 					<div className="mx-auto aspect-square w-screen max-w-[500px] overflow-hidden">
 						<QrScanner
 							onDecode={(result) => {
-								setCurrentScan(null);
 								const params = new URLSearchParams(
 									searchParams.toString(),
 								);
