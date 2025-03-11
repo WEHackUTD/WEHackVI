@@ -57,7 +57,6 @@ export default function PassScanner({
 			router.refresh();
 		}
 		if(scan) {
-			setScanLoading(true);
 			setCurrentScan(scan);
 			console.log("new scan: ", scan);
 		}
@@ -85,13 +84,15 @@ export default function PassScanner({
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
 		if (currentScan) {
-			runScanAction({
-				eventID: event.id,
-				userID: currentScan.userID,
-				countToSet: currentScan.count + 1,
-				alreadyExists: true,
-				creationTime: new Date(timestamp),
-			});
+			toast.error("User already scanned in!");
+			return;
+			// runScanAction({
+			// 	eventID: event.id,
+			// 	userID: currentScan.userID,
+			// 	countToSet: currentScan.count + 1,
+			// 	alreadyExists: true,
+			// 	creationTime: new Date(timestamp),
+			// });
 		} else {
 			// TODO: make this a little more typesafe
 			runScanAction({
