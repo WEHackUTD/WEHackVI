@@ -48,17 +48,12 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
-	const [alreadyScanned, setAlreadyScanned] = useState<Scan | null>(scan);
-	const [scanned, setHasScanned] = useState(false);
-	// const [alreadyScanned, setAlreadyScanned] = useState(null);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
 		if (hasScanned) {
 			setScanLoading(false);
 		}
-		console.log('hasScanned: ', hasScanned);
-		console.log('scan: ', scan);
 	}, [hasScanned]);
 
 	const searchParams = useSearchParams();
@@ -72,41 +67,22 @@ export default function PassScanner({
 		Object.keys(c.groups)[scanUser?.hackerData.group || 0] ?? "None";
 	const role = scanUser?.role ? scanUser?.role : "Not Found";
 
-	async function handleScanCreate() {
+	function handleScanCreate() {
 		const params = new URLSearchParams(searchParams.toString());
 		const timestamp = parseInt(params.get("createdAt") as string);
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-
-		console.log(`Checking scan for eventId: ${event.id}, userId: ${scanUser?.clerkID}, scanUser: ${scanUser}`);
-
-		const isDuplicate = await getScan({
-			eventID: event.id,
-			userID: scanUser?.clerkID as string,
-		});
-		
-		console.log('value of isDuplicate: ', isDuplicate);
-		if(isDuplicate && Object.keys(isDuplicate).length > 0) {
-			toast.error("This user has already been scanned.");
-			console.log('value of alreadyScanned (duplicate): ', alreadyScanned);
-			return;
-		}
-
-		if(scan) {
-			const isDuplicate = await getScan({
+		if (scan) {
+			runScanAction({
 				eventID: event.id,
 				userID: scan.userID,
+				countToSet: scan.count + 1,
+				alreadyExists: true,
+				creationTime: new Date(timestamp),
 			});
-			
-			console.log('value of isDuplicate: ', isDuplicate);
-			if(isDuplicate && Object.keys(isDuplicate).length > 0) {
-				toast.error("This user has already been scanned.");
-				console.log('value of alreadyScanned (duplicate): ', alreadyScanned);
-				return;
-			}
-	
 		} else {
+			// TODO: make this a little more typesafe
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -115,85 +91,9 @@ export default function PassScanner({
 				creationTime: new Date(timestamp),
 			});
 		}
+
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
-		
-			// const isDuplicate = await getScan({
-			// 	eventID: event.id,
-			// 	userID: scanUser?.clerkID as string,
-			// });
-
-			// console.log(isDuplicate?.data);
-			// if(isDuplicate?.data) {
-			// 	  toast.error("This user has already been scanned.");
-			// 	  return;
-			// }
-			// else {
-			// 	// TODO: make this a little more typesafe
-			// 	runScanAction({
-			// 		eventID: event.id,
-			// 		userID: scanUser?.clerkID as string,
-			// 		countToSet: 1,
-			// 		alreadyExists: false,
-			// 		creationTime: new Date(timestamp),
-			// 	});
-			// }
-			// toast.success("Successfully Scanned User In");
-			// router.replace(`${path}`);
-
-		// if (localScan) {
-		// 	console.log('inside localScan ', localScan);
-		// 	const isDuplicate = await getScan({
-		// 		eventID: event.id,
-		// 		userID: localScan.userID,
-		// 	});
-			
-		// 	console.log(isDuplicate);
-		// 	if(isDuplicate) {
-		// 		setLocalScan({
-		// 			...localScan,
-		// 			count: localScan.count,
-		// 		  });
-		// 		  toast.error("This user has already been scanned.");
-		// 		  runScanAction({
-		// 			eventID: event.id,
-		// 			userID: scanUser?.clerkID as string,
-		// 			countToSet: localScan.count,  
-		// 			alreadyExists: true,
-		// 			creationTime: new Date(timestamp),
-		// 		  });
-		// 		  return;
-		// 	}
-		// if(alreadyScanned) {
-		// 	const isDuplicate = await getScan({
-		// 		eventID: event.id,
-		// 		userID: alreadyScanned.userID,
-		// 	});
-		// 	console.log(isDuplicate);
-		// 	if(isDuplicate && Object.keys(isDuplicate).length > 0) {
-		// 		  toast.error("This user has already been scanned.");
-		// 		  setAlreadyScanned(isDuplicate.data ?? null);
-		// 		  console.log('value of isDuplicate', isDuplicate);
-		// 		  console.log('value of alreadyScanned (duplicate): ', alreadyScanned);
-		// 		  setHasScanned(true);
-		// 		  return;
-		// 	}
-		// } else {
-			// TODO: make this a little more typesafe
-		// 	setHasScanned(false);
-		// 	setAlreadyScanned(null);
-		// 	runScanAction({
-		// 		eventID: event.id,
-		// 		userID: scanUser?.clerkID as string,
-		// 		countToSet: 1,
-		// 		alreadyExists: false,
-		// 		creationTime: new Date(timestamp),
-		// 	});
-		// 	setAlreadyScanned(scan);
-		// 	console.log('value of alreadyScanned (new scan): ', alreadyScanned);
-		// }
-		// toast.success("Successfully Scanned User In");
-		// router.replace(`${path}`);
 	}
 
 	return (
