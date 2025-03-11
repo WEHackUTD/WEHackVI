@@ -81,6 +81,7 @@ export default function PassScanner({
 		}
 
 		console.log(`Checking scan for eventId: ${event.id}, userId: ${scanUser?.clerkID}, scanUser: ${scanUser}`);
+		console.log('checking if scan is in state: ', alreadyScanned);
 			// const isDuplicate = await getScan({
 			// 	eventID: event.id,
 			// 	userID: scanUser?.clerkID as string,
