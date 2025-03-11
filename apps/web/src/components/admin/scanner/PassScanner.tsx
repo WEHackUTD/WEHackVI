@@ -48,6 +48,8 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
+	const [alreadyScanned, setAlreadyScanned] = useState<Scan | null>(scan);
+	// const [alreadyScanned, setAlreadyScanned] = useState(null);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
@@ -129,6 +131,7 @@ export default function PassScanner({
 			console.log(isDuplicate);
 			if(isDuplicate) {
 				  toast.error("This user has already been scanned.");
+				  setAlreadyScanned(isDuplicate.data ?? null);
 				  runScanAction({
 					eventID: event.id,
 					userID: scanUser?.clerkID as string,
@@ -147,6 +150,7 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
+			setAlreadyScanned(null);
 		}
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
@@ -246,7 +250,7 @@ export default function PassScanner({
 							</DrawerHeader>
 							<DrawerFooter>
 								<Button onClick={() => handleScanCreate()}>
-									{scan
+									{alreadyScanned
 										? "Add Additional Scan"
 										: "Scan User In"}
 								</Button>
