@@ -54,10 +54,10 @@ export default function PassScanner({
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		if (scanned) {
+		if (hasScanned) {
 			setScanLoading(false);
 		}
-	}, [scanned]);
+	}, [hasScanned]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -129,7 +129,7 @@ export default function PassScanner({
 				eventID: event.id,
 				userID: scan.userID,
 			});
-			console.log(isDuplicate);
+			console.log(isDuplicate && Object.keys(isDuplicate).length > 0);
 			if(isDuplicate) {
 				  toast.error("This user has already been scanned.");
 				  setAlreadyScanned(isDuplicate.data ?? null);
@@ -209,7 +209,7 @@ export default function PassScanner({
 			</div>
 			<Drawer
 				onClose={() => router.replace(path)}
-				open={scanned || scanLoading}
+				open={hasScanned || scanLoading}
 			>
 				<DrawerContent>
 					{scanLoading ? (
