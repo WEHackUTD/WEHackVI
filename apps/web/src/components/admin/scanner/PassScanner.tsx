@@ -59,11 +59,7 @@ export default function PassScanner({
 		}
 		console.log('hasScanned: ', hasScanned);
 		console.log('scan: ', scan);
-		console.log('inside effect', alreadyScanned);
-		if (scan) {
-			setAlreadyScanned(scan);
-		}
-	}, [hasScanned, scan]);
+	}, [hasScanned]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
