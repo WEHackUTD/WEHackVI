@@ -173,6 +173,7 @@ export default function PassScanner({
 								);
 								if (!params.has("user")) {
 									setScanLoading(true);
+									setHasScanned(true);
 									console.log('have i been scanned ', scanned);
 									// setAlreadyScanned(scan);
 									const qrParsedData =
