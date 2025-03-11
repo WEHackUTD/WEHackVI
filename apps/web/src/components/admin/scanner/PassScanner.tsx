@@ -56,6 +56,7 @@ export default function PassScanner({
 	useEffect(() => {
 		if (hasScanned) {
 			setScanLoading(false);
+			setAlreadyScanned(scan);
 		}
 	}, [hasScanned]);
 
