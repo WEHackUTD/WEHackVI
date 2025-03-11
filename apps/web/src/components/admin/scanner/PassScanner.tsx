@@ -49,14 +49,15 @@ export default function PassScanner({
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
 	const [alreadyScanned, setAlreadyScanned] = useState<Scan | null>(scan);
+	const [scanned, setHasScanned] = useState(false);
 	// const [alreadyScanned, setAlreadyScanned] = useState(null);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
-		if (hasScanned) {
+		if (scanned) {
 			setScanLoading(false);
 		}
-	}, [hasScanned]);
+	}, [scanned]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -132,17 +133,22 @@ export default function PassScanner({
 			if(isDuplicate) {
 				  toast.error("This user has already been scanned.");
 				  setAlreadyScanned(isDuplicate.data ?? null);
-				  runScanAction({
-					eventID: event.id,
-					userID: scanUser?.clerkID as string,
-					countToSet: scan.count,  
-					alreadyExists: true,
-					creationTime: new Date(timestamp),
-				  });
+				  console.log('value of isDuplicate', isDuplicate);
+				  console.log('value of alreadyScanned: ', alreadyScanned);
+				  setHasScanned(true);
+				//   runScanAction({
+				// 	eventID: event.id,
+				// 	userID: scanUser?.clerkID as string,
+				// 	countToSet: scan.count,  
+				// 	alreadyExists: true,
+				// 	creationTime: new Date(timestamp),
+				//   });
 				  return;
 			}
 		} else {
 			// TODO: make this a little more typesafe
+			setHasScanned(false);
+			setAlreadyScanned(null);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -150,7 +156,6 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
-			setAlreadyScanned(null);
 		}
 		toast.success("Successfully Scanned User In");
 		router.replace(`${path}`);
@@ -168,6 +173,7 @@ export default function PassScanner({
 								);
 								if (!params.has("user")) {
 									setScanLoading(true);
+									// setAlreadyScanned(scan);
 									const qrParsedData =
 										superjson.parse<QRDataInterface>(
 											result,
@@ -201,7 +207,7 @@ export default function PassScanner({
 			</div>
 			<Drawer
 				onClose={() => router.replace(path)}
-				open={hasScanned || scanLoading}
+				open={scanned || scanLoading}
 			>
 				<DrawerContent>
 					{scanLoading ? (
