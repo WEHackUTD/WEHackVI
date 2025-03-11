@@ -116,6 +116,7 @@ export default function PassScanner({
 					<div className="mx-auto aspect-square w-screen max-w-[500px] overflow-hidden">
 						<QrScanner
 							onDecode={(result) => {
+								setCurrentScan(null);
 								const params = new URLSearchParams(
 									searchParams.toString(),
 								);
