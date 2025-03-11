@@ -54,7 +54,8 @@ export default function PassScanner({
 		if (hasScanned) {
 			setScanLoading(false);
 		}
-	}, [hasScanned]);
+		console.log("new scan: ", scan);
+	}, [hasScanned, scan]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
