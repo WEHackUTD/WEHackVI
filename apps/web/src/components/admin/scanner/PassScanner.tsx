@@ -53,18 +53,23 @@ export default function PassScanner({
 
 	useEffect(() => {
 		if (hasScanned) {
-			setScanLoading(false);
-			router.refresh();
+		  // Only refresh once when hasScanned is true
+		  if (!scanLoading) {
+			setScanLoading(true); // Indicate loading before refresh
+			router.refresh(); // Perform refresh only once
+		  }
 		}
-		if(scan) {
+	  
+		if (scan) {
+		  // Only update scan state if it has changed
+		  if (scan !== currentScan) {
 			setCurrentScan(scan);
 			console.log("new scan: ", scan);
+		  }
+		} else {
+		  console.log("old scan: ", scan);
 		}
-		else {
-			console.log("old scan: ", scan);
-		}
-		
-	}, [hasScanned, scan]);
+	  }, [hasScanned, scan, currentScan]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
