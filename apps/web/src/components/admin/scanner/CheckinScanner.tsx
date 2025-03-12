@@ -41,6 +41,7 @@ export default function CheckinScanner({
 		if (hasScanned) {
 			setScanLoading(false);
 		}
+		router.refresh();
 	}, [hasScanned]);
 
 	const searchParams = useSearchParams();

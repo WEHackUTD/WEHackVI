@@ -98,7 +98,7 @@ const dataColTwo =  [
 
     {
         question: "When does registration close?",
-        answer: "Registration deadlines will be announced soon.",
+        answer: "Registration deadline is March 14th at 11:59 PM CST.",
     },
 
     {

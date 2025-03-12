@@ -21,6 +21,8 @@ import { Button } from "@/components/shadcn/ui/button";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useRef } from "react";
+import { getScan } from "@/actions/admin/scanner-admin-actions";
 
 /*
 
@@ -46,14 +48,23 @@ export default function PassScanner({
 	scanUser,
 }: PassScannerProps) {
 	const [scanLoading, setScanLoading] = useState(false);
-	const [scanStatus, setHasScanned] = useState(false);
+	const [currentScan, setCurrentScan] = useState(scan);
 	const { execute: runScanAction } = useAction(createScan, {});
 
 	useEffect(() => {
 		if (hasScanned) {
 			setScanLoading(false);
+			// router.refresh();
 		}
-	}, [hasScanned]);
+		if(scan) {
+			console.log("new scan: ", scan);
+		}
+		else {
+			console.log("old scan: ", scan);
+		}
+		router.refresh();
+		
+	}, [hasScanned, scan]);
 
 	const searchParams = useSearchParams();
 	const path = usePathname();
@@ -72,26 +83,19 @@ export default function PassScanner({
 		if (isNaN(timestamp)) {
 			return alert("Invalid QR Code Data (Field: createdAt)");
 		}
-		console.log('outside if statement');
-		console.log(scan);
-		console.log(hasScanned);
-		if (scan && hasScanned) {
-			// toast.error("User has already scanned in!");
-			console.log('inside if statement');
-			console.log(hasScanned);
-			console.log(scan);
-			toast.error("User has already been scanned!");
-			router.replace(`${path}`);
-			return alert("User has already been scanned!");
+		if (scan) {
+			toast.error("User already scanned in!");
+			return;
 			// runScanAction({
 			// 	eventID: event.id,
-			// 	userID: scan.userID,
-			// 	countToSet: scan.count + 1,
+			// 	userID: currentScan.userID,
+			// 	countToSet: currentScan.count + 1,
 			// 	alreadyExists: true,
 			// 	creationTime: new Date(timestamp),
 			// });
 		} else {
 			// TODO: make this a little more typesafe
+			// setCurrentScan(null);
 			runScanAction({
 				eventID: event.id,
 				userID: scanUser?.clerkID as string,
@@ -99,13 +103,10 @@ export default function PassScanner({
 				alreadyExists: false,
 				creationTime: new Date(timestamp),
 			});
-			setHasScanned(true);
-			console.log(scanStatus);
-			console.log("creating new scan")
-			console.log(scan);
-			toast.success("Successfully Scanned User In");
-			router.replace(`${path}`);
 		}
+
+		toast.success("Successfully Scanned User In");
+		router.replace(`${path}`);
 	}
 
 	return (
@@ -120,6 +121,7 @@ export default function PassScanner({
 								);
 								if (!params.has("user")) {
 									setScanLoading(true);
+									// setAlreadyScanned(scan);
 									const qrParsedData =
 										superjson.parse<QRDataInterface>(
 											result,
@@ -203,7 +205,7 @@ export default function PassScanner({
 							<DrawerFooter>
 								<Button onClick={() => handleScanCreate()}>
 									{scan
-										? "Add additional scan"
+										? "Add Additional Scan"
 										: "Scan User In"}
 								</Button>
 								<Button
