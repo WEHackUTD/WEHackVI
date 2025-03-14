@@ -2,13 +2,13 @@ import ConfirmDialogue from "@/components/rsvp/ConfirmDialogue";
 import c from "config";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { db } from "db";
+import { count, db } from "db";
 import { eq } from "db/drizzle";
 import { userCommonData } from "db/schema";
 import ClientToast from "@/components/shared/ClientToast";
 import { SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 import { Redis } from "@upstash/redis";
-import { parseRedisBoolean } from "@/lib/utils/server/redis";
+import { parseRedisBoolean, parseRedisNumber } from "@/lib/utils/server/redis";
 import Link from "next/link";
 import { Button } from "@/components/shadcn/ui/button";
 import { getUser } from "db/functions";
@@ -45,20 +45,38 @@ export default async function RsvpPage({
 		return redirect("/i/approval");
 	}
 
-	const rsvpEnabled = await redis.get(`${process.env.HK_ENV}_config:registration:allowRSVPs`);
+	const rsvpEnabled = parseRedisBoolean(
+		(await redis.get(`${process.env.HK_ENV}_config:registration:allowRSVPs`)) as
+			| string
+			| boolean
+			| null
+			| undefined,
+		true,
+	);
 
-	// TODO: fix type jank here
-	if (
-		parseRedisBoolean(
-			rsvpEnabled as string | boolean | null | undefined,
-			true,
-		) === true ||
-		user.isRSVPed === true
-	) {
+	let isRsvpPossible = false;
+
+	if (rsvpEnabled === true) {
+		const rsvpLimit = parseRedisNumber(
+			await redis.get(`${process.env.HK_ENV}_config:registration:maxRSVPs`),
+			c.rsvpDefaultLimit,
+		);
+
+		const rsvpUserCount = await db
+			.select({ count: count() })
+			.from(userCommonData)
+			.where(eq(userCommonData.isRSVPed, true))
+			.limit(rsvpLimit)
+			.then((result) => result[0].count);
+
+		isRsvpPossible = rsvpUserCount < rsvpLimit;
+	}
+
+	if (isRsvpPossible || user.isRSVPed === true) {
 		return (
 			<>
 				<ClientToast />
-				<main className="pt-48 md:pt-32 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center bg-backgroudn">
+				<main className="pt-48 md:pt-32 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center bg-background">
 					<div className="max-w-screen fixed left-1/2 top-[calc(50%+7rem)] h-[40vh] w-[800px]"></div>
 					<h2 className="text-4xl font-extrabold">
 						{c.hackathonName}
