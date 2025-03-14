@@ -34,9 +34,9 @@ export default async function Page() {
 			</div>
 			<div className="flex w-full justify-center">
 				{userData && userData.length > 0 ? (
-					<>
+					<div className="w-full overflow-x-auto">
 						<DataTable columns={columns} data={userData} />
-					</>
+					</div>
 				) : (
 					<div className="flex w-full items-center justify-center">
 						<h1>No Results :(</h1>

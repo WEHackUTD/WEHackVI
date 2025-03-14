@@ -108,7 +108,7 @@ export const columns: ColumnDef<userValidatorType>[] = [
 			</div>
 		),
 		cell: ({ row }) => (
-			<span suppressHydrationWarning={true}>
+			<span suppressHydrationWarning={true} className={!row.original.checkinTimestamp ? "text-red-500 font-bold" : ""}>
 				{row.original.checkinTimestamp
 					? new Date(
 							row.original.checkinTimestamp,
@@ -150,12 +150,23 @@ export const columns: ColumnDef<userValidatorType>[] = [
 		),
 	},
 	{
-		id: "actions",
-		enableHiding: false,
-		cell: ({ row }) => {
-			return <UserDropDownActions row={row} />;
-		},
+		accessorKey: "clerkID2",
+		header: "View",
+		cell: ({ row }) => (
+			<Link href={`/admin/users/${row.original.clerkID}`}>
+				<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">
+					View
+				</Button>
+			</Link>
+		),
 	},
+	// {
+	// 	id: "actions",
+	// 	enableHiding: false,
+	// 	cell: ({ row }) => {
+	// 		return <UserDropDownActions row={row} />;
+	// 	},
+	// },
 ];
 
 function UserDropDownActions({ row }: { row: Row<userValidatorType> }) {
