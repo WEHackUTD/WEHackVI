@@ -32,24 +32,24 @@ export default async function Page() {
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-center px-2">
-			<div className="max-w-screen fixed left-1/2 top-[calc(50%+7rem)] h-[40vh] w-[800px] -translate-x-1/2 -translate-y-1/2 scale-150 overflow-x-hidden bg-hackathon opacity-30 blur-[100px] will-change-transform" />
+			<div className="max-w-screen fixed left-1/2 top-[calc(50%+7rem)] h-[40vh] w-[800px] -translate-x-1/2 -translate-y-1/2 scale-150 overflow-x-hidden bg-background opacity-30 blur-[100px] will-change-transform" />
 			<h2 className="text-4xl font-extrabold">{c.hackathonName}</h2>
-			<h1 className="mb-10 pb-5 text-6xl font-extrabold text-hackathon dark:bg-gradient-to-t dark:from-hackathon/80 dark:to-white dark:bg-clip-text dark:text-transparent md:text-8xl">
+			<h1 className="mb-10 pb-5 text-5xl font-extrabold text-hackathon  md:text-8xl">
 				Registration
 			</h1>
-			<div className="relative z-10 flex aspect-video w-full max-w-[500px] flex-col items-center justify-center gap-y-4 rounded-xl bg-white px-5 backdrop-blur transition dark:bg-white/[0.08]">
-				<h2 className="w-full text-center text-2xl font-black">
-					Registration Is Currently Closed
+			<div className="relative z-10 flex aspect-video w-full max-w-[550px] flex-col items-center justify-center gap-y-4 rounded-xl bg-white px-5 py-10 backdrop-blur transition dark:bg-white/[0.08]">
+				<h2 className="w-full text-center text-2xl font-black text-background">
+					Registration is Currently Closed
 				</h2>
-				<p className="text-center font-bold">
-					If you believe this is a mistake or have any questions, feel
-					free to reach out to us at {c.issueEmail}!
+				<p className="text-center text-xl font-bold text-background">
+					Our registration is closed. However, we still encourage you to show up for walk-ins!
+					If you have any questions or concerns, feel free to reach out to us at {c.issueEmail}!
 				</p>
 
-				<Link href={"/"}>
-					<Button>Return Home</Button>
+				<Link href={"/"} className="pb-10">
+					<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">Return Home</Button>
 				</Link>
-				<p className="absolute bottom-0 pb-2 text-center text-sm">
+				<p className="absolute bottom-0 pb-5 text-center text-lg">
 					Already registered?{" "}
 					<Link className="pl-2 underline" href={"/sign-in"}>
 						Sign-in.
