@@ -11,7 +11,7 @@ export default async function Page() {
 	const userData = await getAllUsers();
 
 	return (
-		<div className="mx-auto max-w-7xl px-5 pt-20 pb-48">
+		<div className="mx-auto max-w-7xl px-5 pt-20 pb-32">
 			<div className="mb-5 grid w-full grid-cols-3">
 				<div className="flex items-center">
 					<div>
