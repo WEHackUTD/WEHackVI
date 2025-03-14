@@ -782,6 +782,7 @@ const c = {
 	itteration: "V",
 	siteUrl: "https://www.wehackutd.com", // Do not have a trailing slash
 	defaultMetaDataDescription: "WEHack 2025 is coming in April 2025",
+	rsvpDefaultLimit:500,
 	botName: "WEHack",
 	botParticipantRole: "Participant",
 	hackathonTimezone: "America/Chicago",

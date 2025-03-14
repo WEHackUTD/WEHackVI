@@ -1,11 +1,12 @@
 import { RegistrationToggles } from "@/components/admin/toggles/RegistrationSettings";
 import { Redis } from "@upstash/redis";
-import { parseRedisBoolean } from "@/lib/utils/server/redis";
+import { parseRedisBoolean, parseRedisNumber } from "@/lib/utils/server/redis";
 
 const redis = new Redis({
 	url: process.env.UPSTASH_REDIS_REST_URL,
 	token: process.env.UPSTASH_REDIS_REST_TOKEN,
 });
+import c from "config";
 
 export default async function Page() {
 	const pipe = redis.pipeline();
@@ -17,10 +18,12 @@ export default async function Page() {
 		defaultRegistrationEnabled,
 		defaultSecretRegistrationEnabled,
 		defaultRSVPsEnabled,
+		defaultRSVPLimit,
 	]: (string | null)[] = await redis.mget(
 		`${process.env.HK_ENV}_config:registration:registrationEnabled`,
 		`${process.env.HK_ENV}_config:registration:secretRegistrationEnabled`,
 		`${process.env.HK_ENV}_config:registration:allowRSVPs`,
+		`${process.env.HK_ENV}_config:registration:maxRSVPs`,
 	);
 
 	return (
@@ -42,6 +45,10 @@ export default async function Page() {
 				defaultRSVPsEnabled={parseRedisBoolean(
 					defaultRSVPsEnabled,
 					true,
+				)}
+				defaultRSVPLimit={parseRedisNumber(
+					defaultRSVPLimit,
+					c.rsvpDefaultLimit,
 				)}
 			/>
 		</div>

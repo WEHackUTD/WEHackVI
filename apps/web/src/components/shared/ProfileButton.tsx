@@ -19,7 +19,7 @@ import { DropdownSwitcher } from "@/components/shared/ThemeSwitcher";
 import DefaultDropdownTrigger from "../dash/shared/DefaultDropDownTrigger";
 import MobileNavBarLinks from "./MobileNavBarLinks";
 import { getUser } from "db/functions";
-import { redirect } from "next/navigation";
+import { clientLogOut } from "@/lib/utils/server/user";
 import { useRouter } from "next/router";
 import NavBarLinksGrouper from "./NavBarLinksGrouper";
 
@@ -110,9 +110,9 @@ export default async function ProfileButton() {
 					</DropdownMenuGroup>
 					<DropdownMenuSeparator className="bg-[rgb(228,228,231)]" />
 					{/* <DropdownSwitcher /> */}
-					<SignOutButton>
+					<SignOutButton signOutCallback={clientLogOut}>
 						<DropdownMenuItem className="cursor-pointer hover:!bg-destructive">
-							Log out
+							Sign out
 						</DropdownMenuItem>
 					</SignOutButton>
 				</DropdownMenuContent>
@@ -189,9 +189,9 @@ export default async function ProfileButton() {
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator className="bg-[rgb(228,228,231)]" />
 				{/* <DropdownSwitcher /> */}
-				<SignOutButton>
-					<DropdownMenuItem className="cursor-pointer hover:!bg-destructive">
-						Log out
+				<SignOutButton signOutCallback={clientLogOut}>
+					<DropdownMenuItem className="cursor-pointer text-red-500 hover:!bg-destructive hover:text-muted">
+						Sign out
 					</DropdownMenuItem>
 				</SignOutButton>
 			</DropdownMenuContent>
