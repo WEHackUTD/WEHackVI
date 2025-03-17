@@ -33,28 +33,6 @@ export default async function Page() {
 	const { vegan, veg, halal, gf, nuts, fish, wheat, dairy, eggs, kosher, soy, none } 
 	= getDietaryRestrictionBreakdown(allUsers);
 
-	const chartData = [
-		{dietaryRestriction: "Vegan", count: vegan},
-		{dietaryRestriction: "Vegetarian", count: veg},
-		{dietaryRestriction: "Halal", count: halal},
-		{dietaryRestriction: "Gluten-Free", count: gf},
-		{dietaryRestriction: "Nuts", count: nuts},
-		{dietaryRestriction: "Fish", count: fish},
-		{dietaryRestriction: "Wheat", count: wheat},
-		{dietaryRestriction: "Dairy", count: dairy},
-		{dietaryRestriction: "Eggs", count: eggs},
-		{dietaryRestriction: "Kosher", count: kosher},
-		{dietaryRestriction: "Soy", count: soy},
-		{dietaryRestriction: "None", count: none},
-	];
-
-	const chartConfig = {
-		desktop: {
-		  label: "Count",
-		  color: "hsl(var(--chart-1))",
-		},
-	  } satisfies ChartConfig
-
 	return (
 		<div className="mx-auto w-full max-w-7xl px-4 pt-12">
 			<div className="w-full px-2">
