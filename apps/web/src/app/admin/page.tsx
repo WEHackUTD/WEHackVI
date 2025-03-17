@@ -6,6 +6,7 @@ import {
 	CardTitle,
 	CardDescription,
 } from "@/components/shadcn/ui/card";
+
 import { Users, UserCheck, User2, TimerReset, MailCheck } from "lucide-react";
 import type { User } from "db/types";
 import { auth } from "@clerk/nextjs";
@@ -28,6 +29,9 @@ export default async function Page() {
 
 	const { rsvpCount, checkinCount, recentSignupCount } =
 		getRecentRegistrationData(allUsers);
+
+	const { vegan, veg, halal, gf, nuts, fish, wheat, dairy, eggs, kosher, soy, none } 
+	= getDietaryRestrictionBreakdown(allUsers);
 
 	return (
 		<div className="mx-auto w-full max-w-7xl px-4 pt-12">
@@ -116,13 +120,27 @@ export default async function Page() {
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<div>
 							<CardTitle className="text-md font-bold tracking-wide">
-								Recent Registrations
+								Dietary Restriction Breakdown
 							</CardTitle>{" "}
 						</div>
 
-						<TimerReset />
+						{/* <TimerReset /> */}
 					</CardHeader>
-					<CardContent></CardContent>
+					<CardContent>
+						{/* TODO: Make this cleaner */}
+						<div className="text-md">Vegan: {vegan}</div>
+						<div className="text-md">Vegetarian: {veg}</div>
+						<div className="text-md">Halal:{halal}</div>
+						<div className="text-md">Gluten-Free: {gf}</div>
+						<div className="text-md">Nuts: {nuts}</div>
+						<div className="text-md">Fish: {fish}</div>
+						<div className="text-md">Wheat: {wheat}</div>
+						<div className="text-md">Dairy: {dairy}</div>
+						<div className="text-md">Eggs: {eggs}</div>
+						<div className="text-md">Kosher: {kosher}</div>
+						<div className="text-md">Soy: {soy}</div>
+						<div className="text-md">None: {none}</div>
+					</CardContent>
 				</Card>
 			</div>
 		</div>
@@ -158,6 +176,50 @@ function getRecentRegistrationData(users: User[]) {
 	}
 
 	return { rsvpCount, checkinCount, recentSignupCount };
+}
+
+function getDietaryRestrictionBreakdown(users: User[]) {
+
+	let dietmap : Map<string, number> = new Map();
+	dietmap.set("Vegan", 0);
+	dietmap.set("Vegetarian", 0);
+	dietmap.set("Halal", 0);
+	dietmap.set("Gluten-Free", 0);
+	dietmap.set("Nuts", 0);
+	dietmap.set("Fish", 0);
+	dietmap.set("Wheat", 0);
+	dietmap.set("Dairy", 0);
+	dietmap.set("Eggs", 0);
+	dietmap.set("Kosher", 0);
+	dietmap.set("Soy", 0);
+	dietmap.set("None", 0);
+
+	for (const user of users) {
+		const dietaryRestrictions = Array.isArray(user.dietRestrictions) ? user.dietRestrictions : [];
+		for (const restriction of dietaryRestrictions) {
+			let value = dietmap.get(restriction);
+			if(value !== undefined) {
+				dietmap.set(restriction, value+1);
+			}
+		}
+
+	}
+
+	let vegan = dietmap.get("Vegan");
+	let veg = dietmap.get("Vegetarian");
+	let halal = dietmap.get("Halal");
+	let gf = dietmap.get("Gluten-Free");
+	let nuts = dietmap.get("Nuts");
+	let fish = dietmap.get("Fish");
+	let wheat = dietmap.get("Wheat");
+	let dairy = dietmap.get("Dairy");
+	let eggs = dietmap.get("Eggs");
+	let kosher = dietmap.get("Kosher");
+	let soy = dietmap.get("Soy");
+	let none = dietmap.get("None");
+
+
+	return { vegan, veg, halal, gf, nuts, fish, wheat, dairy, eggs, kosher, soy, none };
 }
 
 export const runtime = "edge";
