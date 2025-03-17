@@ -128,18 +128,18 @@ export default async function Page() {
 					</CardHeader>
 					<CardContent>
 						{/* TODO: Make this cleaner */}
-						<div className="text-md font-bold">Vegan: {vegan}</div>
-						<div className="text-md font-bold">Vegetarian: {veg}</div>
-						<div className="text-md font-bold">Halal:{halal}</div>
+						<div className="text-md">Vegan: {vegan}</div>
+						<div className="text-md">Vegetarian: {veg}</div>
+						<div className="text-md">Halal:{halal}</div>
 						<div className="text-md">Gluten-Free: {gf}</div>
-						<div className="text-md font-bold">Nuts: {nuts}</div>
-						<div className="text-md font-bold">Fish: {fish}</div>
-						<div className="text-md font-bold">Wheat: {wheat}</div>
-						<div className="text-md font-bold">Dairy: {dairy}</div>
-						<div className="text-md font-bold">Eggs: {eggs}</div>
-						<div className="text-md font-bold">Kosher: {kosher}</div>
-						<div className="text-md font-bold">Soy: {soy}</div>
-						<div className="text-md font-bold">None: {none}</div>
+						<div className="text-md">Nuts: {nuts}</div>
+						<div className="text-md">Fish: {fish}</div>
+						<div className="text-md">Wheat: {wheat}</div>
+						<div className="text-md">Dairy: {dairy}</div>
+						<div className="text-md">Eggs: {eggs}</div>
+						<div className="text-md">Kosher: {kosher}</div>
+						<div className="text-md">Soy: {soy}</div>
+						<div className="text-md">None: {none}</div>
 					</CardContent>
 				</Card>
 			</div>
