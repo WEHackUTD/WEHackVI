@@ -130,7 +130,7 @@ export default async function Page() {
 						{/* TODO: Make this cleaner */}
 						<div className="text-md">Vegan: {vegan}</div>
 						<div className="text-md">Vegetarian: {veg}</div>
-						<div className="text-md">Halal:{halal}</div>
+						<div className="text-md">Halal: {halal}</div>
 						<div className="text-md">Gluten-Free: {gf}</div>
 						<div className="text-md">Nuts: {nuts}</div>
 						<div className="text-md">Fish: {fish}</div>
