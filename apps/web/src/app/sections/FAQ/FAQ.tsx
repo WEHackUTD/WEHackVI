@@ -88,7 +88,7 @@ const dataColOne = [
 const dataColTwo =  [
     {
         question: "Does it cost money to participate?",
-        answer: "WEHack 2024 is completely free! This includes food and swag, which will be handed out to attendees during the hackathon.",
+        answer: "WEHack 2025 is completely free! This includes food and swag, which will be handed out to attendees during the hackathon.",
     },
 
     {
@@ -98,7 +98,7 @@ const dataColTwo =  [
 
     {
         question: "When does registration close?",
-        answer: "Registration deadline is March 14th at 11:59 PM CST.",
+        answer: "Registration deadline is March 14th at 11:59 PM CST. If you've missed the deadline, WE highly encourage you to come as a walk-in registrant during check-ins on the morning of April 5th!",
     },
 
     {
