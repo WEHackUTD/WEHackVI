@@ -144,11 +144,11 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 						</div>
 						<div className="flex h-full w-full flex-col items-center justify-center gap-y-1">
 							<p className="font-mono text-xs">
-								{`${format(
+								{/* {`${format(
 								c.startDate,
 								"h:mma, MMM d, yyyy",
-							)}`}
-								{/* 9:00 AM, April 5, 2025 */}
+							)}`} */}
+								9:00 AM, April 5, 2025
 							</p>
 							<p className="px-10 text-center font-mono text-xs">
 								{c.prettyLocation}
