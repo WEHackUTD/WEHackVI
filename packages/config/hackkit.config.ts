@@ -836,7 +836,7 @@ const c = {
 		facebook: "https://www.facebook.com/WEHackUTD/",
 		twitter: "https://x.com/wehackutd",
 		github: "https://github.com/WEHack-UTD2-0",
-		guide: "https://go.rowdyhacks.org/discord",
+		guide: "https://ultra-spell-68d.notion.site/WEHack-2025-Hacker-Guide-1990c607311280d18e2bf8a7795093ba",
 	},
 	icon: {
 		sm: "/img/logo/wehack25-logo.svg",
