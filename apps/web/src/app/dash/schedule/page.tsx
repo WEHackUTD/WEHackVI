@@ -13,8 +13,8 @@ export default async function Page() {
 	return (
 		<div className="pb-20">
 			<div className="flex flex-col gap-y-2">
-				<h1 className="mx-auto mt-20 md:my-20 w-3/4 text-4xl md:text-6xl font-black">Schedule</h1>
-				<h3 className="mx-auto w-3/4 text-lg md:text-lg">Click on the event title for more information</h3>
+				<h1 className="mx-auto mt-20 w-3/4 text-4xl md:text-6xl font-black">Schedule</h1>
+				<h3 className="mx-auto w-3/4 text-lg md:text-lg font-light">Click on the event title for more information</h3>
 			</div>
 			
 			<Suspense fallback={<Loading />}>

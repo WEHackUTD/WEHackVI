@@ -25,8 +25,14 @@ export function EventDataTable<TData, TValue>({
 	columns,
 	data,
 }: DataTableProps<TData, TValue>) {
+	const sortedData = [...data].sort((a, b) => {
+		const aHasMeal = (a as { tags?: string[] }).tags?.includes("meal") ? 1 : 0;
+		const bHasMeal = (b as { tags?: string[] }).tags?.includes("meal") ? 1 : 0;
+		return bHasMeal - aHasMeal;
+	});
+	
 	const table = useReactTable({
-		data,
+		data: sortedData,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 	});
