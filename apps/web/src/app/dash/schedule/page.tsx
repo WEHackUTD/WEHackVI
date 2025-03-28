@@ -11,13 +11,17 @@ export default async function Page() {
 	const userTimeZoneHeaderKey = headers().get(VERCEL_IP_TIMEZONE_HEADER_KEY);
 	const userTimeZone = getClientTimeZone(userTimeZoneHeaderKey);
 	return (
-		<>
-			<h1 className="mx-auto mt-20 md:my-20 w-3/4 text-6xl md:text-6xl font-black">Schedule</h1>
+		<div className="pb-20">
+			<div className="flex flex-col gap-y-2">
+				<h1 className="mx-auto mt-20 md:my-20 w-3/4 text-4xl md:text-6xl font-black">Schedule</h1>
+				<h3 className="mx-auto mt-20 md:my-20 w-3/4 text-lg md:text-lg font-black">Click on the event title for more information</h3>
+			</div>
+			
 			<Suspense fallback={<Loading />}>
 				{/* <UserScheduleView /> */}
 				<ScheduleTimeline schedule={sched} timezone={userTimeZone} />
 			</Suspense>
-		</>
+		</div>
 	);
 }
 
