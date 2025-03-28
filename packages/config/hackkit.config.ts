@@ -867,6 +867,7 @@ const c = {
 		Workshop: "#CCBA97",
 		Social: "#992444",
 		Required: "#F03C2D",
+		Other: "#301814",
 		Sponsor: "#A6CDC4",
 	},
 	days: {
