@@ -19,6 +19,7 @@ const daysOfWeek = [
 
 function splitByDay(schedule: Event[]) {
 	const days: Map<string, Event[]> = new Map<string, Event[]>();
+	schedule.sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
 	schedule.forEach((event) => {
 		const day = daysOfWeek[event.startTime.getDay()];
 		if (days.get(day)) {
