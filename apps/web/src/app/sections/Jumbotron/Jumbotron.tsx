@@ -36,7 +36,7 @@ function Jumbotron() {
 
 
   return (
-    <section className='jumbotron md:h-[80rem]' id="home">
+    <section className='jumbotron min-h-screen h-auto md:min-h-[80rem] overflow-visible' id="home">
       <div className='jumboText-container flex flex-col items-start text-left'>
         <div className='jumbo-group md:ml-[1rem] mt-16 md:mt-[5rem]'>
           <h4 className='jumbo-text text-[#B4A498] text-xs font-semibold md:text-base font-serif lg:text-2xl'>WEHack 2025 Presents</h4>
