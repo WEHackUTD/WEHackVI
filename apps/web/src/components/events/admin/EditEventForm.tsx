@@ -43,9 +43,9 @@ export default function EditEventForm({
 	type,
 	host,
 	endTime,
-	points,
+	// points,
 	startTime,
-	location,
+	// location,
 }: eventEditType & { id: number }) {
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
@@ -80,8 +80,8 @@ export default function EditEventForm({
 			type: type as any,
 			host,
 			startTime,
-			points,
-			location,
+			// points,
+			// location,
 			endTime,
 		},
 	});
@@ -133,7 +133,7 @@ export default function EditEventForm({
 						</FormItem>
 					)}
 				/>
-				<FormField
+				{/* <FormField
 					control={form.control}
 					name="location"
 					render={({ field }) => (
@@ -145,13 +145,13 @@ export default function EditEventForm({
 									value={field.value ?? "TBD"}
 								/>
 							</FormControl>
-							{/* <FormDescription>
+							<FormDescription>
 								Keep title short and concise
-							</FormDescription> */}
+							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
-				/>
+				/> */}
 				<div className="grid grid-cols-2 gap-x-2">
 					<FormField
 						control={form.control}
