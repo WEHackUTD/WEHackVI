@@ -129,7 +129,7 @@ export async function POST(req: Request) {
 				isEmailable: body.isEmailable,
 				questionOne: body.questionOne,
 				questionTwo: body.questionTwo,
-				questionThree: body.questionThree,
+				questionThree: body.questionThree 
 			});
 		});
 	} catch (e) {

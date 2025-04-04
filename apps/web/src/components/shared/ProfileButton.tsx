@@ -1,3 +1,4 @@
+import c from "config";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -33,13 +34,23 @@ export default async function ProfileButton() {
 		return (
 			
 			<DropdownMenu modal={false}>
+				{/* <Link href={"/sign-in"} className="md:hidden">
+					<Button className="primary-btn text-[12px] w-full bg-[#A6CDC4] px-2 py-1 text-[#282738] hover:bg-[#6e8d85]">
+						Sign In
+					</Button>
+				</Link>
+				<Link href={"/register"} className="md:hidden">
+					<Button className="primary-btn text-[12px] w-full bg-[#A6CDC4] px-2 text-[#282738] hover:bg-[#6e8d85]">
+						Register
+					</Button>
+				</Link> */}
 				<DropdownMenuTrigger
 					asChild
 					className="border-transparent bg-transparent hover:border-transparent hover:bg-transparent"
 				>
-					<Button className="relative rounded-full border-transparent focus-visible:ring-transparent focus-visible:ring-offset-transparent">
+					<Button className="relative rounded-full border-transparent bg-transparent hover:bg-transparent">
 						<DefaultDropdownTrigger />
-					</Button>
+					</Button>	
 				</DropdownMenuTrigger>
 				
 				<DropdownMenuContent
@@ -151,6 +162,11 @@ export default async function ProfileButton() {
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator className="bg-[rgb(228,228,231)]" />
 				<DropdownMenuGroup>
+					<Link href={`/`}>
+						<DropdownMenuItem className="cursor-pointer">
+							Home
+						</DropdownMenuItem>
+					</Link>
 					<Link href={`/dash`}>
 						<DropdownMenuItem className="cursor-pointer">
 							Dashboard
@@ -166,6 +182,16 @@ export default async function ProfileButton() {
 							Event Pass
 						</DropdownMenuItem>
 					</Link>
+					<Link href={c.links.discord} target="_blank">
+						<DropdownMenuItem className="cursor-pointer">
+							Discord
+						</DropdownMenuItem>
+					</Link>
+					<Link href={c.links.guide} target="_blank">
+						<DropdownMenuItem className="cursor-pointer">
+							Hacker Guide
+						</DropdownMenuItem>
+					</Link>
 					{user.role === "admin" ||
 						(user.role === "super_admin" && (
 							<Link href={`/admin`}>
@@ -174,7 +200,7 @@ export default async function ProfileButton() {
 								</DropdownMenuItem>
 							</Link>
 						))}
-					<MobileNavBarLinks />
+					{/* <MobileNavBarLinks /> */}
 					<DropdownMenuSeparator className="bg-[rgb(228,228,231)]" />
 					<Link href={`/bug-report`}>
 						<DropdownMenuItem className="cursor-pointer">

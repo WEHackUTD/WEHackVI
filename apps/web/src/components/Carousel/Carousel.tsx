@@ -4,6 +4,7 @@ import React from 'react';
 import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Dot} from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './Carousel.css';
+import Image from 'next/image';
 
 export class Carousel extends React.Component {
     render() {
@@ -95,8 +96,8 @@ export class Carousel extends React.Component {
 
                         </Slider>
                         <div className="flex flex-row justify-center md:justify-self-start">
-                            <img className="sticker h-auto lg:max-w-72 mx-1 mt-18 lg:mt-0 lg:-mr-96"
-                                 src={"/img/static/images/Group 27.svg"} alt={"WEHack Sticker"}/>
+                            <Image className="sticker h-auto lg:max-w-72 mx-1 mt-18 lg:mt-0 lg:-mr-96"
+                                 src={"/img/static/images/Group 27.svg"} alt={"WEHack Sticker"} width={250} height={250}/>
                         </div>
                     </div>
                 </div>

@@ -25,10 +25,12 @@ export function EventDataTable<TData, TValue>({
 	columns,
 	data,
 }: DataTableProps<TData, TValue>) {
-	const mealEvents = data.filter((event) => (event as any).tags?.includes("meal"));
-	const otherEvents = data.filter((event) => !(event as any).tags?.includes("meal"));
-	const sortedData = [...mealEvents, ...otherEvents];
-	
+	const sortedData = [...data].sort((a, b) => {
+		if ((a as any)?.type === "Meal" && (b as any)?.type !== "Meal") return -1;
+    	if ((a as any)?.type !== "Meal" && (b as any)?.type === "Meal") return 1;
+    	return 0;
+	});
+
 	const table = useReactTable({
 		data: sortedData,
 		columns,

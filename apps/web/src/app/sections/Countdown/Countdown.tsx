@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import '../../sections/Jumbotron/Jumbotron.css'; // Import the Jumbotron CSS
 import Button from '@/components/Button/Button';
+import Menu from '../Menu/Menu';
 
 function Countdown() {
   const [days, setDays] = useState(0);
@@ -38,14 +39,15 @@ function Countdown() {
   return (
     <section className='timer-container flex justify-center'>
       <div className="timer-group pt-10 -mt-20 pb-24 md:-mt-20 md:pb-32 ">
-        <div className="flex flex-col items-center justify-center pt-7">
+        {/* <div className="flex flex-col items-center justify-center pt-7">
           <a href={"/register"} className="mentor-app text-md md:text-3xl mt-2" target="_blank">
             <button className="primary-btn bg-[#A6CDC4] text-[#282738] py-4 px-5 md:px-10">Register</button>
           </a>
           <a href="http://www.tinyurl.com/wehack-25-mentor" className="mentor-app text-md md:text-3xl mt-10" target="_blank">
             <button className="primary-btn bg-[#A6CDC4] text-[#282738] py-4 px-5 md:px-10">Mentor Applications</button>
           </a>
-        </div>
+        </div> */}
+        <Menu/>
         
         <div className="countdown md:pt-10">
           <div className="circle-container large flex flex-row justify-center">

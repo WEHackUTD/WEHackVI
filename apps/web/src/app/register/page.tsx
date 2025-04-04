@@ -104,8 +104,8 @@ export default async function Page() {
 					free to reach out to us at {c.issueEmail}!
 				</p>
 
-				<Link href={"/"} className="bg-[#D09C51] hover:bg-[#CCBA97]">
-					<Button>Return Home</Button>
+				<Link href={"/"}>
+					<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">Return Home</Button>
 				</Link>
 				<p className="text-center text-sm">
 					Already registered?

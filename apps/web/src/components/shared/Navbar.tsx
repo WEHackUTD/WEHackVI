@@ -69,12 +69,12 @@ export default async function Navbar({ className }: NavbarProps) {
 							>
 								FAQ
 							</a>
-							<a
+							{/* <a
 								className="text-lg font-medium md:text-sm"
 								href="#Team"
 							>
 								Meet the Team
-							</a>
+							</a> */}
 							<a
 								className="text-lg font-medium md:text-sm"
 								href="http://hackp.ac/coc"

@@ -849,7 +849,7 @@ const c = {
 			Overview: "/dash",
 			Schedule: "/dash/schedule",
 			"Event Pass": "/dash/pass",
-			// Team: "/dash/team",
+			Menu: "/dash/menu",
 			// Tickets: "/dash/tickets",
 		},
 		admin: {
