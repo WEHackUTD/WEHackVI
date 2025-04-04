@@ -137,8 +137,8 @@ body {
     overflow-x: hidden;
 }
 .App {
-    background-image: url("/img/static/images/optimized-background.webp");
-    background-size: 100% auto; /* Adjust width */
+    /* background-image: url("/img/static/images/optimized-background.webp");
+    background-size: 100% auto;
     background-repeat: repeat;
     background-position: center;
     overflow-x: hidden;
@@ -146,7 +146,9 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-attachment: fixed;
+    background-attachment: fixed; */
+	background-color: #1f1d31;
+	
 }
 
 .parent-container {    
