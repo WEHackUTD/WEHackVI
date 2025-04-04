@@ -1091,7 +1091,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 									<FormItem>
 										<FormLabel className="flex flex-row gap-x-2">
 											What does WEHack mean to you?{" "}
-											<p className="text-[#F03C2D]">*</p>
+											{/* <p className="text-[#F03C2D]">*</p> */}
 										</FormLabel>
 										<FormControl>
 											<Textarea
@@ -1103,12 +1103,12 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 										<FormDescription>
 											<span
 												className={
-													question1.length > 500
+													(question1 ?? "").length > 500
 														? "text-[#F03C2D]"
 														: ""
 												}
 											>
-												{question1.length} / 500
+												{(question1 ?? "").length} / 500
 												Characters
 											</span>
 										</FormDescription>
@@ -1125,7 +1125,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 											What steps do you take to encourage
 											or support inclusive environments
 											for underrepresented groups?{" "}
-											<p className="text-[#F03C2D]">*</p>
+											{/* <p className="text-[#F03C2D]">*</p> */}
 										</FormLabel>
 										<FormControl>
 											<Textarea
@@ -1137,12 +1137,12 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 										<FormDescription>
 											<span
 												className={
-													question2.length > 500
+													(question2 ?? "").length > 500
 														? "text-[#F03C2D]"
 														: ""
 												}
 											>
-												{question2.length} / 500
+												{(question2 ?? "").length} / 500
 												Characters
 											</span>
 										</FormDescription>
@@ -1159,7 +1159,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 											In what ways do you hope to make a
 											positive impact through your project
 											at WEHack 2025?{" "}
-											<p className="text-[#F03C2D]">*</p>
+											{/* <p className="text-[#F03C2D]">*</p> */}
 										</FormLabel>
 										<FormControl>
 											<Textarea
@@ -1171,12 +1171,12 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 										<FormDescription>
 											<span
 												className={
-													question3.length > 500
+													(question3 ?? "" ).length > 500
 														? "text-[#F03C2D]"
 														: ""
 												}
 											>
-												{question3.length} / 500
+												{(question3 ?? "" ).length} / 500
 												Characters
 											</span>
 										</FormDescription>

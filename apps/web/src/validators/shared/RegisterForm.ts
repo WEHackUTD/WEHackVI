@@ -186,9 +186,9 @@ export const RegisterFormValidator = z.object({
 	),
 	profileIsSearchable: z.boolean(),
 	questionOne: z.string()
-		.min(1, { message: "Required" }).max(500, { message: "Response must be less than 500 characters." }),
-	questionTwo: z.string().min(1, { message: "Required" }).max(500, { message: "Response must be less than 500 characters." }),
-	questionThree: z.string().min(1, { message: "Required" }).max(500, { message: "Response must be less than 500 characters." }),
+		.max(500, { message: "Response must be less than 500 characters." }).optional(),
+	questionTwo: z.string().max(500, { message: "Response must be less than 500 characters." }).optional(),
+	questionThree: z.string().max(500, { message: "Response must be less than 500 characters." }).optional(),
 	// uploadedFile: z
 	// 	.instanceof(File, {
 	// 		message: "Please upload a PDF of your resume.",
