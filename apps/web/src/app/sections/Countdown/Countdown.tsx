@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import '../../sections/Jumbotron/Jumbotron.css'; // Import the Jumbotron CSS
 import Button from '@/components/Button/Button';
-import Menu from '../Menu';
+import Menu from '../Menu/Menu';
 
 function Countdown() {
   const [days, setDays] = useState(0);
