@@ -47,11 +47,11 @@ export default async function MobileNavBarLinks() {
 							</Link>
 						</DropdownMenuItem>
 
-						<DropdownMenuItem className="cursor-pointer">
+						{/* <DropdownMenuItem className="cursor-pointer">
 							<Link href={`/#Team`} className="w-full h-full block">
 								Meet the Team
 							</Link>
-						</DropdownMenuItem>
+						</DropdownMenuItem> */}
 						
 						<Link href={`http://hackp.ac/coc`} target="_blank">
 							<DropdownMenuItem className="cursor-pointer">

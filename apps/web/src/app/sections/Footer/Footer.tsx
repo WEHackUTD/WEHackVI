@@ -54,12 +54,12 @@ function Footer() {
 							>
 								FAQ
 							</a>
-							<a
+							{/* <a
 								className="nav-link"
 								href="#Team"
 							>
 								Meet the Team
-							</a>
+							</a> */}
 						<a
 							className="nav-link"
 							href="http://hackp.ac/coc"
