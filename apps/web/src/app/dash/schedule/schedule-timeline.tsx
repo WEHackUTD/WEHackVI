@@ -131,9 +131,13 @@ export function EventRow({ event, userTimeZone }: EventRowProps) {
 						</div>
 					)}
 				</td>
-				<td className="pl-7 md:pl-16">
-					<div className="flex flex-wrap items-center justify-start gap-x-2 gap-y-2 text-left text-xl">
-						{event.title}{" "}
+				<td className="pl-7 md:pl-16 py-3">
+					<div className="flex flex-wrap items-center justify-start gap-x-7 gap-y-4 text-left text-xl">
+						<div className="flex flex-col">
+							{event.title}{" "}
+							<p className="text-md">{event.description}{" "}</p>
+						</div>
+						
 						<Badge
 							variant={"outline"}
 							className="h-fit"
