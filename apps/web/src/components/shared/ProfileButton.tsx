@@ -34,12 +34,16 @@ export default async function ProfileButton() {
 		return (
 			
 			<DropdownMenu modal={false}>
-				<div className="flex flex-row">
-				<Link href={"/sign-in"} className="md:hidden">
-					<Button className="primary-btn text-[12px] w-full bg-[#A6CDC4] px-4 py-2 text-[#282738] hover:bg-[#6e8d85]">
+				{/* <Link href={"/sign-in"} className="md:hidden">
+					<Button className="primary-btn text-[12px] w-full bg-[#A6CDC4] px-2 py-1 text-[#282738] hover:bg-[#6e8d85]">
 						Sign In
 					</Button>
 				</Link>
+				<Link href={"/register"} className="md:hidden">
+					<Button className="primary-btn text-[12px] w-full bg-[#A6CDC4] px-2 text-[#282738] hover:bg-[#6e8d85]">
+						Register
+					</Button>
+				</Link> */}
 				<DropdownMenuTrigger
 					asChild
 					className="border-transparent bg-transparent hover:border-transparent hover:bg-transparent"
@@ -48,7 +52,6 @@ export default async function ProfileButton() {
 						<DefaultDropdownTrigger />
 					</Button>	
 				</DropdownMenuTrigger>
-				</div>
 				
 				<DropdownMenuContent
 					className="mt-2 w-32 bg-[rgb(247,240,232)] sm:w-40 lg:w-52"

@@ -1,6 +1,7 @@
 import React from 'react'
 import './FAQ.css'
 import Question from '@/components/Question/Question'
+import Image from 'next/image'
 
 function FAQ() {
   return (
@@ -44,7 +45,7 @@ function FAQ() {
         </div>
 
         <div className="vinyl-blue-container overflow-x-hidden flex justify-center md:justify-end lg:justify-end md:-ml-[10rem] lg:-ml-[25rem] xl:-ml-[45rem] pt-20 pb-72 md:pt-16 md:pb-72">
-            <img className="vinyl overflow-x-hidden" src={"/img/static/images/Untitled_Artwork 4.png"} width="300px" height="300px"></img>    
+            <Image className="vinyl overflow-x-hidden" src={"/img/static/images/Untitled_Artwork 4.png"} width={300} height={300} alt="a blue vinyl spinning"/> 
         </div>
         
         

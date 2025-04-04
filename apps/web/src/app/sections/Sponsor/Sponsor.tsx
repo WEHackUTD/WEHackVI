@@ -1,6 +1,6 @@
 import React from 'react';
 import './Sponsor.css';
-
+import Image from 'next/image';
 const sponsors = [
   { default: '/img/static/images/sponsors/cbre_gold.png', hover: '/img/static/images/sponsors/cbre_gold.png', tier: 'gold', link: 'https://careers.cbre.com/en_US/careers/SearchJobs/?9577=%5B17276%5D&9577_format=10224&listFilterMode=1&jobRecordsPerPage=6&' },
   { default: '/img/static/images/sponsors/verizon_gold.svg', hover: '/img/static/images/sponsors/verizon_gold.svg', tier: 'gold', link: 'https://mycareer.verizon.com/jobs/' },
@@ -76,7 +76,7 @@ function Sponsor() {
           </div>
         </div>
         <div className="vinyl-yellow-container overflow-x-hidden flex justify-center md:justify-start pt-20 pb-72 md:pt-30 md:pb-64 md:-mr-[5rem] lg:-mr-[20rem] xl:-mr-[35rem]">
-          <img className="vinyl-yellow overflow-x-hidden" src={"/img/static/images/Untitled_Artwork 5.png"} width="250px" height="250px"></img>    
+          <Image className="vinyl-yellow overflow-x-hidden" src={"/img/static/images/Untitled_Artwork 5.png"} width={250} height={250} alt="a yellow vinyl spinning"/>  
         </div>
       </div>
     );
