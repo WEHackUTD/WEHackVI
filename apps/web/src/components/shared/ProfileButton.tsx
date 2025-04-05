@@ -189,7 +189,7 @@ export default async function ProfileButton() {
 					</Link>
 					<Link href={c.links.guide} target="_blank">
 						<DropdownMenuItem className="cursor-pointer">
-							Hacker Guide
+							Hacker Pack
 						</DropdownMenuItem>
 					</Link>
 					{user.role === "admin" ||

@@ -66,7 +66,7 @@ export default async function DashLayout({ children }: DashLayoutProps) {
 								variant={"outline"}
 								className="bg-nav hover:bg-[#D09C51]"
 							>
-								Hacker Guide
+								Hacker Pack
 							</Button>
 						</Link>
 						<Link href={c.links.discord} target="_blank">
