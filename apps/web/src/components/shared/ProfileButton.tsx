@@ -167,6 +167,11 @@ export default async function ProfileButton() {
 							Home
 						</DropdownMenuItem>
 					</Link>
+					<Link href={`/rsvp`}>
+						<DropdownMenuItem className="cursor-pointer">
+							RSVP
+						</DropdownMenuItem>
+					</Link>
 					<Link href={`/dash`}>
 						<DropdownMenuItem className="cursor-pointer">
 							Dashboard
