@@ -64,12 +64,12 @@ export const RegistrationSettingsFormValidator = z.object({
 	isEmailable: z.boolean(),
 	university: z.string().min(1).max(200),
 	major: z.string().min(1).max(200),
-	schoolID: z
-		.string()
-		.length(c.localUniversityShortIDMaxLength, {
-			message: `${c.localUniversitySchoolIDName} must be than ${c.localUniversityShortIDMaxLength} characters.`,
-		})
-		.or(z.literal("NOT_LOCAL_SCHOOL")),
+	// schoolID: z
+	// 	.string()
+	// 	.length(c.localUniversityShortIDMaxLength, {
+	// 		message: `${c.localUniversitySchoolIDName} must be than ${c.localUniversityShortIDMaxLength} characters.`,
+	// 	})
+	// 	.or(z.literal("NOT_LOCAL_SCHOOL")),
 	levelOfStudy: z.union([
 		z.literal("Freshman", defaultPrettyError),
 		z.literal("Sophomore", defaultPrettyError),

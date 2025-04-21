@@ -81,7 +81,7 @@ export default function RegisterFormSettings({
 			personalWebsite: data.PersonalWebsite ?? "",
 			race: user.race as any,
 			shirtSize: user.shirtSize as any,
-			schoolID: data.schoolID,
+			// schoolID: data.schoolID,
 			softwareBuildingExperience: data.softwareExperience as any,
 			university: data.university,
 			phoneNumber: user.phoneNumber,
@@ -103,19 +103,19 @@ export default function RegisterFormSettings({
 	const [oldFile, setOldFile] = useState(true);
 
 	const universityValue = form.watch("university").toLowerCase();
-	const shortID = form.watch("schoolID").toLowerCase();
+	// const shortID = form.watch("schoolID").toLowerCase();
 
-	useEffect(() => {
-		if (universityValue != c.localUniversityName.toLowerCase()) {
-			form.setValue("schoolID", "NOT_LOCAL_SCHOOL");
-		} else {
-			if (shortID === "NOT_LOCAL_SCHOOL") {
-				form.setValue("schoolID", "");
-			} else {
-				form.setValue("schoolID", data.schoolID);
-			}
-		}
-	}, [universityValue]);
+	// useEffect(() => {
+	// 	if (universityValue != c.localUniversityName.toLowerCase()) {
+	// 		form.setValue("schoolID", "NOT_LOCAL_SCHOOL");
+	// 	} else {
+	// 		if (shortID === "NOT_LOCAL_SCHOOL") {
+	// 			form.setValue("schoolID", "");
+	// 		} else {
+	// 			form.setValue("schoolID", data.schoolID);
+	// 		}
+	// 	}
+	// }, [universityValue]);
 
 	async function onSubmit(
 		data: z.infer<typeof RegistrationSettingsFormValidator>,
@@ -139,7 +139,7 @@ export default function RegisterFormSettings({
 			university: data.university,
 			major: data.major,
 			levelOfStudy: data.levelOfStudy,
-			schoolID: data.schoolID,
+			// schoolID: data.schoolID,
 			hackathonsAttended: data.hackathonsAttended,
 			softwareBuildingExperience: data.softwareBuildingExperience,
 			heardAboutEvent: data.heardAboutEvent,
@@ -678,7 +678,7 @@ export default function RegisterFormSettings({
 									</FormItem>
 								)}
 							/>
-							<FormField
+							{/* <FormField
 								control={form.control}
 								name="schoolID"
 								render={({ field }) => (
@@ -704,7 +704,7 @@ export default function RegisterFormSettings({
 										<FormMessage />
 									</FormItem>
 								)}
-							/>
+							/> */}
 						</div>
 					</FormGroupWrapper>
 					<FormGroupWrapper title="Hackathon Experience">
