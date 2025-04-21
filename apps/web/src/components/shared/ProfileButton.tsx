@@ -197,16 +197,19 @@ export default async function ProfileButton() {
 							Hacker Pack
 						</DropdownMenuItem>
 					</Link>
-					{user.role === "admin" ||
-						(user.role === "super_admin" && (
-							<Link href={`/admin`}>
-								<DropdownMenuItem className="cursor-pointer text-hackathon">
-									Admin
-								</DropdownMenuItem>
-							</Link>
-						))}
 					{/* <MobileNavBarLinks /> */}
 					<DropdownMenuSeparator className="bg-[rgb(228,228,231)]" />
+					{["admin", "super_admin", "volunteer"].includes(
+						user.role,
+					) && (
+						<Link href={`/admin`}>
+							<DropdownMenuItem className="cursor-pointer text-hackathon">
+								Admin
+							</DropdownMenuItem>
+						</Link>
+					)}
+					<MobileNavBarLinks />
+					<DropdownMenuSeparator className="bg-[rgb(228,228,231)] dark:bg-[rgb(39,39,42)]" />
 					<Link href={`/bug-report`}>
 						<DropdownMenuItem className="cursor-pointer">
 							Report a Bug
