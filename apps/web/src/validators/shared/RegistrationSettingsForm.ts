@@ -131,6 +131,15 @@ export const RegistrationSettingsFormValidator = z.object({
 		.string()
 		.max(100, { message: "URL must be less than 100 characters" })
 		.optional(),
+	questionOne: z.string()
+		.min(1, { message: "Required" })
+		.max(500, { message: "Response must be less than 500 characters." }),
+	questionTwo: z.string()
+		.min(1, { message: "Required" })
+		.max(500, { message: "Response must be less than 500 characters." }),
+	questionThree: z.string()
+		.min(1, { message: "Required" })
+		.max(500, { message: "Response must be less than 500 characters." }),
 	resumeFile: z
 		.any()
 		.refine((file) => {

@@ -93,6 +93,9 @@ export default function RegisterFormSettings({
 			university: data.university,
 			phoneNumber: user.phoneNumber,
 			countryOfResidence: user.countryOfResidence,
+			questionOne: data.questionOne,
+			questionTwo: data.questionTwo,
+			questionThree: data.questionThree,
 			resumeFile: data.resume
 
 		},
@@ -112,7 +115,10 @@ export default function RegisterFormSettings({
 
 	const [oldFile, setOldFile] = useState(true);
 
-	const universityValue = form.watch("university").toLowerCase();
+	// const universityValue = form.watch("university").toLowerCase();
+	const question1 = form.watch("questionOne");
+	const question2 = form.watch("questionTwo");
+	const question3 = form.watch("questionThree");
 	// const shortID = form.watch("schoolID").toLowerCase();
 
 	// useEffect(() => {
@@ -181,6 +187,9 @@ export default function RegisterFormSettings({
 			personalWebsite: data.personalWebsite,
 			phoneNumber: data.phoneNumber,
 			countryOfResidence: data.countryOfResidence,
+			questionOne: data.questionOne,
+			questionTwo: data.questionTwo,
+			questionThree: data.questionThree,
 			resumeFile: resume
 			
 		});
@@ -261,6 +270,9 @@ export default function RegisterFormSettings({
 
 	return (
 		<div>
+			<p className="pt-5 text-xl pb-10">
+			Once you've finished making all of your changes, click <b><i>Update</i></b> at the bottom of this page.
+			</p>
 			<Form {...form}>
 				<form
 					className="space-y-6"
@@ -273,7 +285,10 @@ export default function RegisterFormSettings({
 								name="age"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Age</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Age{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<FormControl>
 											<Input type="number" {...field} />
 										</FormControl>
@@ -286,7 +301,10 @@ export default function RegisterFormSettings({
 								name="gender"
 								render={({ field }) => (
 									<FormItem className="col-span-2">
-										<FormLabel>Gender</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Gender{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
 											defaultValue={field.value}
@@ -325,7 +343,10 @@ export default function RegisterFormSettings({
 								name="race"
 								render={({ field }) => (
 									<FormItem className="col-span-2">
-										<FormLabel>Race</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Race{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
 											defaultValue={field.value}
@@ -359,7 +380,10 @@ export default function RegisterFormSettings({
 								name="ethnicity"
 								render={({ field }) => (
 									<FormItem className="col-span-2">
-										<FormLabel>Ethnicity</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Ethnicity{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
 											defaultValue={field.value}
@@ -389,7 +413,10 @@ export default function RegisterFormSettings({
 								name="phoneNumber"
 								render={({ field }) => (
 									<FormItem className={"col-span-3"}>
-										<FormLabel>Phone Number</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Phone Number{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<FormControl>
 											<Input {...field} />
 										</FormControl>
@@ -402,8 +429,9 @@ export default function RegisterFormSettings({
 								name="countryOfResidence"
 								render={({ field }) => (
 									<FormItem className="col-span-4 grid-cols-2">
-										<FormLabel>
-											Country of Residence
+										<FormLabel className="flex flex-row gap-x-2">
+											Country of Residence{" "}
+											<p className="text-[#F03C2D]">*</p>
 										</FormLabel>
 										<div className="flex w-full items-center justify-center">
 											<Popover>
@@ -526,19 +554,17 @@ export default function RegisterFormSettings({
 					</FormGroupWrapper>
 					<FormGroupWrapper title="University Info">
 						<div
-							className={`grid ${
-								universityValue ===
-								c.localUniversityName.toLowerCase()
-									? "grid-cols-1 md:grid-cols-6"
-									: "grid-cols-1 md:grid-cols-5"
-							} gap-x-2 gap-y-4`}
+							className="grid grid-cols-1 gap-x-2 gap-y-2 md:flex md:flex-row md:gap-y-0"
 						>
 							<FormField
 								control={form.control}
 								name="university"
 								render={({ field }) => (
 									<FormItem className="col-span-2 flex flex-col">
-										<FormLabel>University</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											University{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<Popover>
 											<PopoverTrigger asChild>
 												<FormControl>
@@ -617,7 +643,10 @@ export default function RegisterFormSettings({
 								name="major"
 								render={({ field }) => (
 									<FormItem className="col-span-2 flex flex-col">
-										<FormLabel>Major</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Major{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<Popover>
 											<PopoverTrigger asChild>
 												<FormControl>
@@ -694,7 +723,10 @@ export default function RegisterFormSettings({
 								name="levelOfStudy"
 								render={({ field }) => (
 									<FormItem className="col-span-2 flex flex-col md:col-span-1">
-										<FormLabel>Level of Study</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Level of Study{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
 											defaultValue={field.value}
@@ -761,14 +793,15 @@ export default function RegisterFormSettings({
 						</div>
 					</FormGroupWrapper>
 					<FormGroupWrapper title="Hackathon Experience">
-						<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-3 md:gap-y-0">
+						<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:flex md:flex-row md:gap-y-0">
 							<FormField
 								control={form.control}
 								name="hackathonsAttended"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>
-											# of Hackathons Attended
+										<FormLabel className="flex flex-row gap-x-2">
+											# of Hackathons Attended{" "}
+											<p className="text-[#F03C2D]">*</p>
 										</FormLabel>
 										<FormControl>
 											<Input type="number" {...field} />
@@ -782,8 +815,9 @@ export default function RegisterFormSettings({
 								name="softwareBuildingExperience"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>
-											Software Building Experience
+										<FormLabel className="flex flex-row gap-x-2">
+											Software Building Experience{" "}
+											<p className="text-[#F03C2D]">*</p>
 										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
@@ -820,9 +854,9 @@ export default function RegisterFormSettings({
 								name="heardAboutEvent"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>
-											Where did you hear about{" "}
-											{c.hackathonName}?
+										<FormLabel className="flex flex-row gap-x-2">
+											Where did you hear about{" "}{c.hackathonName}?{" "}
+											<p className="text-[#F03C2D]">*</p>
 										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
@@ -862,6 +896,111 @@ export default function RegisterFormSettings({
 							/>
 						</div>
 					</FormGroupWrapper>
+					{/* ADDED SHORT ANSWER QUESTIONS */}
+					<FormGroupWrapper title="Short Answer Questions">
+						<div className="grid grid-cols-1 gap-x-2 gap-y-16 pb-10 md:gap-y-26 md:pb-20">
+							<FormField
+								control={form.control}
+								name="questionOne"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="flex flex-row gap-x-2">
+											What does WEHack mean to you?{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
+										<FormControl>
+											<Textarea
+												placeholder="Enter answer here"
+												className="h-[80%]"
+												{...field}
+											/>
+										</FormControl>
+										<FormDescription>
+											<span
+												className={
+													question1.length > 500
+														? "text-[#F03C2D]"
+														: ""
+												}
+											>
+												{question1.length} / 500
+												Characters
+											</span>
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="questionTwo"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="flex flex-row gap-x-2">
+											What steps do you take to encourage
+											or support inclusive environments
+											for underrepresented groups?{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
+										<FormControl>
+											<Textarea
+												placeholder="Enter answer here"
+												className="h-[80%]"
+												{...field}
+											/>
+										</FormControl>
+										<FormDescription>
+											<span
+												className={
+													question2.length > 500
+														? "text-[#F03C2D]"
+														: ""
+												}
+											>
+												{question2.length} / 500
+												Characters
+											</span>
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="questionThree"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="flex flex-row gap-x-2">
+											In what ways do you hope to make a
+											positive impact through your project
+											at WEHack 2025?{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
+										<FormControl>
+											<Textarea
+												placeholder="Enter answer here"
+												className="h-[80%]"
+												{...field}
+											/>
+										</FormControl>
+										<FormDescription>
+											<span
+												className={
+													question3.length > 500
+														? "text-[#F03C2D]"
+														: ""
+												}
+											>
+												{question3.length} / 500
+												Characters
+											</span>
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+					</FormGroupWrapper>
 					<FormGroupWrapper title="Day of Event">
 						<div className="grid grid-cols-1 gap-x-4 gap-y-2 pb-5 md:grid-cols-2 md:gap-y-0">
 							<FormField
@@ -869,7 +1008,10 @@ export default function RegisterFormSettings({
 								name="shirtSize"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Shirt Size</FormLabel>
+										<FormLabel className="flex flex-row gap-x-2">
+											Shirt Size{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
 											defaultValue={field.value}
@@ -912,8 +1054,9 @@ export default function RegisterFormSettings({
 								render={() => (
 									<FormItem className="row-span-2">
 										<div className="mb-4">
-											<FormLabel className="text-base">
-												Dietary Restrictions
+											<FormLabel className="flex flex-row gap-x-2">
+												Dietary Restrictions{" "}
+												<p className="text-[#F03C2D]">*</p>
 											</FormLabel>
 											<FormDescription>
 												Please select which dietary

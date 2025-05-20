@@ -14,7 +14,7 @@ export default function SettingsSection({ name, path }: ToggleItemProps) {
 	return (
 		<Link href={path}>
 			<div
-				className={`w-full rounded-md border-2 border-[#D09C51] bg-[#D09C51] px-5 py-3 transition-all duration-100 hover:bg-[#CCBA97] ${
+				className={`w-full rounded-full border-2 border-[#D09C51] bg-[#D09C51] px-5 py-2 transition-all duration-100 hover:bg-[#CCBA97] ${
 					(currPath.startsWith(path) &&
 						path !== "/settings" &&
 						path !== "/dash" &&
@@ -24,7 +24,7 @@ export default function SettingsSection({ name, path }: ToggleItemProps) {
 						: "text-muted-foreground"
 				}`}
 			>
-				<p className="text-sm text-black">{name}</p>
+				<p className="text-lg font-medium text-black">{name}</p>
 			</div>
 		</Link>
 	);
