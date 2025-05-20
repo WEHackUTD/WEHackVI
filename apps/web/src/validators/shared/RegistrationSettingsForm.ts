@@ -9,6 +9,10 @@ const countryCodesArray = c.registration.countries.map(
 	(countryObject) => countryObject.code,
 );
 
+const phoneRegex = new RegExp(
+	/^(?:\d{3}-\d{3}-\d{4}|\d{10})$/
+);
+
 export const RegistrationSettingsFormValidator = z.object({
 	age: z
 		.number()
@@ -59,7 +63,7 @@ export const RegistrationSettingsFormValidator = z.object({
 	]),
 	phoneNumber: z.string().min(10).max(30, {
 		message: "Phone number must be less than 15 characters",
-	}),
+	}).regex(phoneRegex, 'Invalid Number'),
 	countryOfResidence: z.string().length(2),
 	isEmailable: z.boolean(),
 	university: z.string().min(1).max(200),
@@ -127,4 +131,13 @@ export const RegistrationSettingsFormValidator = z.object({
 		.string()
 		.max(100, { message: "URL must be less than 100 characters" })
 		.optional(),
+	resumeFile: z
+		.any()
+		.refine((file) => {
+			console.log("zod:", file);
+			return(file !== null && file !== undefined)
+		}, {
+			message: "Please upload a PDF of your resume before submitting.",
+		}),
+	
 });

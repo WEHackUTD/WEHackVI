@@ -53,6 +53,10 @@ import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { HackerData, User } from "db/types";
 import { RegistrationSettingsFormValidator } from "@/validators/shared/RegistrationSettingsForm";
+import { generateClientDropzoneAccept } from "uploadthing/client";
+import { generatePermittedFileTypes } from "uploadthing/client";
+import "@uploadthing/react/styles.css"; // drop zone styling
+import { useUploadThing } from "@/utils/uploadthing";
 
 interface RegistrationFormSettingsProps {
 	user: User;
@@ -63,6 +67,8 @@ export default function RegisterFormSettings({
 	user,
 	data,
 }: RegistrationFormSettingsProps) {
+	const { startUpload, routeConfig } = useUploadThing("pdfUploaderPrivate");
+
 	const form = useForm<z.infer<typeof RegistrationSettingsFormValidator>>({
 		resolver: zodResolver(RegistrationSettingsFormValidator),
 		defaultValues: {
@@ -86,8 +92,12 @@ export default function RegisterFormSettings({
 			university: data.university,
 			phoneNumber: user.phoneNumber,
 			countryOfResidence: user.countryOfResidence,
+			resumeFile: data.resume
+
 		},
 	});
+
+	console.log("default resume link", data.resume);
 
 	const { isSubmitSuccessful, isSubmitted, errors } = form.formState;
 	const hasErrors = !isSubmitSuccessful && isSubmitted;
@@ -98,6 +108,7 @@ export default function RegisterFormSettings({
 	useEffect(() => {
 		if (resumeLink === c.noResumeProvidedURL) setUploadedFile(null);
 		else setUploadedFile(f);
+		console.log("inside useEffect to check resumeLink");
 	}, []);
 
 	const [oldFile, setOldFile] = useState(true);
@@ -122,12 +133,32 @@ export default function RegisterFormSettings({
 	) {
 		let resume: string = c.noResumeProvidedURL;
 
-		if (uploadedFile) {
-			const newBlob = await put(uploadedFile.name, uploadedFile, {
-				access: "public",
-				handleBlobUploadUrl: "/api/upload/resume/register",
-			});
-			resume = newBlob.url;
+		// if (uploadedFile) {
+		// 	const newBlob = await put(uploadedFile.name, uploadedFile, {
+		// 		access: "public",
+		// 		handleBlobUploadUrl: "/api/upload/resume/register",
+		// 	});
+		// 	resume = newBlob.url;
+		// }
+
+		console.log(oldFile);
+		if (uploadedFile && oldFile === false) {
+			const uploadResult = await startUpload([uploadedFile]);
+			console.log("results", uploadResult);
+			if(uploadResult) {
+				const {serverData: {
+					fileUrl,
+					uploadedBy
+					
+				}} = uploadResult[0];
+				resume = fileUrl;
+				console.log("resume after uploading to uploadThing", resume);
+				
+			}
+		}
+		else {
+			console.log("else statement", resumeLink);
+			resume = resumeLink;
 		}
 
 		const res = runModifyRegistrationData({
@@ -151,10 +182,14 @@ export default function RegisterFormSettings({
 			personalWebsite: data.personalWebsite,
 			phoneNumber: data.phoneNumber,
 			countryOfResidence: data.countryOfResidence,
+			resumeFile: resume
+			
 		});
 		// Can be optimzed to run in the modify registratuib data action later.
 		runModifyResume({ resume });
+		console.log("data resume after res", data.resumeFile);
 		console.log(res);
+		
 	}
 
 	const { execute: runModifyRegistrationData, status: loadingState } =
@@ -190,21 +225,35 @@ export default function RegisterFormSettings({
 				console.log(
 					`Got accepted file! The length of the array is ${acceptedFiles.length}.`,
 				);
-				console.log(acceptedFiles[0]);
+				console.log("on drop", acceptedFiles[0]);
 				setUploadedFile(acceptedFiles[0]);
+				form.setValue("resumeFile", acceptedFiles[0])
 				setOldFile(false);
 			}
 		},
 		[],
 	);
+
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop,
-		multiple: false,
-		accept: { "application/pdf": [".pdf"] },
-		maxSize: c.maxResumeSizeInBytes,
-		noClick: uploadedFile != null,
-		noDrag: uploadedFile != null,
+		accept: generateClientDropzoneAccept(
+			generatePermittedFileTypes(routeConfig).fileTypes,
+		),
 	});
+	// const { getRootProps, getInputProps, isDragActive } = useDropzone({
+	// 	onDrop,
+	// 	multiple: false,
+	// 	accept: { "application/pdf": [".pdf"] },
+	// 	maxSize: c.maxResumeSizeInBytes,
+	// 	noClick: uploadedFile != null,
+	// 	noDrag: uploadedFile != null,
+	// });
+	
+	const currentFile = form.watch("resumeFile")
+
+	useEffect(()=>{
+		console.log("current file:", currentFile);
+	},[currentFile])
 
 	return (
 		<div>
@@ -996,10 +1045,13 @@ export default function RegisterFormSettings({
 						</div>
 						<FormField
 							control={form.control}
-							name={"personalWebsite"}
+							name="resumeFile"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Resume</FormLabel>
+									<FormLabel className="flex flex-row gap-x-2">
+										Resume{" "}
+										<p className="text-[#F03C2D]">*</p>
+									</FormLabel>
 									<FormControl>
 										<div
 											{...getRootProps()}
@@ -1009,11 +1061,22 @@ export default function RegisterFormSettings({
 													: "cursor-pointer"
 											} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white`}
 										>
-											<input {...getInputProps()} />
+											<input {...getInputProps()} 
+												onChange={(e) => {
+													console.log("current event file", e.target.files?.[0]);
+													field.onChange(
+														e.target.files?.[0]
+														
+													);
+													setUploadedFile(
+														e.target.files?.[0] ||
+															null,
+													);
+												}}/>
 											<p className="p-2 text-center">
 												{uploadedFile ? (
 													oldFile ? (
-														<Link href={resumeLink}>
+														<Link href={resumeLink} target="_blank">
 															{uploadedFile.name}{" "}
 															(
 															{Math.round(
@@ -1034,6 +1097,7 @@ export default function RegisterFormSettings({
 												<Button
 													className="mt-4"
 													onClick={() => {
+														field.onChange(null);
 														setUploadedFile(null);
 														setOldFile(false);
 													}}
