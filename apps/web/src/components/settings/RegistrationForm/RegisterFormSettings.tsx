@@ -57,6 +57,7 @@ import { generateClientDropzoneAccept } from "uploadthing/client";
 import { generatePermittedFileTypes } from "uploadthing/client";
 import "@uploadthing/react/styles.css"; // drop zone styling
 import { useUploadThing } from "@/utils/uploadthing";
+import { useRouter } from "next/navigation";
 
 interface RegistrationFormSettingsProps {
 	user: User;
@@ -97,8 +98,7 @@ export default function RegisterFormSettings({
 		},
 	});
 
-	console.log("default resume link", data.resume);
-
+	const router = useRouter();
 	const { isSubmitSuccessful, isSubmitted, errors } = form.formState;
 	const hasErrors = !isSubmitSuccessful && isSubmitted;
 	const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -108,7 +108,6 @@ export default function RegisterFormSettings({
 	useEffect(() => {
 		if (resumeLink === c.noResumeProvidedURL) setUploadedFile(null);
 		else setUploadedFile(f);
-		console.log("inside useEffect to check resumeLink");
 	}, []);
 
 	const [oldFile, setOldFile] = useState(true);
@@ -144,7 +143,7 @@ export default function RegisterFormSettings({
 		console.log(oldFile);
 		if (uploadedFile && oldFile === false) {
 			const uploadResult = await startUpload([uploadedFile]);
-			console.log("results", uploadResult);
+			// console.log("results", uploadResult);
 			if(uploadResult) {
 				const {serverData: {
 					fileUrl,
@@ -152,12 +151,12 @@ export default function RegisterFormSettings({
 					
 				}} = uploadResult[0];
 				resume = fileUrl;
-				console.log("resume after uploading to uploadThing", resume);
+				setOldFile(true);
 				
 			}
 		}
 		else {
-			console.log("else statement", resumeLink);
+			// console.log("else statement", resumeLink);
 			resume = resumeLink;
 		}
 
@@ -187,8 +186,9 @@ export default function RegisterFormSettings({
 		});
 		// Can be optimzed to run in the modify registratuib data action later.
 		runModifyResume({ resume });
-		console.log("data resume after res", data.resumeFile);
+		// console.log("data resume after res", data.resumeFile);
 		console.log(res);
+		
 		
 	}
 
@@ -197,6 +197,7 @@ export default function RegisterFormSettings({
 			onSuccess: () => {
 				toast.dismiss();
 				toast.success("Data updated successfully!");
+				
 			},
 			onError: () => {
 				toast.dismiss();
@@ -207,10 +208,13 @@ export default function RegisterFormSettings({
 		});
 
 	const { execute: runModifyResume } = useAction(modifyResume, {
-		onSuccess: () => {},
+		onSuccess: () => {
+			router.refresh();
+		},
 		onError: () => {
 			toast.dismiss();
 			toast.error("An error occurred while uploading resume!");
+			
 		},
 	});
 
@@ -225,7 +229,7 @@ export default function RegisterFormSettings({
 				console.log(
 					`Got accepted file! The length of the array is ${acceptedFiles.length}.`,
 				);
-				console.log("on drop", acceptedFiles[0]);
+				// console.log("on drop", acceptedFiles[0]);
 				setUploadedFile(acceptedFiles[0]);
 				form.setValue("resumeFile", acceptedFiles[0])
 				setOldFile(false);
