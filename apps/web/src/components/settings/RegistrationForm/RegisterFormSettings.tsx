@@ -20,11 +20,9 @@ import {
 import { Input } from "@/components/shadcn/ui/input";
 import { Button } from "@/components/shadcn/ui/button";
 import { z } from "zod";
-import { RegisterFormValidator } from "@/validators/shared/RegisterForm";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormGroupWrapper from "./FormGroupWrapper";
+import FormGroupWrapper from "@/components/registration/FormGroupWrapper";
 import { Checkbox } from "@/components/shadcn/ui/checkbox";
-import Link from "next/link";
 import c from "config";
 import {
 	Command,
@@ -43,216 +41,191 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils/client/cn";
 import { useEffect, useCallback, useState } from "react";
 import { Textarea } from "@/components/shadcn/ui/textarea";
-import { zpostSafe } from "@/lib/utils/client/zfetch";
-import { useAuth } from "@clerk/nextjs";
-import { BasicServerValidator } from "@/validators/shared/basic";
-import { useRouter } from "next/navigation";
 import { FileRejection, useDropzone } from "react-dropzone";
-import { put, type PutBlobResult } from "@vercel/blob";
-import { Tag, TagInput } from "@/components/shadcn/ui/tag/tag-input";
-import CreatingRegistration from "./CreatingRegistration";
-import { bucketResumeBaseUploadUrl } from "config";
-import { count } from "console";
-
-import { UploadDropzone } from "@/utils/uploadthing";
-import "@uploadthing/react/styles.css"; // drop zone styling
-import { useUploadThing } from "@/utils/uploadthing";
-import { NodeNextRequest } from "next/dist/server/base-http/node";
-import { Sonsie_One } from "next/font/google";
+import { put } from "@vercel/blob";
+import { useAction } from "next-safe-action/hooks";
+import {
+	modifyRegistrationData,
+	modifyResume,
+} from "@/actions/user-profile-mod";
+import { toast } from "sonner";
+import Link from "next/link";
+import { Loader2 } from "lucide-react";
+import { HackerData, User } from "db/types";
+import { RegistrationSettingsFormValidator } from "@/validators/shared/RegistrationSettingsForm";
 import { generateClientDropzoneAccept } from "uploadthing/client";
 import { generatePermittedFileTypes } from "uploadthing/client";
-import { UploadedFileData, type FileRouter } from "uploadthing/types";
+import "@uploadthing/react/styles.css"; // drop zone styling
+import { useUploadThing } from "@/utils/uploadthing";
+import { useRouter } from "next/navigation";
 
-interface RegisterFormProps {
-	defaultEmail: string;
+interface RegistrationFormSettingsProps {
+	user: User;
+	data: HackerData;
 }
 
-export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
-	const [resumeFile, setResumeFile] = useState<File | null>(null);
+export default function RegisterFormSettings({
+	user,
+	data,
+}: RegistrationFormSettingsProps) {
+	const { startUpload, routeConfig } = useUploadThing("pdfUploaderPrivate");
 
-	const { startUpload, routeConfig } = useUploadThing("pdfUploaderPrivate"); // Specify your endpoint
-
-	const { isLoaded, userId } = useAuth();
-	const router = useRouter();
-
-	const form = useForm<z.infer<typeof RegisterFormValidator>>({
-		resolver: zodResolver(RegisterFormValidator),
+	const form = useForm<z.infer<typeof RegistrationSettingsFormValidator>>({
+		resolver: zodResolver(RegistrationSettingsFormValidator),
 		defaultValues: {
-			email: defaultEmail,
-			hackathonsAttended: 0,
-			dietaryRestrictions: [],
-			profileIsSearchable: true,
-			bio: "",
-			isEmailable: false,
-			// The rest of these are default values to prevent the controller / uncontrolled input warning from React
-			hasAcceptedMLHCoC: false,
-			hasSharedDataWithMLH: false,
-			accommodationNote: "",
-			firstName: "",
-			lastName: "",
-			age: 0,
-			ethnicity: "" as any,
-			gender: "" as any,
-			major: "",
-			github: "",
-			hackerTag: "",
-			heardAboutEvent: "" as any,
-			levelOfStudy: "" as any,
-			linkedin: "",
-			personalWebsite: "",
-			profileDiscordName: "",
-			pronouns: "",
-			race: "" as any,
-			shirtSize: "" as any,
-			// schoolID: "",
-			university: "",
-			phoneNumber: "",
-			countryOfResidence: "",
-			questionOne: "",
-			questionTwo: "",
-			questionThree: "",
-			uploadedFile: undefined,
+			hackathonsAttended: data.hackathonsAttended,
+			dietaryRestrictions: user.dietRestrictions as any,
+			isEmailable: data.isEmailable,
+			accommodationNote: user.accommodationNote || "",
+			age: user.age,
+			ethnicity: user.ethnicity as any,
+			gender: user.gender as any,
+			major: data.major,
+			github: data.GitHub ?? "",
+			heardAboutEvent: data.heardFrom as any,
+			levelOfStudy: data.levelOfStudy as any,
+			linkedin: data.LinkedIn ?? "",
+			personalWebsite: data.PersonalWebsite ?? "",
+			race: user.race as any,
+			shirtSize: user.shirtSize as any,
+			// schoolID: data.schoolID,
+			softwareBuildingExperience: data.softwareExperience as any,
+			university: data.university,
+			phoneNumber: user.phoneNumber,
+			countryOfResidence: user.countryOfResidence,
+			questionOne: data.questionOne,
+			questionTwo: data.questionTwo,
+			questionThree: data.questionThree,
+			resumeFile: data.resume
+
 		},
 	});
 
+	const router = useRouter();
 	const { isSubmitSuccessful, isSubmitted, errors } = form.formState;
-
 	const hasErrors = !isSubmitSuccessful && isSubmitted;
-
 	const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-	const [skills, setSkills] = useState<Tag[]>([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const universityValue = form.watch("university");
-	const bioValue = form.watch("bio");
+	const resumeLink: string = data.resume ?? c.noResumeProvidedURL;
+	// @ts-ignore
+	let f = new File([data.resume], resumeLink.split("/").pop());
+	useEffect(() => {
+		if (resumeLink === c.noResumeProvidedURL) setUploadedFile(null);
+		else setUploadedFile(f);
+	}, []);
+
+	const [oldFile, setOldFile] = useState(true);
+
+	// const universityValue = form.watch("university").toLowerCase();
 	const question1 = form.watch("questionOne");
 	const question2 = form.watch("questionTwo");
 	const question3 = form.watch("questionThree");
-	const countryValue = form.watch("countryOfResidence");
+	// const shortID = form.watch("schoolID").toLowerCase();
 
 	// useEffect(() => {
-	// 	if (universityValue != c.localUniversityName) {
+	// 	if (universityValue != c.localUniversityName.toLowerCase()) {
 	// 		form.setValue("schoolID", "NOT_LOCAL_SCHOOL");
 	// 	} else {
-	// 		form.setValue("schoolID", "");
+	// 		if (shortID === "NOT_LOCAL_SCHOOL") {
+	// 			form.setValue("schoolID", "");
+	// 		} else {
+	// 			form.setValue("schoolID", data.schoolID);
+	// 		}
 	// 	}
 	// }, [universityValue]);
 
-	async function onSubmit(data: z.infer<typeof RegisterFormValidator>) {
-		console.log(data);
-		setIsLoading(true);
-		if (!userId || !isLoaded) {
-			setIsLoading(false);
-			return alert(
-				`Auth has not loaded yet. Please try again! If this is a repeating issue, please contact us at ${c.issueEmail}.`,
-			);
-		}
-
-		if (
-			data.hasAcceptedMLHCoC !== true ||
-			data.hasSharedDataWithMLH !== true
-		) {
-			setIsLoading(false);
-			return alert(
-				"You must accept the MLH Code of Conduct and Privacy Policy to continue.",
-			);
-		}
-
+	async function onSubmit(
+		data: z.infer<typeof RegistrationSettingsFormValidator>,
+	) {
 		let resume: string = c.noResumeProvidedURL;
 
-		if (resumeFile) {
-			// const { startUpload, routeConfig } = useUploadThing("pdfUploader"); // Specify your endpoint
-			const uploadResult = await startUpload([resumeFile]); // Pass the resumeFile as an array
-			console.log("results", uploadResult);
+		// if (uploadedFile) {
+		// 	const newBlob = await put(uploadedFile.name, uploadedFile, {
+		// 		access: "public",
+		// 		handleBlobUploadUrl: "/api/upload/resume/register",
+		// 	});
+		// 	resume = newBlob.url;
+		// }
 
-			if (uploadResult) {
-				// Extract the uploaded file information (URL, etc.)
+		console.log(oldFile);
+		if (uploadedFile && oldFile === false) {
+			const uploadResult = await startUpload([uploadedFile]);
+			// console.log("results", uploadResult);
+			if(uploadResult) {
 				const {serverData: {
 					fileUrl,
 					uploadedBy
 					
 				}} = uploadResult[0];
-
-				// const uploadedFileData = uploadResult[0];
-				// console.log(UploadedFileData)
-				// console.log(fileUrl);
-				// console.log(uploadResult[0].serverData);
 				resume = fileUrl;
-
-				// Proceed with form submission by including the uploaded resume URL
-				const res = await zpostSafe({
-					url: "/api/registration/create",
-					body: { ...data, resume }, // Add the resume URL to the form data
-					vRes: BasicServerValidator,
-				});
-
-				if (res.success) {
-					if (res.data.success) {
-						alert(
-							"Registration successfully created! Redirecting to the dashboard.",
-						);
-						router.push("/dash");
-					} else {
-						if (res.data.message == "hackertag_not_unique") {
-							setIsLoading(false);
-							return alert(
-								"The HackerTag you chose has already been taken. Please change it and then resubmit the form.",
-							);
-						}
-						setIsLoading(false);
-						return alert(
-							`Registration not created. Error message: \n\n ${res.data.message} \n\n Please try again. If this is a continuing issue, please reach out to us at ${c.issueEmail}.`,
-						);
-					}
-				} else {
-					setIsLoading(false);
-					alert(
-						`Something went wrong while attempting to register. Please try again. If this is a continuing issue, please reach out to us at ${c.issueEmail}.`,
-					);
-					return console.log(
-						`Recieved a unexpected response from the server. Please try again. If this is a continuing issue, please reach out to us at ${c.issueEmail}.`,
-					);
-				}
+				setOldFile(true);
+				
 			}
-		} else {
-			setIsLoading(false);
-			alert(`Please upload a resume`);
-			return console.log(`User has not uploaded a resume`);
+		}
+		else {
+			// console.log("else statement", resumeLink);
+			resume = resumeLink;
 		}
 
-		// const res = await zpostSafe({
-		// 	url: "/api/registration/create",
-		// 	body: { ...data, resume },
-		// 	vRes: BasicServerValidator,
-		// });
-
-		// if (res.success) {
-		// 	if (res.data.success) {
-		// 		alert(
-		// 			"Registration successfully created! Redirecting to the dashboard.",
-		// 		);
-		// 		router.push("/dash");
-		// 	} else {
-		// 		if (res.data.message == "hackertag_not_unique") {
-		// 			setIsLoading(false);
-		// 			return alert(
-		// 				"The HackerTag you chose has already been taken. Please change it and then resubmit the form.",
-		// 			);
-		// 		}
-		// 		setIsLoading(false);
-		// 		return alert(
-		// 			`Registration not created. Error message: \n\n ${res.data.message} \n\n Please try again. If this is a continuing issue, please reach out to us at ${c.issueEmail}.`,
-		// 		);
-		// 	}
-		// } else {
-		// 	setIsLoading(false);
-		// 	alert(
-		// 		`Something went wrong while attempting to register. Please try again. If this is a continuing issue, please reach out to us at ${c.issueEmail}.`,
-		// 	)
-		// 	return console.log(
-		// 		`Recieved a unexpected response from the server. Please try again. If this is a continuing issue, please reach out to us at ${c.issueEmail}.`,
-		// 	);
-		// }
+		const res = runModifyRegistrationData({
+			age: data.age,
+			gender: data.gender,
+			race: data.race,
+			ethnicity: data.ethnicity,
+			isEmailable: data.isEmailable,
+			university: data.university,
+			major: data.major,
+			levelOfStudy: data.levelOfStudy,
+			// schoolID: data.schoolID,
+			hackathonsAttended: data.hackathonsAttended,
+			softwareBuildingExperience: data.softwareBuildingExperience,
+			heardAboutEvent: data.heardAboutEvent,
+			shirtSize: data.shirtSize,
+			dietaryRestrictions: data.dietaryRestrictions,
+			accommodationNote: data.accommodationNote,
+			github: data.github,
+			linkedin: data.linkedin,
+			personalWebsite: data.personalWebsite,
+			phoneNumber: data.phoneNumber,
+			countryOfResidence: data.countryOfResidence,
+			questionOne: data.questionOne,
+			questionTwo: data.questionTwo,
+			questionThree: data.questionThree,
+			resumeFile: resume
+			
+		});
+		// Can be optimzed to run in the modify registratuib data action later.
+		runModifyResume({ resume });
+		// console.log("data resume after res", data.resumeFile);
+		console.log(res);
+		
+		
 	}
+
+	const { execute: runModifyRegistrationData, status: loadingState } =
+		useAction(modifyRegistrationData, {
+			onSuccess: () => {
+				toast.dismiss();
+				toast.success("Data updated successfully!");
+				
+			},
+			onError: () => {
+				toast.dismiss();
+				toast.error(
+					`An error occurred. Please contact ${c.issueEmail} for help.`,
+				);
+			},
+		});
+
+	const { execute: runModifyResume } = useAction(modifyResume, {
+		onSuccess: () => {
+			router.refresh();
+		},
+		onError: () => {
+			toast.dismiss();
+			toast.error("An error occurred while uploading resume!");
+			
+		},
+	});
 
 	const onDrop = useCallback(
 		(acceptedFiles: File[], fileRejections: FileRejection[]) => {
@@ -262,21 +235,17 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 				);
 			}
 			if (acceptedFiles.length > 0) {
-				console.log("testing")
-				setResumeFile(acceptedFiles[0]);
-				form.setValue("uploadedFile", acceptedFiles[0])
+				console.log(
+					`Got accepted file! The length of the array is ${acceptedFiles.length}.`,
+				);
+				// console.log("on drop", acceptedFiles[0]);
+				setUploadedFile(acceptedFiles[0]);
+				form.setValue("resumeFile", acceptedFiles[0])
+				setOldFile(false);
 			}
 		},
 		[],
 	);
-
-	const currentFile = form.watch("uploadedFile")
-
-	useEffect(()=>{
-		console.log("file:",currentFile);
-	},[currentFile])
-
-
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop,
@@ -289,103 +258,28 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 	// 	multiple: false,
 	// 	accept: { "application/pdf": [".pdf"] },
 	// 	maxSize: c.maxResumeSizeInBytes,
-	// 	noClick: resumeFile != null,
-	// 	noDrag: resumeFile != null,
+	// 	noClick: uploadedFile != null,
+	// 	noDrag: uploadedFile != null,
 	// });
+	
+	const currentFile = form.watch("resumeFile")
 
-	if (isLoading) {
-		return <CreatingRegistration />;
-	}
+	useEffect(()=>{
+		console.log("current file:", currentFile);
+	},[currentFile])
 
 	return (
 		<div>
+			<p className="pt-5 text-xl pb-10">
+			Once you've finished making all of your changes, click <b><i>Update</i></b> at the bottom of this page.
+			</p>
 			<Form {...form}>
 				<form
+					className="space-y-6"
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="space-y-16"
 				>
 					<FormGroupWrapper title="General">
-						<div className="grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2">
-							<FormField
-								control={form.control}
-								name="firstName"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row gap-x-2">
-											First Name{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl>
-											<Input
-												placeholder="John"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="lastName"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row gap-x-2">
-											Last Name{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl>
-											<Input
-												placeholder="Doe"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="email"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row gap-x-2">
-											Email{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl>
-											<Input
-												readOnly={
-													defaultEmail.length > 0
-												}
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="phoneNumber"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row gap-x-2">
-											Phone Number{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl>
-											<Input
-												placeholder="555-555-5555"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-						<div className="grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2">
+						<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-7">
 							<FormField
 								control={form.control}
 								name="age"
@@ -406,7 +300,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 								control={form.control}
 								name="gender"
 								render={({ field }) => (
-									<FormItem className="">
+									<FormItem className="col-span-2">
 										<FormLabel className="flex flex-row gap-x-2">
 											Gender{" "}
 											<p className="text-[#F03C2D]">*</p>
@@ -448,7 +342,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 								control={form.control}
 								name="race"
 								render={({ field }) => (
-									<FormItem className="">
+									<FormItem className="col-span-2">
 										<FormLabel className="flex flex-row gap-x-2">
 											Race{" "}
 											<p className="text-[#F03C2D]">*</p>
@@ -462,7 +356,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 													<SelectValue placeholder="Select a Race" />
 												</SelectTrigger>
 											</FormControl>
-											<SelectContent className="max-h-72 overflow-y-scroll">
+											<SelectContent>
 												<SelectGroup>
 													{c.registration.raceOptions.map(
 														(option) => (
@@ -485,7 +379,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 								control={form.control}
 								name="ethnicity"
 								render={({ field }) => (
-									<FormItem className="">
+									<FormItem className="col-span-2">
 										<FormLabel className="flex flex-row gap-x-2">
 											Ethnicity{" "}
 											<p className="text-[#F03C2D]">*</p>
@@ -516,9 +410,25 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 							/>
 							<FormField
 								control={form.control}
+								name="phoneNumber"
+								render={({ field }) => (
+									<FormItem className={"col-span-3"}>
+										<FormLabel className="flex flex-row gap-x-2">
+											Phone Number{" "}
+											<p className="text-[#F03C2D]">*</p>
+										</FormLabel>
+										<FormControl>
+											<Input {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
 								name="countryOfResidence"
 								render={({ field }) => (
-									<FormItem className="grid-cols-2">
+									<FormItem className="col-span-4 grid-cols-2">
 										<FormLabel className="flex flex-row gap-x-2">
 											Country of Residence{" "}
 											<p className="text-[#F03C2D]">*</p>
@@ -617,83 +527,6 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 					<FormGroupWrapper title="MLH">
 						<FormField
 							control={form.control}
-							name="hasAcceptedMLHCoC"
-							render={({ field }) => (
-								<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-									<FormControl>
-										<Checkbox
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<div className="space-y-1 leading-none">
-										<FormLabel>
-											I accept the{" "}
-											<Link
-												target="_blank"
-												className="underline"
-												href={
-													"https://mlh.io/code-of-conduct"
-												}
-											>
-												MLH Code of Conduct
-											</Link>
-										</FormLabel>
-										<FormDescription>
-											This is required of all attendees.
-										</FormDescription>
-									</div>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="hasSharedDataWithMLH"
-							render={({ field }) => (
-								<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-									<FormControl>
-										<Checkbox
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<div className="space-y-1 leading-none">
-										<FormLabel>
-											I authorize you to share my
-											application/registration information
-											with Major League Hacking for event
-											administration, ranking, and MLH
-											administration in-line with the MLH
-											Privacy Policy. I further agree to
-											the terms of both the{" "}
-											<Link
-												target="_blank"
-												className="underline"
-												href={
-													"https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
-												}
-											>
-												MLH Contest Terms and Conditions
-											</Link>{" "}
-											and the{" "}
-											<Link
-												target="_blank"
-												className="underline"
-												href={"https://mlh.io/privacy"}
-											>
-												MLH Privacy Policy
-											</Link>
-											.
-										</FormLabel>
-										<FormDescription>
-											This is required of all attendees.
-										</FormDescription>
-									</div>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
 							name="isEmailable"
 							render={({ field }) => (
 								<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
@@ -721,12 +554,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 					</FormGroupWrapper>
 					<FormGroupWrapper title="University Info">
 						<div
-							className={`grid ${
-								universityValue ===
-								c.localUniversityName.toLowerCase()
-									? "grid-cols-1 md:grid-cols-6"
-									: "grid-cols-1 md:grid-cols-5"
-							} gap-x-2 gap-y-4`}
+							className="grid grid-cols-1 gap-x-2 gap-y-2 md:flex md:flex-row md:gap-y-0"
 						>
 							<FormField
 								control={form.control}
@@ -751,7 +579,9 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 													>
 														{field.value
 															? c.registration.schools.find(
-																	(school) =>
+																	(
+																		school: string,
+																	) =>
 																		school ===
 																		field.value,
 																)
@@ -789,7 +619,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 																	>
 																		<Check
 																			className={`mr-2 h-4 w-4 ${
-																				school.toLowerCase() ===
+																				school ===
 																				field.value
 																					? "block"
 																					: "hidden"
@@ -869,7 +699,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 																	>
 																		<Check
 																			className={`mr-2 h-4 w-4 overflow-hidden ${
-																				major.toLowerCase() ===
+																				major ===
 																				field.value
 																					? "block"
 																					: "hidden"
@@ -920,14 +750,11 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 													<SelectItem value="Senior">
 														Senior
 													</SelectItem>
-													<SelectItem value="Master's">
-														Master's
+													<SelectItem value="Recent Grad">
+														Recent Grad
 													</SelectItem>
-													<SelectItem value="PhD">
-														PhD
-													</SelectItem>
-													<SelectItem value="High School - 18 years old">
-														High School - 18 years old
+													<SelectItem value="Other">
+														Other
 													</SelectItem>
 												</SelectGroup>
 											</SelectContent>
@@ -942,8 +769,8 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 								render={({ field }) => (
 									<FormItem
 										className={`${
-											universityValue ===
-											c.localUniversityName
+											universityValue.toLowerCase() ===
+											c.localUniversityName.toLowerCase()
 												? "col-span-2 flex flex-col md:col-span-1"
 												: "hidden"
 										}`}
@@ -966,7 +793,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 						</div>
 					</FormGroupWrapper>
 					<FormGroupWrapper title="Hackathon Experience">
-						<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-3 md:gap-y-0">
+						<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:flex md:flex-row md:gap-y-0">
 							<FormField
 								control={form.control}
 								name="hackathonsAttended"
@@ -1028,8 +855,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel className="flex flex-row gap-x-2">
-											Where did you hear about{" "}
-											{c.hackathonName}?{" "}
+											Where did you hear about{" "}{c.hackathonName}?{" "}
 											<p className="text-[#F03C2D]">*</p>
 										</FormLabel>
 										<Select
@@ -1057,9 +883,6 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 													</SelectItem>
 													<SelectItem value="Friend">
 														Friend
-													</SelectItem>
-													<SelectItem value="LinkedIn">
-														LinkedIn
 													</SelectItem>
 													<SelectItem value="Other">
 														Other
@@ -1215,6 +1038,9 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 													<SelectItem value="2XL">
 														2XL
 													</SelectItem>
+													<SelectItem value="3XL">
+														3XL
+													</SelectItem>
 												</SelectGroup>
 											</SelectContent>
 										</Select>
@@ -1228,11 +1054,9 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 								render={() => (
 									<FormItem className="row-span-2">
 										<div className="mb-4">
-											<FormLabel className="flex flex-row gap-x-2 text-base">
+											<FormLabel className="flex flex-row gap-x-2">
 												Dietary Restrictions{" "}
-												<p className="text-[#F03C2D]">
-													*
-												</p>
+												<p className="text-[#F03C2D]">*</p>
 											</FormLabel>
 											<FormDescription>
 												Please select which dietary
@@ -1368,7 +1192,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 						</div>
 						<FormField
 							control={form.control}
-							name="uploadedFile"
+							name="resumeFile"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel className="flex flex-row gap-x-2">
@@ -1379,39 +1203,50 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 										<div
 											{...getRootProps()}
 											className={`border-2${
-												resumeFile
+												uploadedFile
 													? ""
 													: "cursor-pointer"
 											} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white`}
 										>
-											<input
-												{...getInputProps()}
+											<input {...getInputProps()} 
 												onChange={(e) => {
-													console.log(e.target.files?.[0]);
+													console.log("current event file", e.target.files?.[0]);
 													field.onChange(
 														e.target.files?.[0]
 														
 													);
-													setResumeFile(
+													setUploadedFile(
 														e.target.files?.[0] ||
 															null,
 													);
-													console.log("hey")
-												}}
-											/>
-											<p className="p-2 text-center text-xl">
-												{resumeFile
-													? `${resumeFile.name} (${Math.round(resumeFile.size / 1024)}kb)`
-													: isDragActive
-														? "Drop your resume here..."
-														: "Drag 'n' drop your resume here, or click to select a file"}
+												}}/>
+											<p className="p-2 text-center">
+												{uploadedFile ? (
+													oldFile ? (
+														<Link href={resumeLink} target="_blank">
+															{uploadedFile.name}{" "}
+															(
+															{Math.round(
+																uploadedFile.size,
+															)}
+															kb)
+														</Link>
+													) : (
+														`${uploadedFile.name} (${Math.round(uploadedFile.size / 1024)}kb)`
+													)
+												) : isDragActive ? (
+													"Drop your resume here..."
+												) : (
+													"Drag 'n' drop your resume here, or click to select a file"
+												)}
 											</p>
-											{resumeFile ? (
+											{uploadedFile ? (
 												<Button
-													className="mt-4 bg-[#992444] hover:bg-[#F03C2D]"
+													className="mt-4"
 													onClick={() => {
 														field.onChange(null);
-														setResumeFile(null);
+														setUploadedFile(null);
+														setOldFile(false);
 													}}
 												>
 													Remove
@@ -1424,181 +1259,23 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 							)}
 						/>
 					</FormGroupWrapper>
-					<FormGroupWrapper title="Hacker Profile">
-						<div className="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-3 md:gap-y-0">
-							<FormField
-								control={form.control}
-								name="hackerTag"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row gap-x-2">
-											HackerTag{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl>
-											<div className="flex">
-												<div className="flex h-10 w-10 items-center justify-center rounded-l bg-accent text-lg font-light text-primary">
-													@
-												</div>
-												<Input
-													className="rounded-l-none"
-													placeholder={`${c.hackathonName.toLowerCase()}`}
-													{...field}
-												/>
-											</div>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="profileDiscordName"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row">
-											Discord Username
-										</FormLabel>
-										<FormControl>
-											<Input
-												placeholder={`${c.hackathonName.toLowerCase()} or ${c.hackathonName.toLowerCase()}#1234`}
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="pronouns"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row gap-x-2">
-											Pronouns{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl>
-											<Input {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-						<div className="grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 md:gap-y-0">
-							<FormField
-								control={form.control}
-								name="bio"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="flex flex-row gap-x-2">
-											Bio{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder="Hello! I'm..."
-												className="resize-none"
-												{...field}
-											/>
-										</FormControl>
-										<FormDescription>
-											<span
-												className={
-													bioValue.length > 500
-														? "text-[#F03C2D]"
-														: ""
-												}
-											>
-												{bioValue.length} / 500
-												Characters
-											</span>
-										</FormDescription>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="skills"
-								render={({ field }) => (
-									<FormItem className="flex flex-col items-start">
-										<FormLabel className="flex flex-row gap-x-2 text-left">
-											Skills{" "}
-											<p className="text-[#F03C2D]">*</p>
-										</FormLabel>
-										<FormControl className="min-h-[80px]">
-											<TagInput
-												inputFieldPostion="top"
-												{...field}
-												placeholder="Type and then press enter to add a skill..."
-												tags={skills}
-												className="sm:min-w-[450px]"
-												maxLength={50}
-												setTags={(newTags) => {
-													setSkills(newTags);
-													form.setValue(
-														"skills",
-														newTags as [
-															Tag,
-															...Tag[],
-														],
-													);
-												}}
-											/>
-										</FormControl>
-										<FormDescription className="!mt-0 tracking-wide text-md">
-											<b>Tags can only be less than 50 characters! You can have a max of 10 tags.</b>
-											<br></br>
-											These skills can be listed on your
-											profile and help with the team
-											finding process! Enter anything you
-											think is relevant, including
-											non-technical skills!
-										</FormDescription>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-						<FormField
-							control={form.control}
-							name="profileIsSearchable"
-							render={({ field }) => (
-								<FormItem className="mx-auto flex max-w-[600px] flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-									<FormControl>
-										<Checkbox
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<div className="space-y-1 leading-none">
-										<FormLabel>
-											Make my profile searchable by other
-											Hackers
-										</FormLabel>
-										<FormDescription>
-											This will allow other Hackers to
-											look you up by your name or
-											HackerTag. Other Hackers will still
-											be able to view your profile and
-											invite you to teams if they have
-											your link.
-										</FormDescription>
-									</div>
-								</FormItem>
-							)}
-						/>
-					</FormGroupWrapper>
 					<Button
-						type="submit"
-						className="bg-[#D09C51] hover:bg-[#CCBA97]"
+						type={"submit"}
+						disabled={loadingState === "executing"}
 					>
-						Submit
+						{loadingState === "executing" ? (
+							<>
+								<Loader2
+									className={"mr-2 h-4 w-4 animate-spin"}
+								/>
+								<div>Updating</div>
+							</>
+						) : (
+							"Update"
+						)}
 					</Button>
 					{hasErrors && (
-						<p className="text-[#F03C2D]">
+						<p className={"text-red-800"}>
 							Something doesn't look right. Please check your
 							inputs.
 						</p>

@@ -27,21 +27,26 @@ export default async function ({ children }: { children: ReactNode }) {
 			<NavbarNonDash title={"Settings"} />
 			<div className="mx-auto max-w-5xl flex-col items-center justify-center gap-x-3 px-10 pb-24 pt-24 md:grid md:grid-cols-5">
 				<div className="col-span-5 flex items-center">
-					<div className="flex items-center pb-24">
+					<div className="flex flex-col items-left gap-y-7">
 						<div>
 							<h2 className="flex items-center gap-x-2 text-3xl font-bold tracking-wide">
 								<Settings />
 								Settings
 							</h2>
 						</div>
+						<aside className="sticky hidden m md:flex">
+							<div className="flex flex-row gap-x-3">
+								<SettingsSection name="Account" path="/settings#account" />
+								<SettingsSection name="Profile" path="/settings#profile" />
+								<SettingsSection
+									name="Registration"
+									path="/settings#registration"
+								/>
+							</div>
+						</aside>
 					</div>
 				</div>
-				<div className="flex flex-row gap-x-6 pb-5 md:flex-col md:gap-y-6 md:pr-6">
-					{/* <SettingsSection name="Settings" path="/settings" /> */}
-					<SettingsSection name="Account" path="/settings/account" />
-					<SettingsSection name="Profile" path="/settings/profile" />
-				</div>
-				<div className="col-span-4">{children}</div>
+				<div className="col-span-4 mb-20 ml-5 pt-5">{children}</div>
 			</div>
 		</>
 	);
