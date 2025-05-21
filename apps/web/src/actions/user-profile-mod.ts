@@ -37,6 +37,9 @@ export const modifyRegistrationData = authenticatedAction
 				personalWebsite,
 				phoneNumber,
 				countryOfResidence,
+				questionOne,
+				questionTwo,
+				questionThree
 			},
 			ctx: { userId },
 		}) => {
@@ -71,6 +74,9 @@ export const modifyRegistrationData = authenticatedAction
 						GitHub: github,
 						LinkedIn: linkedin,
 						PersonalWebsite: personalWebsite,
+						questionOne,
+						questionTwo,
+						questionThree
 					})
 					.where(eq(userHackerData.clerkID, user.clerkID)),
 			]);
@@ -96,6 +102,9 @@ export const modifyRegistrationData = authenticatedAction
 				newPersonalWebsite: personalWebsite,
 				newPhoneNumber: phoneNumber,
 				newCountryOfResidence: countryOfResidence,
+				newQuestionOne: questionOne,
+				newQuestionTwo: questionTwo,
+				newQuestionThree: questionThree
 			};
 		},
 	);
