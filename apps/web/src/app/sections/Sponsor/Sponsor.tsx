@@ -30,7 +30,7 @@ function Sponsor() {
         <p className='sponsor-text text-[#CCBA97] font-medium text-lg lg:text-xl'>Interested in sponsoring WEHack 2025? Contact us at wehackutd@gmail.com!</p>
         </div>
         <h1 className='Sponsor-title text-[#CCBA97] text-center text-4xl md:text-5xl lg:text-5xl pb-7 md:pb-15 md:pb-20'>2025 Sponsors</h1>*/}
-        
+        <p>Coming Soon. Interested in sponsoring? Contact us at wehackutd@gmail.com</p>
         <div className="flex flex-col justify-center gap-y-10 items-center w-full">
           <div className='gold-sponsors flex flex-col justify-center gap-7 md:flex-row md:flex-1'>
             {goldSponsors.map((logo, index) => (
