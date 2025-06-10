@@ -12,7 +12,7 @@ function Footer() {
 				></img>
 				<div className="gap-x-0">
 					<p className="about-text text-lg font-medium text-[#FFE9D7]">
-						Made with 💪🤍 by WEHack 2025
+						Made with 💪🤍 by WEHack 2026
 					</p>
 					<p className="about-text text-lg font-medium text-[#FFE9D7]">
 						<a

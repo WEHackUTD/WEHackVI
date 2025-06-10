@@ -47,7 +47,7 @@ function Countdown() {
             <button className="primary-btn bg-[#A6CDC4] text-[#282738] py-4 px-5 md:px-10">Mentor Applications</button>
           </a>
         </div> */}
-        <Menu/>
+        {/* <Menu/> */}
         
         <div className="countdown md:pt-10">
           <div className="circle-container large flex flex-row justify-center">
