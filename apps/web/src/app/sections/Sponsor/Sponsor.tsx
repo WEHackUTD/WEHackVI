@@ -23,15 +23,14 @@ function Sponsor() {
       <div className='Sponsor-container w-full h-auto flex flex-wrap flex-col items-center justify-center p-6 pb-40 lg:pb-60' id="Sponsors">
         <div className="flex flex-col md:flex-row justify-center items-center gap-y-2 md:gap-x-16 lg:gap-x-24 pb-24 md:pb-24 lg:pb-36">
           <div className="glow-sponsor transform-gpu">
-            <h1 className='Sponsor-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl'>2025 Sponsors</h1>
+            <h1 className='Sponsor-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl'>2026 Sponsors</h1>
           </div>
         </div>
-        {/*<div className="sponsor-text-container flex flex-wrap items-center justify-center">
-        <p className='sponsor-text text-[#CCBA97] font-medium text-lg lg:text-xl'>Interested in sponsoring WEHack 2025? Contact us at wehackutd@gmail.com!</p>
+        <div className="sponsor-text-container flex flex-wrap items-center justify-center">
+        <p className='sponsor-text text-[#CCBA97] font-medium text-lg lg:text-xl'>Coming Soon. Interested in sponsoring? Contact us at wehackutd@gmail.com</p>
         </div>
-        <h1 className='Sponsor-title text-[#CCBA97] text-center text-4xl md:text-5xl lg:text-5xl pb-7 md:pb-15 md:pb-20'>2025 Sponsors</h1>*/}
-        <p>Coming Soon. Interested in sponsoring? Contact us at wehackutd@gmail.com</p>
-        <div className="flex flex-col justify-center gap-y-10 items-center w-full">
+        
+        {/* <div className="flex flex-col justify-center gap-y-10 items-center w-full">
           <div className='gold-sponsors flex flex-col justify-center gap-7 md:flex-row md:flex-1'>
             {goldSponsors.map((logo, index) => (
               <a
@@ -74,7 +73,7 @@ function Sponsor() {
             </a>
             ))}
           </div>
-        </div>
+        </div> */}
         <div className="vinyl-yellow-container overflow-x-hidden flex justify-center md:justify-start pt-20 pb-72 md:pt-30 md:pb-64 md:-mr-[5rem] lg:-mr-[20rem] xl:-mr-[35rem]">
           <Image className="vinyl-yellow overflow-x-hidden" src={"/img/static/images/Untitled_Artwork 5.png"} width={250} height={250} alt="a yellow vinyl spinning"/>  
         </div>
