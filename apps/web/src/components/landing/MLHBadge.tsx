@@ -9,7 +9,7 @@ export default function MLHBadge() {
 					id="mlh-trust-badge"
 					className="absolute right-5 top-0 z-50 w-[10%] min-w-[60px] max-w-[80px]"
 					// style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000"
-					href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white"
+					href="https://mlh.io/seasons/2026/events"
 					target="_blank"
 				>
 					<Image
@@ -27,7 +27,8 @@ export default function MLHBadge() {
 					id="mlh-trust-badge"
 					className="absolute right-5 top-0 z-50 w-[10%] min-w-[60px] max-w-[80px]"
 					// style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000"
-					href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white"
+					// href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white"
+					href="https://mlh.io/seasons/2026/events"
 					target="_blank"
 				>
 					<Image

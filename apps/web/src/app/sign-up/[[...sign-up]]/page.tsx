@@ -39,14 +39,21 @@ export default async function Page() {
 			</h1>
 			<div className="relative z-10 flex aspect-video w-full max-w-[550px] flex-col items-center justify-center gap-y-4 rounded-xl bg-white px-5 py-10 backdrop-blur transition dark:bg-white/[0.08]">
 				<h2 className="w-full text-center text-2xl font-black text-background">
-					Registration is Currently Closed
+					{/* Registration is Currently Closed */}
+					More Information Is Coming Soon!
 				</h2>
 				<p className="text-center text-xl font-bold text-background">
-					Our registration is closed. However, we still encourage you to show up for walk-ins!
-					If you have any questions or concerns, feel free to reach out to us at {c.issueEmail}!
+					{/* Our registration is closed. However, we still encourage you to show up for walk-ins!
+					If you have any questions or concerns, feel free to reach out to us at {c.issueEmail}! */}
+					More information about WEHack 2026 will come out soon. In the meantime, fill out our interest form to get updates from us.
 				</p>
-
-				<Link href={"/"} className="pb-10">
+				{/* Interest form button here */}
+				<Link href="https://events.mlh.io/events/12674-wehack-2026" target="_blank">
+                    <Button className="bg-[#D09C51] hover:bg-[#CCBA97]">
+                        Interest Form!
+                    </Button>
+                </Link>
+				{/* <Link href={"/"} className="pb-10">
 					<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">Return Home</Button>
 				</Link>
 				<p className="absolute bottom-0 pb-5 text-center text-lg">
@@ -54,7 +61,7 @@ export default async function Page() {
 					<Link className="pl-2 underline" href={"/sign-in"}>
 						Sign-in.
 					</Link>
-				</p>
+				</p> */}
 			</div>
 		</main>
 	);
