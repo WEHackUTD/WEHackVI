@@ -17,7 +17,32 @@ const redis = new Redis({
 
 export default async function Page() {
 	const { userId } = auth();
-	if (!userId) return redirect("/sign-up");
+	if (!userId) {
+		if (!userId) {
+			// Show "More Info Coming Soon" directly
+			return (
+				<main className="flex min-h-screen flex-col items-center justify-center px-2">
+					<h2 className="text-4xl font-extrabold">WEHack 2026</h2>
+					<h1 className="mb-10 pb-5 text-6xl font-extrabold text-hackathon md:text-8xl">
+						Registration
+					</h1>
+					<div className="relative z-10 flex aspect-video w-full max-w-[500px] flex-col items-center justify-center gap-y-4 rounded-xl px-5 py-4">
+						<h2 className="text-center text-2xl font-black">
+							More Information Coming Soon!
+						</h2>
+						<p className="text-center font-bold">
+							More information about WEHack 2026 will come out soon.
+							In the meantime, fill out our interest form to get updates.
+						</p>
+						<Link href="https://events.mlh.io/events/12674-wehack-2026" target="_blank">
+							<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">Interest Form</Button>
+						</Link>
+					</div>
+				</main>
+			);
+		}
+		
+	}
 
 	const user = await currentUser();
 	if (!user) return redirect("/sign-up");
