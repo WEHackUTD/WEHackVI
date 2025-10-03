@@ -53,10 +53,10 @@ export default async function Page() {
                         Interest Form!
                     </Button>
                 </Link>
-				{/* <Link href={"/"} className="pb-10">
+				<Link href={"/"} className="pb-10">
 					<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">Return Home</Button>
 				</Link>
-				<p className="absolute bottom-0 pb-5 text-center text-lg">
+				{/* <p className="absolute bottom-0 pb-5 text-center text-lg">
 					Already registered?{" "}
 					<Link className="pl-2 underline" href={"/sign-in"}>
 						Sign-in.
