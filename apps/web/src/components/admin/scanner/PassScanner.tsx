@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Scanner } from "@yudiel/react-qr-scanner";
+import { QrScanner } from "@yudiel/react-qr-scanner";
 import superjson from "superjson";
 import { createScan } from "@/actions/admin/scanner-admin-actions";
 import { useAction } from "next-safe-action/hooks";
@@ -114,8 +114,8 @@ export default function PassScanner({
 			<div className="flex h-dvh flex-col items-center justify-center pt-32">
 				<div className="flex w-screen flex-col items-center justify-center gap-5">
 					<div className="mx-auto aspect-square w-screen max-w-[500px] overflow-hidden">
-						<Scanner
-							onScan={(result) => {
+						<QrScanner
+							onDecode={(result) => {
 								const params = new URLSearchParams(
 									searchParams.toString(),
 								);
@@ -124,7 +124,7 @@ export default function PassScanner({
 									// setAlreadyScanned(scan);
 									const qrParsedData =
 										superjson.parse<QRDataInterface>(
-											result[0].rawValue,
+											result,
 										);
 									params.set("user", qrParsedData.userID);
 									params.set(
@@ -138,13 +138,11 @@ export default function PassScanner({
 									);
 								}
 							}}
-							onError={(error) => console.log(error)}
-							styles={{
-								container: {
-									width: "100vw",
-									maxWidth: "500px",
-									margin: "0",
-								},
+							onError={(error) => console.log(error?.message)}
+							containerStyle={{
+								width: "100vw",
+								maxWidth: "500px",
+								margin: "0",
 							}}
 						/>
 					</div>
