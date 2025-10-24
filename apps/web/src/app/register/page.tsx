@@ -58,7 +58,7 @@ export default async function Page() {
 				</div>
 				<main className="dark:bg-[#301814]">
 					<div className="mx-auto min-h-screen max-w-5xl px-5 pb-10 pt-[20vh] font-sans dark:text-[#CCBA97]">
-						<h1 className="text-6xl font-black md:text-8xl">
+						<h1 className="text-6xl font-black md:text-8xl text-hackathon">
 							Register
 						</h1>
 						<p className="mt-5 font-medium text-2xl">

@@ -21,7 +21,7 @@ const righteous = Righteous({
 
 export const metadata: Metadata = {
 	title: "WEHack",
-	description: "WEHack 24-25 Website",
+	description: "WEHack 25-26 Website",
 };
 
 export default function RootLayout({
