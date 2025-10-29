@@ -779,9 +779,9 @@ const raceOptions = [
 
 const c = {
 	hackathonName: "WEHack",
-	itteration: "V",
+	itteration: "VI",
 	siteUrl: "https://www.wehackutd.com", // Do not have a trailing slash
-	defaultMetaDataDescription: "WEHack 2025 is coming in April 2025",
+	defaultMetaDataDescription: "WEHack 2026 is coming in April 2026",
 	rsvpDefaultLimit:500,
 	botName: "WEHack",
 	botParticipantRole: "Participant",
