@@ -136,6 +136,12 @@ body {
     margin: 0;
     overflow-x: hidden;
 }
+
+.custom-cursor-page {
+    /* changed cursor to have the mascot */
+	cursor: url('/img/static/images/cursor-img.png') 16 16, auto;
+}
+
 .App {
     background-image: url("/img/static/images/optimized-background.webp");
     background-size: 100% auto;

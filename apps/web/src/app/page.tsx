@@ -14,7 +14,7 @@ import Team from "./sections/Team/Team";
 export default function Home() {
   return (
     // this is where all our components will go
-    <div className="App transform-gpu">
+    <div className="App transform-gpu custom-cursor-page">
       <Navbar />
 	    <MLHBadge />
       <Jumbotron/>
