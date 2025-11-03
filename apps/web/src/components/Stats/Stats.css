@@ -1,7 +1,115 @@
-.stats-title {
-    filter: drop-shadow(0rem 0rem 1rem #FFE9D7);
+/* Container */
+.Statistics-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  overflow: visible;
+  padding: 3.5rem 0;
 }
 
-.statsOne, .statsTwo, .statsThree {
-    filter:drop-shadow(0px 0px 20px rgba(210, 175, 113, 0.5))
+/* Sponsor-style title box */
+.sponsor-title-box {
+  background-color: #B3E5FC; /* light blue */
+  border: 3px solid #FF89C2; /* pink border */
+  border-radius: 1rem;
+  padding: 1.5rem 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glow around the title box */
+.glow-sponsor {
+  filter: drop-shadow(0 0 20px #992444);
+  transform: rotate(5deg);
+}
+
+/* Title text */
+.Sponsor-title {
+  color: #992444; /* deep red */
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 3rem white;
+  font-size: 2.5rem;
+}
+
+/* Main rotating stats image */
+.rotating-image {
+  width: 70%;
+  max-width: 800px;
+  border-radius: 20px;
+  filter: drop-shadow(0 0 20px rgba(153, 36, 68, 0.6));
+  animation: rotate-sway 6s ease-in-out infinite alternate;
+  transition: transform 0.5s ease;
+}
+
+/* Smooth sway */
+@keyframes rotate-sway {
+  0% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+/* Container for main image */
+.stats-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+/* Decorative raccoon images */
+.flicker-image {
+  position: absolute;
+  width: 280px;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 20px rgba(153, 36, 68, 0.6));
+  pointer-events: none;
+  z-index: 2;
+  animation: floatTilt 6s ease-in-out infinite alternate;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Top-left raccoon (Hearts) */
+.flicker-top-left {
+  top: 5%;
+  left: 8%;
+  transform: rotate(-20deg);
+}
+
+/* Bottom-right raccoon (Popcorn) */
+.flicker-bottom-right {
+  bottom: 14%;
+  right: 18%;
+  transform: rotate(15deg);
+}
+
+/* Floating + tilt animation */
+@keyframes floatTilt {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsive scaling */
+@media screen and (max-width: 1050px) {
+  .flicker-image { width: 200px; opacity: 0.8; }
+  .flicker-top-left { top: 10%; left: 6%; }
+  .flicker-bottom-right { bottom: 10%; right: 6%; }
+  .Sponsor-title { font-size: 2rem; }
+}
+
+@media screen and (max-width: 600px) {
+  .flicker-image { width: 140px; opacity: 0.75; }
+  .Sponsor-title { font-size: 1.75rem; }
+}
+
+@media screen and (max-width: 400px) {
+  .flicker-image { width: 100px; opacity: 0.7; }
+  .Sponsor-title { font-size: 1.5rem; }
 }
