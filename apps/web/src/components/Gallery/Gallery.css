@@ -1,0 +1,102 @@
+/* ================================================= */
+/* Base Styles (for large screens / desktop) */
+/* ================================================= */
+.gallery-container {
+    width: 100vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 per row on desktop */
+    gap: 5px;
+    justify-items: center;
+    align-items: center;
+    padding: 20px 90px;
+}
+
+.frame {
+    /* Keep general frame styles here */
+    width: 225px; /* Base width will be overridden by specific frame classes */
+    height: auto;
+    transition: transform 0.3s ease;
+    position: sticky; /* Sticky might be interesting, but ensure it's what you want */
+}
+
+/* Base staggered styles remain as they are for large screens */
+/* ... (frame-0 to frame-7 styles are kept here for the widest view) ... */
+.frame-0 { transform: translate(0px, 40px); width: 170px; }
+.frame-1 { transform: translate(0px, 60px); width: 300px;}
+.frame-2 { transform: translate(-10px, -20px); width: 200px;}
+.frame-3 { transform: translate(-20px, -20px); width: 170px;}
+.frame-4 { transform: translate(30px, -30px); width: 230px;}
+.frame-5 { transform: translate(0px, 30px); width: 180px;}
+.frame-6 { transform: translate(0px, -30px); width: 200px;}
+.frame-7 { transform: translate(-10px, -30px); width: 300px;}
+
+/* ----------------------------------------------- */
+
+/* ================================================= */
+/* Medium Screens (e.g., Tablets, Small Laptops) */
+/* Max width up to 1200px */
+/* ================================================= */
+@media (max-width: 1200px) {
+    .gallery-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 per row */
+        padding: 20px 40px; /* Reduce horizontal padding */
+        gap: 10px; /* Adjust gap */
+    }
+
+    /* Adjust frame sizes to be relative to the grid column (less fixed width)
+       and reduce the staggering (translate values) */
+    .frame {
+        width: 100%; /* Make frames fill their grid column width */
+    }
+
+    .frame-0 { transform: translate(0px, 30px); } /* Reduced Y offset */
+    .frame-1 { transform: translate(0px, 40px); } /* Reduced Y offset */
+    .frame-2 { transform: translate(-5px, -15px); } /* Reduced offsets */
+    .frame-3 { transform: translate(-10px, -15px); } /* Reduced offsets */
+    .frame-4 { transform: translate(20px, -20px); } /* Reduced offsets */
+    .frame-5 { transform: translate(0px, 20px); } /* Reduced Y offset */
+    .frame-6 { transform: translate(0px, -20px); } /* Reduced Y offset */
+    .frame-7 { transform: translate(-5px, -20px); } /* Reduced Y offset */
+ 
+}
+
+/* ----------------------------------------------- */
+
+/* ================================================= */
+/* Small Screens (e.g., Mobile Phones) */
+/* Max width up to 600px */
+/* ================================================= */
+@media (max-width: 600px) {
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+        padding: 10px 10px; /* Minimal padding */
+        gap: 5px;
+    }
+
+    .frame {
+        /* Completely reset translations to prevent overlap in tight spaces */
+        transform: none !important; 
+        /* Ensure the frame fills its column width */
+        /* width: 100% !important;  */
+        position: static; /* Sticky can cause issues on mobile with less screen space */
+    }
+
+    /* Optional: If you still want a slight stagger on mobile,
+       you can add it back, but keep the offsets very small. */
+    /* .frame-0 { transform: translate(0px, 10px) !important; }
+    .frame-1 { transform: translate(0px, -5px) !important; }
+    .frame-2 { transform: translate(0px, 10px) !important; }
+    .frame-3 { transform: translate(0px, -5px) !important; }
+    .frame-4 { transform: translate(0px, 10px) !important; }
+    .frame-5 { transform: translate(0px, -5px) !important; } */
+
+    .frame-0 { transform: translate(0px, 40px); width: 190px; }
+    .frame-1 { transform: translate(0px, 60px); width: 300px;}
+    .frame-2 { transform: translate(-10px, -20px); width: 200px;}
+    .frame-3 { transform: translate(-20px, -20px); width: 170px;}
+    .frame-4 { transform: translate(30px, -30px); width: 230px;}
+    .frame-5 { transform: translate(0px, 30px); width: 180px;}
+    .frame-6 { transform: translate(0px, -30px); width: 200px;}
+    .frame-7 { transform: translate(-10px, -30px); width: 300px;}
+}

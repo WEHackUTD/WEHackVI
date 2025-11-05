@@ -7,6 +7,7 @@ import Footer from "./sections/Footer/Footer";
 import FAQ from "./sections/FAQ/FAQ";
 import Testimonials from "@/app/sections/Testimonials/Testimonials";
 import Countdown from "./sections/Countdown/Countdown";
+import Gallery from "@/components/Gallery/Gallery";
 import FilmStrip from "@/components/FilmStrip/FilmStrip";
 import Stats from "@/components/Stats/Stats";
 import Team from "./sections/Team/Team";
@@ -20,7 +21,8 @@ export default function Home() {
       <Jumbotron/>
       {/* <Countdown/> */}
       <About/>
-      <FilmStrip/>
+      {/* <FilmStrip/> */}
+      <Gallery/>
       <Stats/>
       <Testimonials/>
       <Sponsor/>
