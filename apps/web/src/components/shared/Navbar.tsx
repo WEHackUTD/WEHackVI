@@ -33,7 +33,7 @@ export default async function Navbar({ className }: NavbarProps) {
 							className="mr-5 flex items-center gap-x-2"
 						>
 							<Image
-								src={"/img/static/images/black wehack logo.png"}
+								src={"/img/static/images/white wehack logo.png"}
 								alt={c.hackathonName + " Logo"}
 								width={65}
 								height={65}

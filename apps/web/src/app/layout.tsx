@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { defaultTheme } from "config";
 import { neobrutalism } from "@clerk/themes";
 import Script from "next/script";
-import { Inknut_Antiqua, Nunito, Junge, Julius_Sans_One, Righteous, Darker_Grotesque, Sriracha} from "next/font/google";
+import { Inknut_Antiqua, Nunito, Junge, Julius_Sans_One, Righteous, Darker_Grotesque, Sriracha, Cinzel_Decorative, Gantari, Marcellus, Cormorant_Garamond} from "next/font/google";
 import type { Metadata } from "next";
 
 const righteous = Righteous({
@@ -14,10 +14,36 @@ const righteous = Righteous({
 	weight: '400'
   });
   
-  const darker_grotesque = Darker_Grotesque({
+const darker_grotesque = Darker_Grotesque({
 	subsets: ['latin'],
 	variable: '--font-darker-grotesque',
   });
+
+const cinzel_decorative = Cinzel_Decorative({
+	subsets: ['latin'],
+	variable: '--font-cinzel-decorative',
+	weight: ['400']
+  });
+
+const marcellus = Marcellus({
+	subsets: ['latin'],
+	variable: '--font-marcellus',
+	weight: '400'
+  });
+
+const gantari = Gantari({
+	subsets: ['latin'],
+	variable: '--font-gantari',
+	weight: ['100', '700']
+  });
+
+const cormorant_garamond = Cormorant_Garamond({
+	subsets: ['latin'],
+	variable: '--font-cormorant-garamond',
+	weight: ['400', '700']
+  });
+
+
 
 export const metadata: Metadata = {
 	title: "WEHack",
@@ -51,7 +77,7 @@ export default function RootLayout({
 					</Script>
 				</head>
 				<body
-					className={`${righteous.variable} ${darker_grotesque.variable}`}
+					className={`${cinzel_decorative.variable} ${marcellus.variable} ${cormorant_garamond.variable} ${gantari.variable}`}
 				>
 					{children}
 					<Analytics />

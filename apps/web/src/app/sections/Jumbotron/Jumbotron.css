@@ -5,7 +5,7 @@
         /* url("/static/images/IMG_0847 1.png"),
         url("/static/images/IMG_0847 2.png"), */
         /* url("/static/images/backgroundnew.PNG"); */
-        url("/img/static/images/official-jumbo-copy-2.webp");
+        url("/img/static/images/official-jumbo.webp");
     background-size: 
         /* 300px auto,
         300px auto, */
@@ -23,6 +23,7 @@
     flex-direction: column;
     /* justify-content: center;  OLD CODE*/ 
     justify-content: flex-start;
+    max-height: 100vh;
 }
 
 .mentor-app {
@@ -63,7 +64,7 @@
 
 
 .jumbo-text {
-    font-family: var(--font-darker-grotesque);
+    font-family: var(--font-gantari);
 }
 
 .countdown-container {
@@ -99,14 +100,14 @@
   border-radius: 50%;
   box-shadow: 0px 25px 101.5px #D2AF71;
   color: #755642;
-  font-family: var(--font-righteous);
+  font-family: var(--font-marcellus);
 }
 
 .label {
   color: #CCBA97;
   margin-top: 1rem;
   font-size: 12px;
-  font-family: var(--font-darker-grotesque);
+  font-family: var(--font-marcellus);
 }
 
 /* Circle Sizes & Text Sizes */
@@ -246,5 +247,5 @@
 }
 
 .circle p {
-  font-family: var(--font-junge);
+  font-family: var(--font-marcellus);
 }

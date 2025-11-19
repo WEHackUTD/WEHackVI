@@ -71,7 +71,7 @@ export default async function Page() {
 							You must click "Submit" at the end for your registration to be officially submitted.
 							<br></br>
 						</p>
-						<h3 className="pt-5 text-lg font-medium tracking-wide underline">Once your form is submitted, you will <b>NOT</b> be able to change your responses, so please answer wisely.</h3>
+						<h3 className="pt-5 text-lg font-thin tracking-wide underline font-gantari">Once your form is submitted, you will <b>NOT</b> be able to change your responses, so please answer wisely.</h3>
 						<p className="pb-10 pt-5 text-xl">
 							Psttt... Running into a issue? Please let us know by
 							emailing <b>wehackutd@gmail.com</b>

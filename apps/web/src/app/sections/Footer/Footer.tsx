@@ -7,7 +7,7 @@ function Footer() {
 			<div className="main-container flex w-full flex-col flex-wrap gap-y-5 md:content-start md:items-start lg:content-start lg:items-start">
 				<img
 					className="wehack-logo h-auto drop-shadow-[0_0px_25px_rgba(255,255,255,1.0)] max-w-40 sm:max-w-64 md:max-w-48 lg:max-w-32 transform-gpu"
-					src={"/img/static/images/black wehack logo.png"}
+					src={"/img/static/images/white wehack logo.png"}
 					alt="wehack logo"
 				></img>
 				<div className="gap-x-0">

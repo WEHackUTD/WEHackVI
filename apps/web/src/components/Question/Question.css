@@ -1,5 +1,5 @@
 summary {
-    font-family:var(--font-cormorant-garamond);
+    font-family:var(--font-marcellus);
 }
 summary::after {
     content: '\002B';

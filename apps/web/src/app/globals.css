@@ -143,7 +143,7 @@ body {
 }
 
 .App {
-    background-image: url("/img/static/images/optimized-background.webp");
+    background-image: url("/img/static/images/landing-page-background-2.webp");
     background-size: 100% auto;
     background-repeat: repeat;
     background-position: center;
@@ -198,18 +198,18 @@ https://medium.com/@a.pirus/simplifying-multiple-fonts-styling-in-next-js-13-wit
 h1, h3 {
     /* font-family:var(--font-inknut-antiqua); */
     /* font-family: var(--font-junge); */
-    font-family: var(--font-righteous);
+    font-family: var(--font-cinzel-decorative);
     
 }
 
 h2, p {
     /* font-family: var(--font-julius-sans-one); */
-    font-family: var(--font-darker-grotesque);
+    font-family: var(--font-marcellus);
 }
 
-/* p {
-    font-family:var(--font-nunito);
-} */
+p {
+    font-family:var(--font-marcellus);
+}
 
 /* === media queries === */
 

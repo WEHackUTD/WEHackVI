@@ -36,13 +36,17 @@ function Jumbotron() {
 
 
   return (
-    <section className='jumbotron min-h-screen h-auto md:min-h-[80rem] overflow-visible' id="home">
+    <section className='jumbotron md:h-[80rem]' id="home">
       <div className='jumboText-container flex flex-col items-start text-left'>
         <div className='jumbo-group md:ml-[1rem] mt-16 md:mt-[5rem]'>
-          <h4 className='jumbo-text text-[#B4A498] text-xs font-semibold md:text-base font-serif lg:text-2xl'>WEHack 2026 Presents</h4>
-          <h1 className='jumbo-title text-[#FFE9D7] text-3xl md:text-5xl lg:text-7xl animate-pulse'>WEHack 2026 Coming Soon</h1>
-          <h2 className='jumbo-text font-black text-[#A6CDC4] text-base sm:text-1xl md:1xl lg:text-4xl'>April 2026</h2>
-          {/* <Button link={'http://www.tinyurl.com/wehack-25-mentor'} buttonText={'Mentor Applications'}/> */}
+          <h4 className='jumbo-text text-[#B4A498] text-xs md:text-base font-serif lg:text-2xl'>WEHack 2026 Presents</h4>
+          <h1 className='jumbo-title text-[#FFE9D7] text-3xl md:text-5xl lg:text-7xl animate-pulse'>The Night at the Museum</h1>
+          <h2 className='jumbo-text font-thin text-[#A6CDC4] text-base sm:text-1xl md:1xl lg:text-4xl'>April 11-12 2026</h2>
+
+                <div className='jumbo-buttons flex flex-row items-start space-x-4 mt-4 gap-1.3'>
+                  {/* <Button link={'https://events.mlh.io/events/11456-wehack'} buttonText={'Interest Form'}/> */}
+                  {/* <Button link={'https://live.wehackutd.com/'} buttonText={'WEHack Portal'}/> */}
+                </div>
 
                 {/* Countdown Timer Here */}
 

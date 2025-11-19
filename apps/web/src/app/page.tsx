@@ -19,7 +19,7 @@ export default function Home() {
       <Navbar />
 	    <MLHBadge />
       <Jumbotron/>
-      {/* <Countdown/> */}
+      <Countdown/>
       <About/>
       {/* <FilmStrip/> */}
       <Gallery/>
