@@ -34,10 +34,8 @@ function Testimonials() {
 
   return (
     <div className="Testimonials-container" id="Testimonials">
-      <div className="title-container">
-        <h1 className="FAQ-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl">
-          Testimonials
-        </h1>
+      <div className="header-2">
+        <h1>Testimonials</h1>
       </div>
 
       <div className="circle-carousel">
@@ -98,6 +96,7 @@ function Testimonials() {
           );
         })}
       </div>
+      
     </div>
   );
 }

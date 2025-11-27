@@ -8,6 +8,54 @@
   overflow: hidden;
   padding: 3.5rem 0;
   position: relative;
+  margin-bottom: 7rem;
+  padding-bottom: 7rem;
+}
+
+/* Header 2 - Golden Frame */
+.header-2 {
+    background: #FFF7DA; /* Light cream background */
+    border: 5px solid #FFB412; /* Golden border */
+    padding: 1.25rem 1.75rem;
+    text-align: center;
+    margin: 2rem auto;
+    width: 75%;
+    max-width: 1200px;
+    position: relative;
+    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.5); /* Golden shadow */
+    transform: rotate(-2deg); /* Slight tilt effect */
+    transform-origin: center;
+}
+
+.header-2 h1 {
+    color: #4C4C4C; /* Dark golden text */
+    font-size: 2rem; /* Font size */
+    font-family: var(--font-cinzel-decorative); /* Decorative font */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .header-2 {
+        padding: 1rem 1.5rem; /* Reduce padding for smaller screens */
+        max-width: 90%; /* Adjust width to fit smaller screens */
+    }
+
+    .header-2 h1 {
+        font-size: 1.5rem; /* Reduce font size for smaller screens */
+        letter-spacing: 1px; /* Adjust letter spacing */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-2 {
+        padding: 0.75rem 1rem; /* Further reduce padding for very small screens */
+        border-width: 8px; /* Reduce border thickness */
+    }
+
+    .header-2 h1 {
+        font-size: 1.25rem; /* Further reduce font size */
+        letter-spacing: 0.5px; /* Adjust letter spacing */
+    }
 }
 
 .circle-carousel {
@@ -17,6 +65,7 @@
   height: 560px;
   margin-top: 1.5rem;
   transform-style: preserve-3d;
+  padding-bottom: 2rem;
 }
 
 .carousel-item {
@@ -68,14 +117,14 @@
 /* Museum plaque design with offset border */
 .testimonial-plaque {
   position: relative;
-  background-color: #e8dcc4;
-  background: linear-gradient(135deg, #e8dcc4 0%, #d4c5a9 100%);
+  background-color: #ffffff;
+  /* background: linear-gradient(135deg, #EDE8E2 0%, #D4C5A9 100%); */
   padding: 1.8rem 1.5rem;
   margin-top: 1.5rem;
   width: 86%;
-  box-shadow: 
+  /* box-shadow: 
     0 4px 6px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.3); */
   text-align: left;
   transition: transform 900ms ease, opacity 700ms ease, filter 700ms ease;
   opacity: 0.9;
@@ -88,16 +137,16 @@
   left: -8px;
   right: 8px;
   bottom: 8px;
-  border: 3px solid #992444;
+  border: 3px solid #BDA8ED;
   z-index: -1;
   pointer-events: none;
 }
 
 .plaque-active {
   transform: translateY(-6px);
-  box-shadow: 
+  /* box-shadow: 
     0 6px 12px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.3); */
 }
 
 /* Text styles (quote / description) */
@@ -132,7 +181,7 @@
   display: inline-block;
   width: 1px;
   height: 46px;
-  background-color: #992444;
+  background-color: #BDA8ED;
 }
 
 .testimonial-author {
