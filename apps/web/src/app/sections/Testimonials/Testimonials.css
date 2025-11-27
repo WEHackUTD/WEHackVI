@@ -7,6 +7,7 @@
   perspective: 1200px;
   overflow: hidden;
   padding: 3.5rem 0;
+  position: relative;
 }
 
 .circle-carousel {
@@ -36,58 +37,176 @@
   pointer-events: auto;
 }
 
+/* Bigger circular avatar with white border */
 .testimonial-image-container {
   position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .testimonial-image {
-  width: 240px;
-  height: 240px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid #992444;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
-  transition: transform 900ms ease, box-shadow 900ms ease;
+  border: none;
+  box-shadow: none;
 }
 
+/* No more frame */
+.testimonial-frame {
+  display: none;
+}
+
+/* Museum plaque design with offset border */
 .testimonial-plaque {
-  background-color: #f0f4f8;
-  border: 4px solid #992444;
-  border-radius: 18px;
-  padding: 1.5rem;
+  position: relative;
+  background-color: #e8dcc4;
+  background: linear-gradient(135deg, #e8dcc4 0%, #d4c5a9 100%);
+  padding: 1.8rem 1.5rem;
   margin-top: 1.5rem;
   width: 86%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-  text-align: center;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  text-align: left;
   transition: transform 900ms ease, opacity 700ms ease, filter 700ms ease;
   opacity: 0.9;
 }
 
+.testimonial-plaque::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: 8px;
+  bottom: 8px;
+  border: 3px solid #992444;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .plaque-active {
   transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-.testimonial-text {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #222;
-  font-weight: 500;
+/* Text styles (quote / description) */
+.testimonial-text,
+.testimonial-quote {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #2a2a2a;
+  font-weight: 400;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+  letter-spacing: 0.3px;
 }
 
+/* If you have meta with divider + author, keep those styles too */
+.testimonial-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.testimonial-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.testimonial-divider {
+  display: inline-block;
+  width: 1px;
+  height: 46px;
+  background-color: #992444;
+}
+
+.testimonial-author {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5b3542;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Spinning photo in bottom right corner */
+.spinning-photo-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  z-index: 10;
+}
+
+.spinning-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Tablet */
 @media (max-width: 900px) {
   .circle-carousel { height: 520px; }
   .carousel-item { width: 360px; }
-  .testimonial-image { width: 200px; height: 200px; }
-  .testimonial-plaque { width: 92%; padding: 1.25rem; }
+
+  .testimonial-image-container {
+    width: 130px;
+    height: 130px;
+  }
+
+  .testimonial-plaque { width: 92%; padding: 1.5rem 1.25rem; }
+  .testimonial-text,
+  .testimonial-quote { font-size: 1rem; }
+
+  .spinning-photo-container {
+    width: 60px;
+    height: 60px;
+    bottom: 15px;
+    right: 15px;
+  }
 }
 
+/* Mobile */
 @media (max-width: 520px) {
   .circle-carousel { height: 520px; }
   .carousel-item { width: 300px; }
-  .testimonial-image { width: 160px; height: 160px; }
-  .testimonial-plaque { width: 94%; padding: 1rem; }
+
+  .testimonial-image-container {
+    width: 115px;
+    height: 115px;
+  }
+
+  .testimonial-plaque { width: 94%; padding: 1.25rem 1rem; }
+  .testimonial-text,
+  .testimonial-quote { font-size: 0.95rem; }
+
+  .spinning-photo-container {
+    width: 50px;
+    height: 50px;
+    bottom: 12px;
+    right: 12px;
+  }
 }

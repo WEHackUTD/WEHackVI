@@ -1,36 +1,45 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Stats.css'
 
 function Statistics() {
+  const [showEyesOpen, setShowEyesOpen] = useState(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowEyesOpen(prev => !prev)
+    }, 2000) // toggle every 2 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div
       className='Statistics-container w-full h-auto flex flex-col items-center justify-center p-6 pb-40 lg:pb-60 relative overflow-visible'
       id='Statistics'
     >
-      {/* Decorative raccoon images near the main image */}
+      {/* Top-right cat sculpture */}
       <img
-        src="img/static/images/Raccoon_Hearts.svg"
-        alt="Raccoon Hearts"
-        className="flicker-image flicker-top-left"
-      />
-      <img
-        src="img/static/images/Raccoon_Popcorn.svg"
-        alt="Raccoon Popcorn"
-        className="flicker-image flicker-bottom-right"
+        src="img/static/images/Cat_Sculpture.png"
+        alt="Cat Sculpture"
+        className="corner-cat corner-cat-top-right"
       />
 
-      {/* Title Box
-      <div className="flex flex-col md:flex-row justify-center items-center gap-y-2 md:gap-x-16 lg:gap-x-24 pb-24 md:pb-24 lg:pb-36">
-        <div className="glow-sponsor sponsor-title-box">
-          <h1 className="Sponsor-title">Statistics</h1>
-        </div>
-      </div> */}
+      {/* Bottom-left cat eyes (toggles open/closed) */}
+      <img
+        src={
+          showEyesOpen
+            ? "img/static/images/Cat_Eyes_Open.png"
+            : "img/static/images/Cat_Eyes_Closed.png"
+        }
+        alt={showEyesOpen ? "Cat Eyes Open" : "Cat Eyes Closed"}
+        className="corner-cat corner-cat-bottom-left"
+      />
 
-      {/* Main Statistics Image */}
+      {/* Main Statistics Image (ticket) */}
       <div className="stats-image-container flex flex-col items-center justify-center relative">
         <img
-          src="img/static/images/statistics.png"
+          src="img/static/images/Group 79.png"
           alt="Statistics Graphic"
           className="rotating-image"
           onError={(e) => {
