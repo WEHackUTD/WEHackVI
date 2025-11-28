@@ -5,12 +5,12 @@ import './Testimonials.css';
 
 const testimonials = [
   {
-    image: 'img/static/images/karina.jpg',
+    image: 'img/static/images/suhani.jpg',
     text: 'As a sophomore I was really nervous to join a team and was unsure of my ability to be able to finish my project, but the mentors and organizers created such a welcoming environment. The music, food, workshops, and overall vibe made WeHack such an amazing first hackathon experience!',
     author: 'Suhani Rana',
   },
   {
-    image: 'img/static/images/suhani.jpg',
+    image: 'img/static/images/karina.jpg',
     text: 'WEHack was an amazing experience where I learned relevant technology skills and connected with an inspiring, supportive community. The vibes were incredible, and I left with lasting memories and new connections. I highly recommend it to anyone, especially beginners!',
     author: 'Karina Batra',
   },
