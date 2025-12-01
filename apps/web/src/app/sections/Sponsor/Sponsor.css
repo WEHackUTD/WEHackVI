@@ -87,7 +87,7 @@
 }
 
 .sponsor-text-container .sponsor-text {
-    font-family: 'Arial', sans-serif;
+    font-family: var(--font-marcellus), sans-serif;
 }
 
 /* ---------------------------------------------------------------- */

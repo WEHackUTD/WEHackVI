@@ -1,6 +1,11 @@
 summary {
-    font-family:var(--font-marcellus);
+    font-family:var(--font-cormorant-garamond);
 }
+
+.question {
+    font-family:var(--font-cormorant-garamond);
+}
+
 summary::after {
     content: '\002B';
     color: #301814;
@@ -8,6 +13,7 @@ summary::after {
     align-items:start;
     transition: 0.2s;
     font-weight:bolder;
+    font-size: 2rem;
 }
   
 summary::-webkit-details-marker {
@@ -48,4 +54,11 @@ details[open] .panel {
 
 .border-b {
     border-bottom: 10px;
+}
+
+.panel {
+    font-family: var(--font-cormorant-garamond);
+    font-weight: normal; /* match question weight if needed */
+    font-size: 1.2rem;     /* adjust to match question or Figma */
+    line-height: 1.5;    /* optional */
 }
