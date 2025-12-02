@@ -48,7 +48,7 @@ function Footer() {
 							</a>
 							<a
 								className="nav-link"
-								href="#Sponsors"
+								href="#Sponsor"
 							>
 								Sponsors
 							</a>
