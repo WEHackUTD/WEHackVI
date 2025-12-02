@@ -39,7 +39,7 @@ function Countdown() {
 
     <section className="timer-container" id="countdown">
         <div className="timer-group">
-          <p className="countdown-heading">Where Art Meets Time...</p>
+          <p className="countdown-heading">Unlock the Secrets of the Museum in...</p>
           <div className="countdown clock-wrapper">
             <img 
               src="img/static/images/Group 80.png"

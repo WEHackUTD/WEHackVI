@@ -2,7 +2,7 @@ a:hover {
 	/* background-color:#4A3628;
     border-radius:1rem; */
 	/* Updated cursor with icon */
-	cursor: url('/img/static/images/cursor-img.png') 16 16, auto;	
+	cursor: pointer;	
 	text-shadow: 0rem 0rem 1rem white;
 	transition: 0.3s ease-in-out;
 }
