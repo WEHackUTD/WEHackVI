@@ -3,7 +3,7 @@ import "./Footer.css";
 
 function Footer() {
 	return (
-		<div className="footer-container flex h-auto w-full flex-col gap-y-10 px-10 py-10 pb-20 md:flex-row md:items-start md:justify-start md:gap-x-3 md:px-20 lg:flex-row lg:items-start lg:justify-start lg:gap-x-5 lg:px-20">
+		<div className="footer-container flex h-auto w-full flex-col gap-y-10 px-10 py-10 pb-20 md:flex-row md:items-start md:justify-start md:gap-x-3 md:px-20 lg:flex-row lg:items-start lg:justify-start lg:gap-x-5 lg:px-20 overflow-x-hidden">
 			<div className="main-container flex w-full flex-col flex-wrap gap-y-5 md:content-start md:items-start lg:content-start lg:items-start">
 				<img
 					className="wehack-logo h-auto drop-shadow-[0_0px_25px_rgba(255,255,255,1.0)] max-w-40 sm:max-w-64 md:max-w-48 lg:max-w-32 transform-gpu"
@@ -24,8 +24,8 @@ function Footer() {
 					</p>
 				</div>
 			</div>
-			<div className="lg:items-ends flex flex-col gap-y-10 md:flex-row md:items-end md:gap-x-10 lg:-mr-10 lg:w-full lg:flex-row lg:gap-x-10 xl:-mr-72">
-				<div className="flex flex-row flex-wrap md:flex-nowrap gap-y-12 gap-x-20 md:gap-x-10">
+			<div className="lg:items-end flex flex-col gap-y-10 md:flex-row md:items-end md:gap-x-10 lg:w-full lg:flex-row lg:gap-x-10">
+				<div className="flex flex-row gap-x-20 md:gap-x-10">
 					<div className="navigation-container flex flex-col flex-wrap gap-y-1">
 						<h1 className="about-title text-center text-xl font-medium text-[#FFE9D7]">
 							Navigation
@@ -108,11 +108,18 @@ function Footer() {
 							X
 						</a>
 					</div>
-
-					<div className="contact-container flex flex-col flex-wrap gap-y-1">
+				</div>
+				<div className="contact-container flex flex-col flex-wrap gap-y-1">
 					<h1 className="about-title text-left text-xl font-medium text-[#FFE9D7]">
 						Other Hackathons
 					</h1>
+					<a
+						className="nav-link"
+						href="https://hackutd.co/"
+						target="_blank"
+					>
+						HackUTD
+					</a>
 					<a
 						className="nav-link"
 						href="https://hacktx.com/"
@@ -141,16 +148,7 @@ function Footer() {
 					>
 						CodeQuantum
 					</a>
-					<a
-						className="nav-link"
-						href="https://hackutd.co/"
-						target="_blank"
-					>
-						HackUTD
-					</a>
 				</div>
-				</div>
-				
 			</div>
 		</div>
 	);

@@ -63,8 +63,9 @@
 }
 
 
-.jumbo-text {
+.jumbo-text h4{
     font-family: var(--font-gantari);
+    font-weight: 100;
 }
 
 .countdown-container {
@@ -80,7 +81,7 @@
   flex-wrap: wrap;
   width: 100%;
   position: relative;
-  margin-top: 1rem;
+  margin-top: 8rem;
   margin-bottom: 6rem;
   gap: 3rem;
 }
@@ -100,14 +101,14 @@
   border-radius: 50%;
   box-shadow: 0px 25px 101.5px #D2AF71;
   color: #755642;
-  font-family: var(--font-marcellus);
+  font-family: var(--font-righteous);
 }
 
 .label {
   color: #CCBA97;
   margin-top: 1rem;
   font-size: 12px;
-  font-family: var(--font-marcellus);
+  font-family: var(--font-darker-grotesque);
 }
 
 /* Circle Sizes & Text Sizes */
@@ -247,5 +248,5 @@
 }
 
 .circle p {
-  font-family: var(--font-marcellus);
+  font-family: var(--font-junge);
 }
