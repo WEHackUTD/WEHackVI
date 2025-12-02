@@ -10,7 +10,7 @@ import Countdown from "./sections/Countdown/Countdown";
 import Gallery from "@/components/Gallery/Gallery";
 import FilmStrip from "@/components/FilmStrip/FilmStrip";
 import Stats from "@/components/Stats/Stats";
-import Team from "./sections/Team/Team";
+// import Team from "./sections/Team/Team";
 
 export default function Home() {
   return (

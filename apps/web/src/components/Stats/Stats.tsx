@@ -39,7 +39,7 @@ function Statistics() {
       {/* Main Statistics Image (ticket) */}
       <div className="stats-image-container flex flex-col items-center justify-center relative">
         <img
-          src="img/static/images/Group 79.png"
+          src="img/static/images/Group 79.webp"
           alt="Statistics Graphic"
           className="rotating-image"
           onError={(e) => {

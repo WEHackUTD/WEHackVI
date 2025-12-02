@@ -9,7 +9,7 @@ function FAQ() {
         <div className="title-container flex flex-col">      
             <div className="header-container pb-1 md:pb-1 lg:pb-2 flex flex-col md:flex-row gap-x-10">
                 <div className="flex justify-start pb-2 -ml-8">
-                    <img src="img/static/images/FAQ.png" className="h-auto w-full max-w-[800px] md:max-w-[1000px] lg:max-w-[1200px]"></img>
+                    <img src="img/static/images/FAQ.webp" className="h-auto w-full max-w-[800px] md:max-w-[1000px] lg:max-w-[1200px]"></img>
                 </div>
             </div>
         </div>
