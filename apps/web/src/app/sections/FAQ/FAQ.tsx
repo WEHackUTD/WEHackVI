@@ -1,28 +1,21 @@
 import React from 'react'
 import './FAQ.css'
 import Question from '@/components/Question/Question'
-import Image from 'next/image'
 
 function FAQ() {
   return (
     <div className='FAQ-container w-full h-auto flex flex-wrap flex-col items-center justify-center p-6 pb-40 lg:pb-24 pt-20' id="FAQ">
         
         <div className="title-container flex flex-col">      
-            <div className="header-container pb-12 md:pb-24 lg:pb-36 flex flex-col md:flex-row gap-x-10">
-                <div className="flex justify-start pb-5 -ml-8">
-                    {/* <img src="/static/images/sparkles.png" className="-rotate-[10deg] h-auto max-w-32 md:max-w-auto"></img> */}
+            <div className="header-container pb-1 md:pb-1 lg:pb-2 flex flex-col md:flex-row gap-x-10">
+                <div className="flex justify-start pb-2 -ml-8">
+                    <img src="img/static/images/FAQ.webp" className="h-auto w-full max-w-[800px] md:max-w-[1000px] lg:max-w-[1200px]"></img>
                 </div>
-                
-                <div className="glow">
-                    <h1 className='FAQ-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl'>Frequently Asked Questions</h1>
-                </div>
-                
             </div>
         </div>
 
-        <div className='drop-down-container gap-0 mt-5 lg:-mt-12 lg:gap-0 lg:px-14'>
+        <div className='drop-down-container gap-0 mt-3 lg:-mt-8 lg:gap-0 lg:px-14'>
             <div className='column-right w-full lg:w-2/2'>
-                {/* <div className='questions-container flex flex-wrap items-center justify-center gap-0'> */}
                 <div className='questions-container flex flex-col items-stretch justify-start gap-0 w-full'>
                     {dataColOne.map((FAQ, index) => (
                         <div className='flex flex-wrap items-center justify-center w-full' key={index}>
@@ -34,8 +27,8 @@ function FAQ() {
             </div>
         </div>
 
-        <div className="vinyl-blue-container overflow-x-hidden flex justify-center md:justify-end lg:justify-end md:-ml-[10rem] lg:-ml-[25rem] xl:-ml-[45rem] pt-20 pb-72 md:pt-16 md:pb-72">
-            <Image className="vinyl overflow-x-hidden" src={"/img/static/images/Untitled_Artwork 4.png"} width={300} height={300} alt="a blue vinyl spinning"/> 
+        <div className="vinyl-blue-container flex justify-center md:justify-end lg:justify-end md:-ml-[10rem] lg:-ml-[25rem] xl:-ml-[45rem] pt-20 pb-72 md:pt-16 md:pb-72">
+            <img className="vinyl" src="img/static/images/minutes1 2 (2).png" width="300px" height="300px"></img>    
         </div>
         
         
@@ -52,7 +45,7 @@ const dataColOne = [
 
     {
         question: "When and where is WEHack?",
-        answer: "WEHack 2025 will be held in person in the Engineering and Computer Science West (ECSW) building at the University of Texas at Dallas. WEHack 2025 dates will be released soon!",
+        answer: "WEHack 2026 will be held in person in the Engineering and Computer Science West (ECSW) building at the University of Texas at Dallas. WEHack 2026 dates will be released soon!",
     },
 
     {
@@ -62,7 +55,7 @@ const dataColOne = [
     
     {
         question: "How do I apply?",
-        answer: "Hackers can register via the link at the top of the page. Mentor and volunteer applications will be posted soon! Registration for WEHack 2025 will be released in December 2024.",
+        answer: "Hackers can register via the link at the top of the page. Mentor and volunteer applications will be posted soon! Registration for WEHack 2026 will be released in December 2025.",
     },
 
     {

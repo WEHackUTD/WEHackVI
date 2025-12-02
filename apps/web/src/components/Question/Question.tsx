@@ -20,10 +20,10 @@ function Question({number, question, answer} : {number: number, question : Strin
 
             <summary className='flex flex-wrap justify-between list-none w-full bg-[#FFCB86] text-[#301814] p-2 text-[14px] md:text-base lg:text-base'>
               <div className = 'flex items-center gap-3'>
-                <span className='number-circle flex items-center justify-center w-6 h-6 text-xs md:text-sm font-bold text-white bg-[#002366] rounded-full mr-3'>
+                <span className='number-circle flex items-center justify-center w-10 h-10 text-lg md:text-lg font-bold text-white bg-[#002366] rounded-full mr-3'>
                   {number}
                 </span>
-                <span className="font-bold">{question}</span>
+                <span className="font-bold text-lg md:text-xl lg:text-2xl">{question}</span>
               </div>
             </summary>
 

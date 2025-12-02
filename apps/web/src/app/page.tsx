@@ -10,12 +10,12 @@ import Countdown from "./sections/Countdown/Countdown";
 import Gallery from "@/components/Gallery/Gallery";
 import FilmStrip from "@/components/FilmStrip/FilmStrip";
 import Stats from "@/components/Stats/Stats";
-import Team from "./sections/Team/Team";
+// import Team from "./sections/Team/Team";
 
 export default function Home() {
   return (
     // this is where all our components will go
-    <div className="App transform-gpu custom-cursor-page">
+    <div className="App transform-gpu">
       <Navbar />
 	    <MLHBadge />
       <Jumbotron/>

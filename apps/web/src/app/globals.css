@@ -84,7 +84,7 @@
 	}
 
 	body {
-		@apply bg-[#1E2A44] text-foreground;
+		@apply bg-[#1A1C28] text-foreground;
 	}
 }
 
@@ -137,10 +137,7 @@ body {
     overflow-x: hidden;
 }
 
-.custom-cursor-page {
-    /* changed cursor to have the mascot */
-	cursor: url('/img/static/images/cursor-img.png') 16 16, auto;
-}
+
 
 .App {
     background-image: url("/img/static/images/landing-page-background-2.webp");

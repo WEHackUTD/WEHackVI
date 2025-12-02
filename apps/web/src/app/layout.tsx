@@ -40,7 +40,7 @@ const gantari = Gantari({
 const cormorant_garamond = Cormorant_Garamond({
 	subsets: ['latin'],
 	variable: '--font-cormorant-garamond',
-	weight: ['400', '700']
+	weight: ['300', '400', '700']
   });
 
 
