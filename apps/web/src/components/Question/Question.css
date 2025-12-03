@@ -1,6 +1,11 @@
 summary {
-    font-family:var(--font-inknut-antiqua);
+    font-family:var(--font-cormorant-garamond);
 }
+
+.question {
+    font-family:var(--font-cormorant-garamond);
+}
+
 summary::after {
     content: '\002B';
     color: #301814;
@@ -8,6 +13,7 @@ summary::after {
     align-items:start;
     transition: 0.2s;
     font-weight:bolder;
+    font-size: 2rem;
 }
   
 summary::-webkit-details-marker {
@@ -17,22 +23,22 @@ summary::-webkit-details-marker {
 
 details {
     padding: 0.5rem;
-    border-radius: 10px;
-    border: 2px solid #301814;
+    border-radius: 0px;
+    /* border: 2px solid #301814; */
     /* filter: drop-shadow(-10px 10px #992444); */
     
 }
 details:hover {
-    box-shadow: 0rem 0rem 2rem #992444;
+    box-shadow: 0rem 0rem 2rem #FFCB86;
     transition: 0.4s ease-in-out;
 }
 
 details:active {
-    box-shadow: 0rem 0rem 2rem #992444;
+    box-shadow: 0rem 0rem 2rem #FFCB86;
 }
   
 details[open] summary {
-    background: #D16155;
+    background: #FFCB86;
     color:#301814;
 }
 
@@ -41,7 +47,18 @@ details[open] summary:after{
 }
   
 details[open] .panel {
-    background: #D16155;
+    background: #FFCB86;
     color:#301814;
     padding: .5em 1em;
+}
+
+.border-b {
+    border-bottom: 10px;
+}
+
+.panel {
+    font-family: var(--font-cormorant-garamond);
+    font-weight: normal; /* match question weight if needed */
+    font-size: 1.2rem;     /* adjust to match question or Figma */
+    line-height: 1.5;    /* optional */
 }

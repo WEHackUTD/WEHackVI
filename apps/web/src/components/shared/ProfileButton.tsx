@@ -203,7 +203,7 @@ export default async function ProfileButton() {
 						user.role,
 					) && (
 						<Link href={`/admin`}>
-							<DropdownMenuItem className="cursor-pointer text-hackathon">
+							<DropdownMenuItem className="cursor-pointer text-background">
 								Admin
 							</DropdownMenuItem>
 						</Link>

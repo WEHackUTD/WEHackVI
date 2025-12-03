@@ -1,41 +1,104 @@
-import React from 'react'
-import './Testimonials.css'
-import {Carousel} from '@/components/Carousel/Carousel'
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import './Testimonials.css';
+
+const testimonials = [
+  {
+    image: 'img/static/images/suhani.jpg',
+    text: 'As a sophomore I was really nervous to join a team and was unsure of my ability to be able to finish my project, but the mentors and organizers created such a welcoming environment. The music, food, workshops, and overall vibe made WeHack such an amazing first hackathon experience!',
+    author: 'Suhani Rana',
+  },
+  {
+    image: 'img/static/images/karina.jpg',
+    text: 'WEHack was an amazing experience where I learned relevant technology skills and connected with an inspiring, supportive community. The vibes were incredible, and I left with lasting memories and new connections. I highly recommend it to anyone, especially beginners!',
+    author: 'Karina Batra',
+  },
+  {
+    image: 'img/static/images/sneha.jpeg',
+    text: 'My experience at WEHack was amazing!! It really brought my friends and me together to build something meaningful, support each other, and most importantly have fun!',
+    author: 'Sneha Nangunoori',
+  },
+];
 
 function Testimonials() {
+  const [active, setActive] = useState(0);
 
-    return (
-        <div
-            className="w-full h-auto flex flex-wrap flex-col items-center justify-center self-center pb-40 pt-12">
-            {/* <div className="flex flex-row items-center self-center justify-around">
-                <img className="musicnote w-auto max-h-20 lg:max-h-20 mx-1" src={"/static/images/heart-clef.png"} alt={"music note"}/>
-                <img className="music w-auto max-h-20  lg:max-h-20 mx-1"
-                     src={"/static/images/music.png"} alt={"music note"}/>
-                <img className="testimonial-title w-auto max-h-36 m-12"
-                     src={"/static/images/testimonial-title.png"} alt={"testimonials"}/>
-                <img className="music w-auto h-20  lg:max-h-20 mx-1"
-                     src={"/static/images/music.png"} alt={"music note"}/>
-                <img className="musicnote w-auto max-h-20  lg:max-h-20 mx-1" src={"/static/images/double-note.png"} alt={"music note"}/>
-            </div> */}
-            <div className="title-container flex flex-col md:flex-row justify-center items-center gap-y-2 md:gap-x-16 lg:gap-x-24 pb-24 md:pb-24 lg:pb-36" id="Testimonials">
-                    <div className="flex justify-start pb-5 -ml-52 md:-ml-0 md:pb-0">
-                        <img className='musicnote h-auto max-w-28 md:w-auto lg:max-w-56 -rotate-[10deg] md:-rotate-0' src={"/img/static/images/Untitled design-8.png"} alt={"music note"}/>
-                    </div>
-                    
-                    <div className="glow transform-gpu">
-                        <h1 className='Testimonials-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl'>Testimonials</h1>
-                    </div>
+  useEffect(() => {
+    const interval = setInterval(
+      () => setActive((prev) => (prev + 1) % testimonials.length),
+      3000
+    );
+    return () => clearInterval(interval);
+  }, []);
 
-                    <div className="flex justify-end pt-5 -mr-52 mt-3 md:mt-0 md:-mr-0 md:pt-0">
-                        <img className='musicnote h-auto max-w-28 md:w-auto lg:max-w-56 rotate-[5deg] md:rotate-0' src={"/img/static/images/Untitled design-8.png"} alt={"music note"}/>
-                    </div>
+  return (
+    <div className="Testimonials-container" id="Testimonials">
+      <div className="header-2">
+        <h1>Testimonials</h1>
+      </div>
+
+      <div className="circle-carousel">
+        {testimonials.map((item, i) => {
+          const raw = i - active;
+          const distance =
+            raw > testimonials.length / 2
+              ? raw - testimonials.length
+              : raw < -testimonials.length / 2
+              ? raw + testimonials.length
+              : raw;
+
+          const isActive = i === active;
+          const xOffset = distance * 220;
+          const zOffset = isActive ? 140 : 0;
+          const scale = isActive ? 0.9 : 0.7;
+          const opacity = isActive ? 1 : 0.35;
+          const blur = isActive ? 'none' : 'blur(3px)';
+
+          return (
+            <div
+              key={i}
+              className={`carousel-item ${isActive ? 'active' : ''}`}
+              style={{
+                transform: `translate(-50%, -45%) translateX(${xOffset}px) translateZ(${zOffset}px) scale(${scale})`,
+                opacity,
+                filter: blur,
+                zIndex: isActive ? 3 : 1,
+              }}
+            >
+              <div className="testimonial-image-container">
+                <img
+                  src={item.image}
+                  alt={`Testimonial ${i + 1}`}
+                  className="testimonial-image"
+                />
+              </div>
+
+              <div
+                className={`testimonial-plaque ${
+                  isActive ? 'plaque-active' : ''
+                }`}
+              >
+                <div className="testimonial-content">
+                  <p className="testimonial-quote">{item.text}</p>
+                  <div className="testimonial-meta">
+                    <span
+                      className="testimonial-divider"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="testimonial-author">
+                      {item.author}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="flex flex-row justify-center justify-items-center">
-                <Carousel/>
-            </div>
-        </div>
-    )
+          );
+        })}
+      </div>
+      
+    </div>
+  );
 }
 
-export default Testimonials
+export default Testimonials;

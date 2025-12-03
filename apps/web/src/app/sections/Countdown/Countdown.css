@@ -1,0 +1,105 @@
+.clock-wrapper {
+  position: relative;
+  width: min(90vw, 680px);
+  margin: 0 auto;
+
+}
+
+.countdown-heading {
+  text-align: left;
+  color: #F5E6C8;
+  font-family: var(--font-marcellus);
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+
+  margin: 5rem 0 -6rem 7rem; /* ⬅️ remove the 5rem top margin */
+}
+
+
+.countdown {
+    margin-top: 0rem;
+}
+
+
+.clocks-image {
+  /* width: 80vw;
+  max-width: 750px; */
+  width: 75%;
+  height: auto;
+}
+
+/* Shared text style */
+.count-text {
+  position: absolute;
+  font-family: var(--font-marcellus);
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+
+  /* Default desktop size */
+  font-size: 4rem;
+
+  /* Helps readability on any background */
+  text-shadow:
+    0 0 16px rgba(255, 215, 130, 0.9);
+}
+
+/* Extra glow layer */
+.glow {
+  filter: drop-shadow(0 0 10px rgba(255, 200, 120, 0.9));
+}
+
+/* Positioning each number (percent-based → fully responsive) */
+
+/* MINUTES - top right clock */
+.count-text.minutes {
+  top: 29%;
+  left: 77.5%;
+  font-size: 3rem;
+  transform: translate(-50%, -50%);
+}
+
+/* HOURS - middle right Art Nouveau clock */
+.count-text.hours {
+  top: 58%;
+  left: 65%;
+  font-size: 3rem;;
+  transform: translate(-50%, -50%);
+}
+
+/* SECONDS - bottom right pocket watch */
+.count-text.seconds {
+  top: 76%;
+  left: 79.5%;
+  font-size: 3rem;
+  transform: translate(-50%, -50%);
+}
+
+/* DAYS - big main clock on left */
+.count-text.days {
+  top: 50%;
+  left: 34%;
+  font-size: 3rem;
+  transform: translate(-50%, -50%);
+}
+
+/* ------------------------- */
+/* RESPONSIVE: Mobile tweaks */
+/* ------------------------- */
+@media (max-width: 700px) {
+  .count-text {
+    font-size: 2.5rem;
+  }
+
+  .countdown-heading {
+    font-size: 1rem;
+    margin: 5rem 0rem -3rem 2rem;
+  }
+
+  .count-text.seconds,
+  .count-text.minutes,
+  .count-text.hours,
+  .count-text.days {
+    font-size: 1.5rem; /* Ensure all countdown numbers are smaller */
+  }
+}

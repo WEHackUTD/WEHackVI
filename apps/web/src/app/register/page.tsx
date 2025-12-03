@@ -58,7 +58,7 @@ export default async function Page() {
 				</div>
 				<main className="dark:bg-[#301814]">
 					<div className="mx-auto min-h-screen max-w-5xl px-5 pb-10 pt-[20vh] font-sans dark:text-[#CCBA97]">
-						<h1 className="text-6xl font-black md:text-8xl">
+						<h1 className="text-6xl font-black md:text-8xl text-hackathon font-cinzel-decorative">
 							Register
 						</h1>
 						<p className="mt-5 font-medium text-2xl">
@@ -71,7 +71,7 @@ export default async function Page() {
 							You must click "Submit" at the end for your registration to be officially submitted.
 							<br></br>
 						</p>
-						<h3 className="pt-5 text-lg font-medium tracking-wide underline">Once your form is submitted, you will <b>NOT</b> be able to change your responses, so please answer wisely.</h3>
+						<h3 className="pt-5 text-lg font-thin tracking-wide underline font-gantari">Once your form is submitted, you will <b>NOT</b> be able to change your responses, so please answer wisely.</h3>
 						<p className="pb-10 pt-5 text-xl">
 							Psttt... Running into a issue? Please let us know by
 							emailing <b>wehackutd@gmail.com</b>

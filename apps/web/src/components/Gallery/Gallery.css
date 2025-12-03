@@ -1,0 +1,123 @@
+/* ================================================= */
+/* Base Styles (for large screens / desktop) - NO CHANGES HERE */
+/* ================================================= */
+.gallery-container {
+    width: 100vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 per row on desktop */
+    gap: 5px;
+    justify-items: center;
+    align-items: center;
+    padding: 20px 90px;
+    margin-bottom: 3rem;
+}
+
+.frame {
+    /* Keep general frame styles here */
+    width: 225px; 
+    height: auto;
+    /* Transition for transform and filter properties for smoothness */
+    transition: transform 0.3s ease, filter 0.3s ease; 
+    position: sticky; 
+    cursor: pointer;
+    /* Ensure hardware acceleration for smoother filter transitions */
+    will-change: filter, transform;
+}
+
+/* 🌟 GOLDEN GLOW HOVER EFFECT HERE 🌟 */
+.frame:hover {
+    /* Maintain original transform or slightly adjust if needed, but no scale */
+    /* If you want to keep the current staggering transform but add glow: */
+    /* filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)); */
+    /* To slightly override and add a glow without moving, we can re-specify transform
+       or use an initial transform value if there's no original staggering */
+    
+    /* Option 1: Just add glow, preserving existing transform (if any) */
+    /* This works well because drop-shadow doesn't interfere with transform directly */
+    filter: drop-shadow(0 0 15px rgba(254, 247, 205, 0.8)); /* Golden glow */
+    
+    /* Option 2: If you want a very subtle "lift" combined with the glow (optional) */
+    /* transform: translateY(-5px); 
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)); */
+    
+    /* Let's go with Option 1 for a pure glow effect */
+    filter: drop-shadow(0 0 15px rgba(252, 242, 188, 0.571)); /* A strong golden yellow */
+    /* You could also try a slightly orange-gold if preferred, e.g., #FFD700 or #DAA520 */
+    /* The drop-shadow will conform to the alpha channel of your image, glowing around the frame */
+}
+
+/* Base staggered styles remain as they are for large screens */
+.frame-0 { transform: translate(0px, 20px); width: 250px; }
+.frame-1 { transform: translate(10px, 40px); width: 250px;}
+.frame-2 { transform: translate(0px, 20px); width: 250px;}
+.frame-3 { transform: translate(-20px, 10px); width: 250px;}
+.frame-4 { transform: translate(0px, 40px); width: 250px;}
+.frame-5 { transform: translate(0px, 30px); width: 250px;}
+.frame-6 { transform: translate(0px, 30px); width: 250px;}
+.frame-7 { transform: translate(-10px, 0px); width: 250px;}
+
+/* ----------------------------------------------- */
+
+/* ================================================= */
+/* Medium Screens (e.g., Tablets, Small Laptops) - NO CHANGES HERE */
+/* Max width up to 1200px */
+/* ================================================= */
+@media (max-width: 1200px) {
+    .gallery-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 per row */
+        padding: 20px 40px; 
+        gap: 10px; 
+    }
+
+    .frame {
+        width: 100%; /* Make frames fill their grid column width */
+    }
+
+    .frame-0 { transform: translate(0px, 30px); } 
+    .frame-1 { transform: translate(0px, 40px); } 
+    .frame-2 { transform: translate(-5px, -15px); } 
+    .frame-3 { transform: translate(-10px, -15px); } 
+    .frame-4 { transform: translate(20px, -20px); } 
+    .frame-5 { transform: translate(0px, 20px); } 
+    .frame-6 { transform: translate(0px, -20px); } 
+    .frame-7 { transform: translate(-5px, -20px); } 
+}
+
+/* ----------------------------------------------- */
+
+/* ================================================= */
+/* Small Screens (e.g., Mobile Phones) - CAROUSEL IMPLEMENTATION */
+/* Max width up to 600px */
+/* ================================================= */
+@media (max-width: 600px) {
+    .gallery-container {
+        display: flex; 
+        flex-wrap: nowrap; 
+        overflow-x: scroll; 
+        overflow-y: hidden; 
+        scroll-snap-type: x mandatory; 
+        
+        padding: 10px 0; 
+        gap: 15px; 
+
+        width: 100vw;
+    }
+
+    .frame {
+        flex-shrink: 0; 
+        width: 65vw; 
+        height: auto;
+        
+        scroll-snap-align: center;
+        
+        transform: none !important; 
+        position: static; 
+    }
+
+    .frame-0, .frame-1, .frame-2, .frame-3, 
+    .frame-4, .frame-5, .frame-6, .frame-7 {
+        width: 65vw !important; 
+        transform: none !important; 
+    }
+}

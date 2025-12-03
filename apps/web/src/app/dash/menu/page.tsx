@@ -9,7 +9,7 @@ export default async function page() {
           {/* ROW ONE */}
 
           {/* SATURDAY LUNCH */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
             <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Saturday Lunch: UnbelievaBowl</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Teriyaki Chicken Bowl</h2>
@@ -49,7 +49,7 @@ export default async function page() {
           </div>
 
           {/* SATURDAY DINNER */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
             <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Saturday Dinner: Cici’s + MOD Pizza</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Chicken Pizza</h2>
@@ -87,7 +87,7 @@ export default async function page() {
           </div>
 
           {/* MIDNIGHT SNACK */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5 max-w-1/2">
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5 max-w-1/2">
             <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Midnight Snack: Nikki’s Popcorn</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Buttery</h2>
@@ -143,7 +143,7 @@ export default async function page() {
           </div>
 
           {/* SUNDAY BREAKFAST */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
             <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Sunday Breakfast: 85 Degrees, Reverie Bakeshop, Chic Coffee Events</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Chocolate Croissant</h2>
@@ -218,7 +218,7 @@ export default async function page() {
           </div>
 
           {/* SUNDAY LUNCH */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
             <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Sunday Lunch: Rusty Taco</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Chicken Fajita Taco</h2>

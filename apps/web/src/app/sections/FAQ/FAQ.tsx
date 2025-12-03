@@ -1,51 +1,34 @@
 import React from 'react'
 import './FAQ.css'
 import Question from '@/components/Question/Question'
-import Image from 'next/image'
 
 function FAQ() {
   return (
     <div className='FAQ-container w-full h-auto flex flex-wrap flex-col items-center justify-center p-6 pb-40 lg:pb-24 pt-20' id="FAQ">
+        
         <div className="title-container flex flex-col">      
-            <div className="header-container pb-12 md:pb-24 lg:pb-36 flex flex-col md:flex-row gap-x-10">
-                <div className="flex justify-start pb-5 -ml-8">
-                    <img src="/img/static/images/sparkles.png" className="-rotate-[10deg] h-auto max-w-32 md:max-w-auto"></img>
+            <div className="header-container pb-1 md:pb-1 lg:pb-2 flex flex-col md:flex-row gap-x-10">
+                <div className="flex justify-start pb-2 -ml-8">
+                    <img src="img/static/images/FAQ.webp" className="h-auto w-full max-w-[800px] md:max-w-[1000px] lg:max-w-[1200px]"></img>
                 </div>
-                
-                <div className="glow transform-gpu">
-                    <h1 className='FAQ-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl'>Frequently Asked Questions</h1>
-                </div>
-                <div className="flex justify-end pt-5 -mr-8">
-                    <img src="/img/static/images/sparkles.png" className="rotate-[5deg] h-auto max-w-32 md:max-w-auto"></img>
-                </div>
-                
             </div>
         </div>
 
-        <div className='drop-down-container gap-5 mt-5 lg:-mt-12 lg:gap-0 lg:px-14'>
-            <div className='column-right w-full lg:w-1/2'>
-                <div className='questions-container flex flex-wrap items-center justify-center gap-5'>
+        <div className='drop-down-container gap-0 mt-3 lg:-mt-8 lg:gap-0 lg:px-14'>
+            <div className='column-right w-full lg:w-2/2'>
+                <div className='questions-container flex flex-col items-stretch justify-start gap-0 w-full'>
                     {dataColOne.map((FAQ, index) => (
                         <div className='flex flex-wrap items-center justify-center w-full' key={index}>
-                            <Question question={FAQ.question} answer={FAQ.answer}/>
+                            <Question number={index + 1} question={FAQ.question} answer={FAQ.answer}/>
                         </div>
                     ))}
                 </div>
                 
             </div>
-            <div className='column-left w-full lg:w-1/2'>
-                <div className='questions-container flex flex-wrap items-center justify-center gap-5'>
-                    {dataColTwo.map((FAQ, index) => (
-                        <div className='flex flex-wrap items-center justify-center w-full' key={index}>
-                            <Question question={FAQ.question} answer={FAQ.answer}/>
-                        </div>                    
-                    ))}
-                </div>
-            </div>
         </div>
 
-        <div className="vinyl-blue-container overflow-x-hidden flex justify-center md:justify-end lg:justify-end md:-ml-[10rem] lg:-ml-[25rem] xl:-ml-[45rem] pt-20 pb-72 md:pt-16 md:pb-72">
-            <Image className="vinyl overflow-x-hidden" src={"/img/static/images/Untitled_Artwork 4.png"} width={300} height={300} alt="a blue vinyl spinning"/> 
+        <div className="vinyl-blue-container flex justify-center md:justify-end lg:justify-end md:-ml-[10rem] lg:-ml-[25rem] xl:-ml-[45rem] pt-20 pb-72 md:pt-16 md:pb-72">
+            <img className="vinyl" src="img/static/images/minutes1 2 (2).png" width="300px" height="300px"></img>    
         </div>
         
         
@@ -62,7 +45,7 @@ const dataColOne = [
 
     {
         question: "When and where is WEHack?",
-        answer: "WEHack 2025 will be held in person on Saturday, April 5th, and Sunday, April 6th, in the Engineering and Computer Science West (ECSW) building at the University of Texas at Dallas.",
+        answer: "WEHack 2026 will be held in person in the Engineering and Computer Science West (ECSW) building at the University of Texas at Dallas. WEHack 2026 dates will be released soon!",
     },
 
     {
@@ -72,7 +55,7 @@ const dataColOne = [
     
     {
         question: "How do I apply?",
-        answer:    `Registration for WEHack 2025 is now open! Hackers can register via the link at the top of the page. Sign up to be a mentor <a href="http://www.tinyurl.com/wehack-25-mentor" target="_blank" class="text-[#A6CDC4] underline">here</a>. Volunteer applications will be posted soon!`,
+        answer: "Hackers can register via the link at the top of the page. Mentor and volunteer applications will be posted soon! Registration for WEHack 2026 will be released in December 2025.",
     },
 
     {
@@ -83,13 +66,11 @@ const dataColOne = [
     {
         question: "Can I work on my project before WEHack?",
         answer: "All projects must be started at WEHack, but you are free to brainstorm project ideas prior to the hackathon. Projects can range from solving personal or social challenges to solving hackathon or sponsor challenges.",
-    }
-]
+    },
 
-const dataColTwo =  [
     {
         question: "Does it cost money to participate?",
-        answer: "WEHack 2025 is completely free! This includes food and swag, which will be handed out to attendees during the hackathon.",
+        answer: "WEHack 2026 is completely free! This includes food and swag, which will be handed out to attendees during the hackathon.",
     },
 
     {
@@ -99,7 +80,7 @@ const dataColTwo =  [
 
     {
         question: "When does registration close?",
-        answer: "Registration deadline is March 14th at 11:59 PM CST. If you've missed the deadline, WE highly encourage you to come as a walk-in registrant during check-ins on the morning of April 5th!",
+        answer: "Registration deadlines will be announced soon.",
     },
 
     {
@@ -109,7 +90,7 @@ const dataColTwo =  [
 
     {
         question: "What are the meal options offered?",
-        answer: "We will provide food for meat, vegetarian, gluten-free, and halal diets.",
+        answer: "We will provide food for meat, vegetarian, vegan, gluten-free, and halal diets.",
         
     },
 
@@ -117,6 +98,40 @@ const dataColTwo =  [
         question: "Can I sleep at WEHack?",
         answer: "You are welcome to sleep at WEHack! Make sure to bring pillows, blankets, chargers, and other necessities if you are planning to stay the night.",        
     }
+
 ]
+
+// const dataColTwo =  [
+//     {
+//         question: "Does it cost money to participate?",
+//         answer: "WEHack 2024 is completely free! This includes food and swag, which will be handed out to attendees during the hackathon.",
+//     },
+
+//     {
+//         question: "How do teams work at WEHack?",
+//         answer: "Teams at WEHack can have up to 4 members. If you do not have a team, don’t worry! You can either work individually or form teams the day of the hackathon by meeting fellow hackers on the Discord or during team building events.",
+//     },
+
+//     {
+//         question: "When does registration close?",
+//         answer: "Registration deadlines will be announced soon.",
+//     },
+
+//     {
+//         question: "Will hardware be available?",
+//         answer: "WEHack will be providing hardware, and we encourage you to use online hardware simulators.",
+//     },
+
+//     {
+//         question: "What are the meal options offered?",
+//         answer: "We will provide food for meat, vegetarian, gluten-free, and halal diets.",
+        
+//     },
+
+//     {
+//         question: "Can I sleep at WEHack?",
+//         answer: "You are welcome to sleep at WEHack! Make sure to bring pillows, blankets, chargers, and other necessities if you are planning to stay the night.",        
+//     }
+// ]
 
 export default FAQ

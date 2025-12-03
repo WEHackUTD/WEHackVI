@@ -1,7 +1,102 @@
-.stats-title {
-    filter: drop-shadow(0rem 0rem 1rem #FFE9D7);
+/* Container */
+.Statistics-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  overflow: visible;
+  padding: 3.5rem 0;
 }
 
-.statsOne, .statsTwo, .statsThree {
-    filter:drop-shadow(0px 0px 20px rgba(210, 175, 113, 0.5))
+/* Main stats image (ticket) with white glow + gentle rocking */
+.rotating-image {
+  width: 80%;
+  max-width: 900px;
+  border-radius: 20px;
+  /* stronger white glow with a subtle colored outer glow */
+  filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.9))
+          drop-shadow(0 0 32px rgba(153, 36, 68, 0.45));
+  animation: ticket-rock 2s ease-in-out infinite alternate;
+}
+
+/* Rocking animation: small back-and-forth rotation */
+@keyframes ticket-rock {
+  0% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+  100% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+/* Container for main image */
+.stats-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+/* Shared cat styles */
+.corner-cat {
+  position: absolute;
+  width: 190px;
+  max-width: 26vw;
+  height: auto;
+  opacity: 1;
+  filter: drop-shadow(0 0 20px rgba(153, 36, 68, 0.6));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Top-right: cat sculpture – move it higher */
+.corner-cat-top-right {
+  top: -1%;   /* moved further up */
+  right: 8%;
+  transform: rotate(10deg);
+}
+
+/* Bottom-left: toggling cat – turn more to the right and keep it low */
+.corner-cat-bottom-left {
+  bottom: 10%;
+  left: 10%;
+  transform: rotate(5deg); /* more to the right (less negative / positive) */
+}
+
+/* Tablet-ish tweaks */
+@media screen and (max-width: 1050px) {
+  .corner-cat-top-right {
+    top: -10%;
+    right: 6%;
+  }
+}
+
+/* Phones base adjustments */
+@media screen and (max-width: 600px) {
+  .rotating-image {
+    width: 88%;
+    max-width: 420px;
+  }
+
+  .corner-cat {
+    width: 130px;
+    max-width: 32vw;
+  }
+
+  .corner-cat-top-right {
+    top: -6%;
+    right: 6%;
+  }
+
+  .corner-cat-bottom-left {
+    bottom: 4%;
+    left: 8%;
+    transform: rotate(8deg); /* a bit more turned on small screens */
+  }
 }

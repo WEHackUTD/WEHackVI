@@ -1,209 +1,212 @@
-.Sponsor-title {
-  /* text-shadow: 0rem 0rem 3rem white; */
-    /* text-shadow: 0rem 0rem 3rem white; */
-    background-color: #A6CDC4;
-    padding:2rem;
-    border-radius:20px;
-    border: 8px solid #992444;
-    filter: drop-shadow(-10px 10px #992444);
-    box-shadow: 0px 0px 40px #992444;
-}
+/* --- General and Large Screen Styles (Existing Code) --- */
 
-.vinyl-yellow {
-  position: absolute;
-  -webkit-animation:spinCC 4s linear infinite;
-  -moz-animation:spinCC 4s linear infinite;
-  animation:spinCC 4s linear infinite;
-}
-
-.glow-sponsor {
-  /* filter: drop-shadow(0 0 20px #992444); */
-  transform: rotate(5deg);
-}
-
-@-moz-keyframes spinCC { 
-  100% { -moz-transform: rotate(-360deg); } 
-}
-@-webkit-keyframes spinCC { 
-  100% { -webkit-transform: rotate(-360deg); } 
-}
-@keyframes spinCC { 
-  100% { 
-      -webkit-transform: rotate(-360deg); 
-      transform:rotate(-360deg); 
-  } 
-}
-
+/* General container background */
 .Sponsor-container {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 1.5rem;
-  padding-bottom: 10rem;
-}
-
-.sponsor-text {
-  font-family: var(--font-darker-grotesque);
-  font-size: x-large;
-  text-align: center;
-  margin: 0;
-}
-
-.sponsor-text-container {
-  text-align: justify;
-  padding: 0 1rem;
+    background-size: cover;
+    background-repeat: repeat;
+    min-height: 100vh;
 }
 
 .Sponsor-title {
-  text-shadow: 0rem 0rem 3rem white;
+    font-family: 'Garamond', 'Times New Roman', serif; 
+    color: #E0E0E0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.Sponsor-logos {
-  /* display: grid; */
-  /* grid-template-columns: repeat(2, 1fr); split into two columns for each tier */
-  /* gap: 1.5rem;
-  width: 100%;
-  justify-items: center;
-  padding: 0 10rem; */
+/* ** Element Sizing & Styles ** */
+
+/* Vase Item container and background image styling */
+.Vase-item {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4)); /* Shadow for 3D effect */
+    width: 100%; /* Take full width of the flex container */
+    height: 100%; /* Take full height of the flex container */
+    transition: transform 0.3s ease-in-out;
 }
 
-.Sponsor-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 1rem;
-  background-color: #FFE9D7;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  position: relative;
-  transition: box-shadow 0.3s ease;
-}
-.Sponsor-logo:hover {
-  height:auto;
-}
 
-.Sponsor-logo.gold {
-  width: 300px;
-  height: 200px;
-  border: 2px solid #D09C51;
-  box-shadow: 0rem 0rem 1rem rgb(255, 202, 86);
+/* Specific sizing for the vases (These only take effect on larger screens) */
+.Vase-item.vase-style-1 { max-width: 350px; max-height: 200px; margin-left: 80px;}
+.Vase-item.vase-style-2 { max-width: 250px; max-height: 200px; margin-left: 60px; }
+.Vase-item.vase-style-3 { max-width: 250px; max-height: 200px; margin-left: 60px;}
+.Vase-item.vase-style-4 { max-width: 140px; max-height: 160px; }
+.Vase-item.vase-style-5 { max-width: 300px; max-height: 300px; margin-left: 80px; margin-bottom: 80px;}
+.Vase-item.vase-style-6 { max-width: 300px; max-height: 200px; margin-bottom: 0px; }
+.Vase-item.vase-style-7 { max-width: 180px; max-height: 180px; margin-bottom: 30px; margin-left:40px;}
+.Vase-item.vase-style-8 { max-width: 180px; max-height: 180px; margin-bottom: 30px; margin-right: 40px;}
+.Vase-item.vase-style-9 { max-width: 300px; max-height: 200px; margin-bottom: -5px; margin-left:60px; margin-right: -65px;}
+.Vase-item.vase-style-10 { max-width: 180px; max-height: 180px; margin-bottom: -5px; margin-left:40px;}
+/* Base style for the Sponsor placeholder (parent of both box and vase) */
+.Sponsor-placeholder {
+    /* Base styles for boxes */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
 }
 
-.Sponsor-logo.silver {
-  width: 250px;
-  height: 170px;
-  border: 2px solid rgb(195, 195, 195);
-  box-shadow: 0rem 0rem 1rem rgb(195, 195, 195);
+/* Margin only around sponsor BOXES in the specific Row */
+.Sponsor-placeholder.sponsor-row-2-box {
+    margin: -32px;
+    margin-right: 50px;
+    margin-top: 5px;
 }
 
-.Sponsor-logo.bronze {
-  width: 200px;
-  height: 140px;
-  border: 2px solid rgb(141, 88, 9);
-  box-shadow: 0rem 0rem 1rem #9a723a;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-
+.Sponsor-placeholder.sponsor-row-3-box {
+    margin: 30px;
+    margin-left: 0px;
 }
 
-.Sponsor-logo.gold:hover {
-  box-shadow: 0rem 0rem 2rem rgb(255, 202, 86);
-  transform:scale(1.05);
+/* Reset base style for Vases */
+.Sponsor-placeholder:has(.Vase-item) {
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
-.Sponsor-logo.silver:hover {
-  box-shadow: 0rem 0rem 2rem white;
-  transform:scale(1.05);
+/* ** Glow Effect on Hover ** */
+
+.Sponsor-placeholder:not(:has(.Vase-item)):hover {
+    box-shadow: 0 0 25px 5px rgba(135, 206, 250, 0.7), 
+                0 0 10px 2px rgba(135, 206, 250, 0.5) inset;
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(135, 206, 250, 0.5);
+    cursor: pointer;
+    
 }
 
-.Sponsor-logo.bronze:hover {
-  box-shadow: 0rem 0rem 1.5rem rgb(141, 88, 9);
-  transform:scale(1.05);
+.Sponsor-placeholder:has(.Vase-item):hover .Vase-item {
+    filter: drop-shadow(0 0 15px rgba(135, 206, 250, 0.7)) drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
+    transform: translateY(-5px) scale(1.02);
+    cursor: pointer;
 }
 
-.sponsor-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 0.3s ease;
+.Sponsor-placeholder:hover .Box-content img {
+    opacity: 1; 
+    filter: brightness(1.2);
 }
 
-/* .Sponsor-logo:hover .sponsor-img {
-  opacity: 0;
+.sponsor-text-container .sponsor-text {
+    font-family: var(--font-marcellus), sans-serif;
 }
 
-.Sponsor-logo::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-position: center;
-  background-image: var(--hover-image);
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-} */
+/* ---------------------------------------------------------------- */
+/* --- RESPONSIVE CAROUSEL STYLES (Applies to small screens) --- */
+/* ---------------------------------------------------------------- */
 
-.Sponsor-logo:hover::before {
-  opacity: 1;
+@media (max-width: 768px) {
+    /* * 1. Target the row container to enable the carousel behavior (No change needed here) */
+    .Sponsor-row {
+        /* Override Tailwind's grid setup for the carousel */
+        display: flex; 
+        grid-template-columns: none; /* Disable the 5-column grid */
+        
+        /* Enable horizontal scrolling */
+        overflow-x: scroll; 
+        overflow-y: hidden;
+        
+        /* Prevent content from wrapping to the next line (core carousel functionality) */
+        white-space: nowrap; 
+
+        /* Ensure gap is applied between flex items */
+        gap: 20px !important; /* Use !important to ensure it overrides Tailwind's gap utility */
+        
+        /* Hide the scrollbar for a cleaner look */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        padding-bottom: 5px; /* Space for hidden scrollbar */
+
+        /* === REMOVED SCROLL CUE: Gradient mask is gone === */
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    /* Hide the scrollbar for Webkit browsers (Chrome, Safari) */
+    .Sponsor-row::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* * 2. Make each sponsor/vase item (the placeholder) a fixed width */
+    .Sponsor-placeholder {
+        /* Prevents the item from shrinking/growing to fill space */
+        flex-shrink: 0; 
+        flex-grow: 0;
+        
+        /* * NEW SCROLL CUE: Set width to 44%. This forces 2.2 items to be visible,
+         * ensuring the 3rd item is always partially clipped by the viewport.
+         */
+        min-width: 44%; 
+        max-width: 44%; 
+        width: 44%; 
+    }
+    
+    /* * 3. Adjust Vases to ensure they fill the new placeholder width */
+    .Sponsor-placeholder:has(.Vase-item) {
+        /* Vases must use the same width calculation as the standard box items for consistent layout */
+        min-width: 44%;
+        max-width: 44%;
+        width: 44%;
+    }
+    
+    /* Reset specific vase sizing so they scale to the new container size (No change needed here) */
+    .Vase-item.vase-style-1, 
+    .Vase-item.vase-style-2,
+    .Vase-item.vase-style-3,
+    .Vase-item.vase-style-4,
+    .Vase-item.vase-style-5,
+    .Vase-item.vase-style-6,
+    .Vase-item.vase-style-7,
+    .Vase-item.vase-style-8 {
+        /* Overrides the max-width/height from the general styles for carousel view */
+        max-width: 100%; 
+        max-height: 100%;
+        width: 100%; /* Take full width of its container */
+        height: 100%;
+    }
 }
 
-@media screen and (max-width: 1280px) {
-  .sponsor-title {
-    height:8rem
-  }
-
+/* --- Headers Styles (Copied from Headers.css for consistency) --- */
+/* Header 3 - Golden Frame */
+.header-3 {
+    font-size: 2rem;
+    font-family: var(--font-cinzel-decorative);
+    background: #FFF7DA; /* Light linen background */
+    border: 5px solid #FFB412; /* Golden border */
+    padding: 1rem 1.5rem;
+    text-align: center;
+    margin: 2rem auto;
+    width: 75%;
+    max-width: 1200px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(77, 190, 255, 0.4); /* Golden shadow */
+    margin-bottom: 4rem;
 }
 
-@media screen and (max-width: 1050px) {
-  .sponsor-title {
-    height:6rem
-  }
-
-  .Sponsor-container {
-    padding: 1rem;
-    padding-bottom: 6rem;
+.header-3 h1 {
+    color: #4C4C4C; /* Dark golden text */
 }
 
-.sponsor-text {
-    font-size: large;
-}
-}
+/* Responsive styles */
+@media (max-width: 768px) {
+    .header-1, .header-2, .header-3 {
+        padding: 1rem 1.5rem; /* Reduce padding for smaller screens */
+        max-width: 90%; /* Adjust width to fit smaller screens */
+    }
 
-@media screen and (max-width: 600px) {
-  .sponsor-title {
-    height:6rem
-  }
-
-  .Sponsor-container {
-    padding: 4rem;
-  }
-
-  .sponsor-text {
-    font-size: large;
-  }
-
-  .Sponsor-logo.gold {
-    /* width: 280px;
-    height: 200px;
-    border: 2px solid #D09C51;
-    box-shadow: 0rem 0rem 1rem rgb(255, 202, 86); */
-  }
-  
+    .header-1 h1, .header-2 h1, .header-3 h1 {
+        font-size: 1.5rem; /* Reduce font size for smaller screens */
+        letter-spacing: 1px; /* Adjust letter spacing */
+    }
 }
 
-.sponsor-title {
-  filter: drop-shadow(0rem 0rem 4rem #992444);
+@media (max-width: 480px) {
+    .header-1, .header-2, .header-3 {
+        padding: 0.75rem 1rem; /* Further reduce padding for very small screens */
+        border-width: 8px; /* Reduce border thickness */
+    }
+
+    .header-1 h1, .header-2 h1, .header-3 h1 {
+        font-size: 1.25rem; /* Further reduce font size */
+        letter-spacing: 0.5px; /* Adjust letter spacing */
+    }
 }

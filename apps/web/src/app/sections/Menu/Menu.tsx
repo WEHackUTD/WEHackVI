@@ -16,7 +16,7 @@ function Menu() {
     <div className="mt-36 px-5 pb-40">
         <div className="flex flex-col md:flex-row justify-center items-center gap-y-2 md:gap-x-16 lg:gap-x-24 pb-24 md:pb-24 lg:pb-36">
           <div className="glow-menu transform-gpu">
-            <h1 className='menu-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl'>Menu</h1>
+            <h1 className='menu-title text-[#1A1C28] text-center text-4xl md:text-5xl lg:text-5xl'>Menu</h1>
           </div>
         </div>
 
@@ -25,99 +25,99 @@ function Menu() {
           {/* ROW ONE */}
 
           {/* SATURDAY LUNCH */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
-            <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Saturday Lunch: UnbelievaBowl</h1>
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#bda8ed] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+            <h1 className=' text-[#D1F4F3] text-center md:text-left text-2xl px-5 lg:px-0'>Saturday Lunch: UnbelievaBowl</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Teriyaki Chicken Bowl</h2>
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
               </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Tofu Teriyaki Bowl</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
-                <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Teriyaki Sauce</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Spicy Mayo</h2>
-              <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+              <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Sriracha Sauce</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>
           </div>
 
           {/* SATURDAY DINNER */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
-            <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Saturday Dinner: Cici’s + MOD Pizza</h1>
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#bda8ed] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+            <h1 className=' text-[#D1F4F3] text-center md:text-left text-2xl px-5 lg:px-0'>Saturday Dinner: Cici’s + MOD Pizza</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Chicken Pizza</h2>
-                {/* <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p> */}
+                {/* <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p> */}
               </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Veggie Pizza</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">MOD Olive Pizza</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Spicy Mayo</h2>
-              <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+              <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Sriracha Sauce</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>
           </div>
 
           {/* MIDNIGHT SNACK */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5 max-w-1/2">
-            <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Midnight Snack: Nikki’s Popcorn</h1>
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#bda8ed] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5 max-w-1/2">
+            <h1 className=' text-[#D1F4F3] text-center md:text-left text-2xl px-5 lg:px-0'>Midnight Snack: Nikki’s Popcorn</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Buttery</h2>
                 <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
-                  <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                  <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                  <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                  <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                  <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
                 </div>
               </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Kettle</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>
@@ -125,7 +125,7 @@ function Menu() {
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Cinnamon Churro</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>
@@ -133,78 +133,78 @@ function Menu() {
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Jalapeno Ranch</h2>
               <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
-                  <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                  <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                  <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                  <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                  <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Sea Salt Caramel</h2>
               <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
-                  <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                  <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                  <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                  <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                  <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Southwest Jalapeno</h2>
               <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
-                  <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                  <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                  <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                  <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                  <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
           </div>
 
           {/* SUNDAY BREAKFAST */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
-            <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Sunday Breakfast: 85 Degrees, Reverie Bakeshop, Chic Coffee Events</h1>
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#bda8ed] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+            <h1 className=' text-[#D1F4F3] text-center md:text-left text-2xl px-5 lg:px-0'>Sunday Breakfast: 85 Degrees, Reverie Bakeshop, Chic Coffee Events</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Chocolate Croissant</h2>
                 <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                  <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                  <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                  <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
                 </div>
               </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">White Chocolate Strawberry Bun</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Matcha Choco Bun</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Garlic Cheese</h2>
               <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                  <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                  <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                  <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Jalapeno Cream Cheese</h2>
               <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                  <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                  <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                  <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col flex-wrap md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl text-center lg:text-left px-2 lg:px-0">Reverie Bakeshop: Sweet Breakfast Tray (Muffins/Donuts/Scones)</h2>
               <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                  <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                   <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>
@@ -234,28 +234,28 @@ function Menu() {
           </div>
 
           {/* SUNDAY LUNCH */}
-          <div className="flex flex-col flex-start bg-[#282738] border border-b-2 border-[#992444] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
-            <h1 className=' text-[#A6CDC4] text-center md:text-left text-2xl px-5 lg:px-0'>Sunday Lunch: Rusty Taco</h1>
+          <div className="flex flex-col flex-start bg-[#1A1C28] border border-b-2 border-[#bda8ed] rounded-[1.5rem] py-10 md:px-10 h-auto gap-y-5">
+            <h1 className=' text-[#D1F4F3] text-center md:text-left text-2xl px-5 lg:px-0'>Sunday Lunch: Rusty Taco</h1>
               <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
                 <h2 className="text-xl">Chicken Fajita Taco</h2>
                 <div className="flex flex-row items-center gap-x-1">
-                  <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                  <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 </div>
               </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Black Bean Taco</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
-                <p className="border border-b-1 border-[#992444] px-2 rounded-[10rem] mt-1">Vegetarian</p>
-                <p className="border border-b-1 border-[#CCBA97] px-2 rounded-[10rem] mt-1">Halal</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#bda8ed] px-2 rounded-[10rem] mt-1">Vegetarian</p>
+                <p className="border border-b-1 border-[#FFCB86] px-2 rounded-[10rem] mt-1">Halal</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row gap-y-1 gap-x-3 items-center">
               <h2 className="text-xl">Black Bean Taco with No Cheese</h2>
               <div className="flex flex-row items-center gap-x-1">
-                <p className="border border-b-1 border-[#A6CDC4] px-2 rounded-[10rem] mt-1">Gluten-free</p>
+                <p className="border border-b-1 border-[#D1F4F3] px-2 rounded-[10rem] mt-1">Gluten-free</p>
                 <p className="border border-b-1 border-[#D09C51] px-2 rounded-[10rem] mt-1">Vegan</p>
               </div>
             </div>

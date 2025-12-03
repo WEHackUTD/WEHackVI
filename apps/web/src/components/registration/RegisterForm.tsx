@@ -628,7 +628,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 									</FormControl>
 									<div className="space-y-1 leading-none">
 										<FormLabel>
-											I accept the{" "}
+											I have read and agree to the{" "}
 											<Link
 												target="_blank"
 												className="underline"
@@ -663,15 +663,21 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 											application/registration information
 											with Major League Hacking for event
 											administration, ranking, and MLH
-											administration in-line with the MLH
-											Privacy Policy. I further agree to
-											the terms of both the{" "}
+											administration in-line with the{" "}
 											<Link
 												target="_blank"
 												className="underline"
 												href={
-													"https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
+													"https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md"
 												}
+											>
+												MLH Privacy Policy
+											</Link>{" "}
+											. I further agree to the terms of both the{" "}
+											<Link
+												target="_blank"
+												className="underline"
+												href={"https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"}
 											>
 												MLH Contest Terms and Conditions
 											</Link>{" "}
@@ -679,10 +685,12 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 											<Link
 												target="_blank"
 												className="underline"
-												href={"https://mlh.io/privacy"}
+												href={
+													"https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md"
+												}
 											>
 												MLH Privacy Policy
-											</Link>
+											</Link>{" "}
 											.
 										</FormLabel>
 										<FormDescription>
@@ -705,11 +713,10 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 									</FormControl>
 									<div className="space-y-1 leading-none">
 										<FormLabel>
-											I authorize MLH to send me an email
-											where I can further opt into the MLH
-											Hacker, Events, or Organizer
-											Newsletters and other communications
-											from MLH.
+											I authorize MLH to send me 
+											occasional emails about 
+											relevant events, career opportunities, 
+											and community announcements.
 										</FormLabel>
 										<FormDescription>
 											This is optional.
