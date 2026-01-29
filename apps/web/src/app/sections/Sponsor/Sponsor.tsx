@@ -2,24 +2,24 @@ import React from 'react';
 import './Sponsor.css';
 
 // --- VASE ASSET PATHS ---
-const VASE_A1 = 'img/static/images/sponsor_vases/A3-trimmed.png';
-const VASE_A2 = 'img/static/images/sponsor_vases/A2-trimmed.png';
-const VASE_A3 = 'img/static/images/sponsor_vases/A3-trimmed.png';
-const VASE_A4 = 'img/static/images/sponsor_vases/A4-trimmed.png';
-const VASE_A5 = 'img/static/images/sponsor_vases/A5-trimmed.png';
-const VASE_A6 = 'img/static/images/sponsor_vases/A6-trimmed.png';
-const VASE_A7 = 'img/static/images/sponsor_vases/A7-trimmed.png';
-const VASE_A8 = 'img/static/images/sponsor_vases/A8-trimmed.png';
+const VASE_A1 = 'img/static/images/sponsor_vases/A3-trimmed.webp';
+const VASE_A2 = 'img/static/images/sponsor_vases/A2-trimmed.webp';
+const VASE_A3 = 'img/static/images/sponsor_vases/A3-trimmed.webp';
+const VASE_A4 = 'img/static/images/sponsor_vases/A4-trimmed.webp';
+const VASE_A5 = 'img/static/images/sponsor_vases/A5-trimmed.webp';
+const VASE_A6 = 'img/static/images/sponsor_vases/A6-trimmed.webp';
+const VASE_A7 = 'img/static/images/sponsor_vases/A7-trimmed.webp';
+const VASE_A8 = 'img/static/images/sponsor_vases/A8-trimmed.webp';
 
 const LOGO_STATEFARM = 'img/static/images/sponsors/statefarm_bronze.webp';
 const LOGO_CBRE = 'img/static/images/sponsors/cbre_gold.webp';
 const LOGO_VERIZON = 'img/static/images/sponsors/verizon_gold.svg';
 const LOGO_CAPITAL_ONE = 'img/static/images/sponsors/capital_one_silver.webp';
-const LOGO_HCSC = 'img/static/images/sponsors/hcsc_logo.png';
+const LOGO_HCSC = 'img/static/images/sponsors/hcsc_logo.webp';
 const LOGO_CODEPATH = 'img/static/images/sponsors/codepath_bronze.webp';
-const LOGO_NH = 'img/static/images/sponsors/nh_logo.png';
+const LOGO_NH = 'img/static/images/sponsors/nh_logo.webp';
 const LOGO_AXXESS = 'img/static/images/sponsors/axxess_bronze.webp';
-const LOGO_DFW_ATW = 'img/static/images/sponsors/dfw_atw_bronze.png';
+const LOGO_DFW_ATW = 'img/static/images/sponsors/dfw_atw_bronze.webp';
 
 
 // Define grid item structure
