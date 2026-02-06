@@ -148,7 +148,7 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 								c.startDate,
 								"h:mma, MMM d, yyyy",
 							)}`} */}
-								9:00 AM, April 5, 2025
+								9:00 AM, April 11, 2026
 							</p>
 							<p className="px-10 text-center font-mono text-xs">
 								{c.prettyLocation}

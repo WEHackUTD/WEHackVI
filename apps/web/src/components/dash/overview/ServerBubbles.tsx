@@ -40,7 +40,7 @@ export function TitleBubble() {
 					{c.hackathonName}
 				</h1>
 				<h2 className="text-center font-mono text-xs text-white sm:text-sm">
-					9:00AM, Apr 5, 2025 @{" "}
+					9:00AM, Apr 11, 2026 @{" "}
 					{c.prettyLocation}
 				</h2>
 			</div>
