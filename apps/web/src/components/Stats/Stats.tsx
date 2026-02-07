@@ -1,54 +1,37 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import './Stats.css'
+// apps/web/src/components/Stats/Stats.tsx
+// Server component: no hooks, no client-side state
+import './Stats.css';
+
+const CAT_SCULPTURE = '/img/static/images/Cat_Sculpture.png';
+const CAT_EYES_OPEN = '/img/static/images/Cat_Eyes_Open.png';
+const CAT_EYES_CLOSED = '/img/static/images/Cat_Eyes_Closed.png';
+const TICKET = '/img/static/images/Group 79.webp';
 
 function Statistics() {
-  const [showEyesOpen, setShowEyesOpen] = useState(true)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowEyesOpen(prev => !prev)
-    }, 2000) // toggle every 2 seconds
-
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <div
-      className='Statistics-container w-full h-auto flex flex-col items-center justify-center p-6 pb-40 lg:pb-60 relative overflow-visible'
-      id='Statistics'
+      className="Statistics-container w-full h-auto flex flex-col items-center justify-center p-6 pb-40 lg:pb-60 relative overflow-visible"
+      id="Statistics"
     >
-      {/* Top-right cat sculpture */}
-      <img
-        src="img/static/images/Cat_Sculpture.png"
-        alt="Cat Sculpture"
-        className="corner-cat corner-cat-top-right"
-      />
+      <img src={CAT_SCULPTURE} alt="Cat Sculpture" className="corner-cat corner-cat-top-right" />
 
-      {/* Bottom-left cat eyes (toggles open/closed) */}
-      <img
-        src={
-          showEyesOpen
-            ? "img/static/images/Cat_Eyes_Open.png"
-            : "img/static/images/Cat_Eyes_Closed.png"
-        }
-        alt={showEyesOpen ? "Cat Eyes Open" : "Cat Eyes Closed"}
-        className="corner-cat corner-cat-bottom-left"
-      />
+      {/* Blink handled in CSS sprite; no JS re-render */}
+      <div className="corner-cat corner-cat-bottom-left eyes-sprite" aria-hidden>
+        <img src={CAT_EYES_OPEN} className="eyes-frame eyes-open" alt="" />
+        <img src={CAT_EYES_CLOSED} className="eyes-frame eyes-closed" alt="" />
+      </div>
 
-      {/* Main Statistics Image (ticket) */}
       <div className="stats-image-container flex flex-col items-center justify-center relative">
         <img
-          src="img/static/images/Group 79.webp"
+          src={TICKET}
           alt="Statistics Graphic"
           className="rotating-image"
-          onError={(e) => {
-            e.currentTarget.src = '/static/images/default-stats.png';
-          }}
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default Statistics
+export default Statistics;

@@ -100,3 +100,35 @@
     transform: rotate(8deg); /* a bit more turned on small screens */
   }
 }
+
+/* sprite container */
+.eyes-sprite {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  width: 190px;
+  max-width: 26vw;
+  height: auto;
+}
+
+/* stack frames */
+.eyes-frame { position: absolute; inset: 0; width: 100%; height: auto; }
+.eyes-closed { opacity: 0; animation: blink 6s infinite steps(1, end); }
+.eyes-open { animation: blink-open 6s infinite steps(1, end); }
+
+@keyframes blink {
+  0%, 97%, 100% { opacity: 0; }
+  49%, 51%     { opacity: 1; }   /* quick blink */
+}
+@keyframes blink-open {
+  0%, 48%, 52%, 100% { opacity: 1; }
+  49%, 51%           { opacity: 0; }
+}
+/* respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .rotating-image,
+  .eyes-open,
+  .eyes-closed {
+    animation: none;
+  }
+}

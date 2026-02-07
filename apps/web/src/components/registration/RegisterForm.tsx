@@ -1157,7 +1157,7 @@ export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
 										<FormLabel className="flex flex-row gap-x-2">
 											In what ways do you hope to make a
 											positive impact through your project
-											at WEHack 2025?{" "}
+											at WEHack 2026?{" "}
 											<p className="text-[#F03C2D]">*</p>
 										</FormLabel>
 										<FormControl>

@@ -1,25 +1,25 @@
 import React from 'react';
 import './Sponsor.css';
 
-// --- VASE ASSET PATHS ---
-const VASE_A1 = 'img/static/images/sponsor_vases/A3-trimmed.webp';
-const VASE_A2 = 'img/static/images/sponsor_vases/A2-trimmed.webp';
-const VASE_A3 = 'img/static/images/sponsor_vases/A3-trimmed.webp';
-const VASE_A4 = 'img/static/images/sponsor_vases/A4-trimmed.webp';
-const VASE_A5 = 'img/static/images/sponsor_vases/A5-trimmed.webp';
-const VASE_A6 = 'img/static/images/sponsor_vases/A6-trimmed.webp';
-const VASE_A7 = 'img/static/images/sponsor_vases/A7-trimmed.webp';
-const VASE_A8 = 'img/static/images/sponsor_vases/A8-trimmed.webp';
+// --- VASE ASSET PATHS (absolute to avoid 404s on nested routes) ---
+const VASE_A1 = '/img/static/images/sponsor_vases/A3-trimmed.webp';
+const VASE_A2 = '/img/static/images/sponsor_vases/A2-trimmed.webp';
+const VASE_A3 = '/img/static/images/sponsor_vases/A3-trimmed.webp';
+const VASE_A4 = '/img/static/images/sponsor_vases/A4-trimmed.webp';
+const VASE_A5 = '/img/static/images/sponsor_vases/A5-trimmed.webp';
+const VASE_A6 = '/img/static/images/sponsor_vases/A6-trimmed.webp';
+const VASE_A7 = '/img/static/images/sponsor_vases/A7-trimmed.webp';
+const VASE_A8 = '/img/static/images/sponsor_vases/A8-trimmed.webp';
 
-const LOGO_STATEFARM = 'img/static/images/sponsors/statefarm_bronze.webp';
-const LOGO_CBRE = 'img/static/images/sponsors/cbre_gold.webp';
-const LOGO_VERIZON = 'img/static/images/sponsors/verizon_gold.svg';
-const LOGO_CAPITAL_ONE = 'img/static/images/sponsors/capital_one_silver.webp';
-const LOGO_HCSC = 'img/static/images/sponsors/hcsc_logo.webp';
-const LOGO_CODEPATH = 'img/static/images/sponsors/codepath_bronze.webp';
-const LOGO_NH = 'img/static/images/sponsors/nh_logo.webp';
-const LOGO_AXXESS = 'img/static/images/sponsors/axxess_bronze.webp';
-const LOGO_DFW_ATW = 'img/static/images/sponsors/dfw_atw_bronze.webp';
+const LOGO_STATEFARM = '/img/static/images/sponsors/statefarm_bronze.webp';
+const LOGO_CBRE = '/img/static/images/sponsors/cbre_gold.webp';
+const LOGO_VERIZON = '/img/static/images/sponsors/verizon_gold.svg';
+const LOGO_CAPITAL_ONE = '/img/static/images/sponsors/capital_one_silver.webp';
+const LOGO_HCSC = '/img/static/images/sponsors/hcsc_logo.webp';
+const LOGO_CODEPATH = '/img/static/images/sponsors/codepath_bronze.webp';
+const LOGO_NH = '/img/static/images/sponsors/nh_logo.webp';
+const LOGO_AXXESS = '/img/static/images/sponsors/axxess_bronze.webp';
+const LOGO_DFW_ATW = '/img/static/images/sponsors/dfw_atw_bronze.webp';
 
 
 // Define grid item structure
@@ -106,7 +106,7 @@ const getBoxSizeClass = (id: number, type: 'vase' | 'box'): string => {
     return '';
 };
 
-// Group items into rows
+// Group items into rows (static)
 const groupedSponsors = dummySponsors.reduce((acc, item) => {
     const row = Math.ceil(item.id / 5);
     if (!acc[row]) acc[row] = [];
@@ -116,7 +116,11 @@ const groupedSponsors = dummySponsors.reduce((acc, item) => {
 
 const Sponsor: React.FC = () => {
     return (
-        <div className='Sponsor-container w-full h-auto flex flex-col items-center p-6 py-20' id="Sponsor">
+        <div
+            className='Sponsor-container w-full h-auto flex flex-col items-center p-6 py-20'
+            id="Sponsor"
+            style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px 900px' }}
+        >
             
             <div className="header-3">
                 <h1>Past Sponsors</h1>
@@ -173,12 +177,16 @@ const Sponsor: React.FC = () => {
                                                         backgroundRepeat: 'no-repeat',
                                                         backgroundPosition: 'bottom center'
                                                     }}
+                                                    role="img"
+                                                    aria-label={`Sponsor vase ${item.id}`}
                                                 />
                                             ) : (
                                                 <div className="Box-content w-full h-full p-4 flex items-center justify-center">
                                                     <img 
                                                         src={item.imagePath} 
                                                         alt={`Sponsor ${item.id}`} 
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         className='max-w-[90%] max-h-[80%] object-contain opacity-70 transition-opacity duration-300' 
                                                     />
                                                 </div>
