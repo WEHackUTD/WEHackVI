@@ -58,9 +58,12 @@ export function QuickQR({ qrPayload }: { qrPayload: string }) {
 			<div className="flex aspect-square h-[50%] items-center justify-center overflow-x-hidden rounded-xl border-2 border-dashed border-muted p-2">
 				<QRCode
 					className="h-full"
-					bgColor="hsl(var(--background))"
-					fgColor="hsl(var(--primary))"
 					value={qrPayload}
+					size={220}
+					level="M"
+					bgColor="#ffffff"
+					fgColor="#000000"
+					style={{ padding: 12, borderRadius: 8, background: "#ffffff" }}
 				/>
 			</div>
 			<p className="text-xl text-muted-foreground">
