@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Scanner } from "@yudiel/react-qr-scanner";
+import { Scanner, outline } from "@yudiel/react-qr-scanner";
 import superjson from "superjson";
 import { checkInUserToHackathon } from "@/actions/admin/scanner-admin-actions";
 import { type QRDataInterface } from "@/lib/utils/shared/qr";
@@ -153,12 +153,23 @@ export default function CheckinScanner({
 								}
 							}}
 							onError={(error) => console.log(error)}
+							components={{
+								tracker: outline,
+								finder: true,
+								torch: true,
+								zoom: true,
+							}}
 							styles={{
 								container: {
-									width: "100vw",
-									maxWidth: "500px",
-									margin: "0",
+									width: "100%",
+									height: "100%",
 								},
+								video: {
+									width: "100%",
+									height: "100%",
+									objectFit: "cover",
+								},
+								finderBorder: 4,
 							}}
 						/>
 					</div>
