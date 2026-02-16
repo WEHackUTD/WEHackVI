@@ -22,6 +22,7 @@ const schools = [
 	"Birmingham City University",
 	"Blinn College",
 	"Bloomsburg University of Pennsylvania",
+	"Borough of Manhattan Community College",
 	"Boston College",
 	"Boston University",
 	"Bowie State University",

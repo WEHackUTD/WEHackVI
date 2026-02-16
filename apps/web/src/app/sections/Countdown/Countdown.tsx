@@ -42,9 +42,11 @@ function Countdown() {
           <p className="countdown-heading">Unlock the Secrets of the Museum in...</p>
           <div className="countdown clock-wrapper">
             <img 
-              src="img/static/images/Group 80.png"
+              src="/img/static/images/Group 80.png"
               alt="Countdown Clocks"
               className="clocks-image"
+              loading="lazy"
+              decoding="async"
             />
 
             {/* DAYS */}
