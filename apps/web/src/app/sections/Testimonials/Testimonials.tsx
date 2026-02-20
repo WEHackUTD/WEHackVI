@@ -5,23 +5,17 @@ import './Testimonials.css';
 
 const testimonials = [
   {
-    imagePng: '/img/static/images/suhani.jpg',
-    imageWebp1x: '/img/static/images/suhani@1x.webp',
-    imageWebp2x: '/img/static/images/suhani@2x.webp',
+    image: 'img/static/images/suhani.jpg',
     text: 'As a sophomore I was really nervous to join a team and was unsure of my ability to be able to finish my project, but the mentors and organizers created such a welcoming environment. The music, food, workshops, and overall vibe made WeHack such an amazing first hackathon experience!',
     author: 'Suhani Rana',
   },
   {
-    imagePng: '/img/static/images/karina.jpg',
-    imageWebp1x: '/img/static/images/karina@1x.webp',
-    imageWebp2x: '/img/static/images/karina@2x.webp',
+    image: 'img/static/images/karina.jpg',
     text: 'WEHack was an amazing experience where I learned relevant technology skills and connected with an inspiring, supportive community. The vibes were incredible, and I left with lasting memories and new connections. I highly recommend it to anyone, especially beginners!',
     author: 'Karina Batra',
   },
   {
-    imagePng: '/img/static/images/sneha.jpeg',
-    imageWebp1x: '/img/static/images/sneha@1x.webp',
-    imageWebp2x: '/img/static/images/sneha@2x.webp',
+    image: 'img/static/images/sneha.jpeg',
     text: 'My experience at WEHack was amazing!! It really brought my friends and me together to build something meaningful, support each other, and most importantly have fun!',
     author: 'Sneha Nangunoori',
   },
@@ -73,21 +67,11 @@ function Testimonials() {
               }}
             >
               <div className="testimonial-image-container">
-                <picture>
-                  <source
-                    srcSet={`${item.imageWebp1x} 1x, ${item.imageWebp2x} 2x`}
-                    type="image/webp"
-                  />
-                  <img
-                    src={item.imagePng}
-                    alt={`Testimonial ${i + 1}`}
-                    className="testimonial-image"
-                    width={150}
-                    height={150}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
+                <img
+                  src={item.image}
+                  alt={`Testimonial ${i + 1}`}
+                  className="testimonial-image"
+                />
               </div>
 
               <div
