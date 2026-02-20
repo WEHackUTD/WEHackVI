@@ -50,10 +50,17 @@
   width: 190px;
   max-width: 26vw;
   height: auto;
+  display: block;
   opacity: 1;
   filter: drop-shadow(0 0 20px rgba(153, 36, 68, 0.6));
   pointer-events: none;
   z-index: 2;
+}
+
+.corner-cat img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Top-right: cat sculpture – move it higher */
@@ -113,7 +120,8 @@
 }
 
 /* stack frames */
-.eyes-frame { position: absolute; inset: 0; width: 100%; height: auto; }
+.eyes-frame { position: absolute; inset: 0; width: 100%; height: auto; display: block; }
+.eyes-frame img { width: 100%; height: auto; display: block; }
 .eyes-closed { opacity: 0; animation: blink 6s infinite steps(1, end); }
 .eyes-open { animation: blink-open 6s infinite steps(1, end); }
 
