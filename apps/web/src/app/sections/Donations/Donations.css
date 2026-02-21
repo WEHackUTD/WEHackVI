@@ -1,0 +1,138 @@
+/* ============================= */
+/* CONTAINER */
+/* ============================= */
+
+.donations-container {
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+/* ============================= */
+/* GRID LAYOUT */
+/* ============================= */
+
+.donations-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+
+.donation-card {
+  position: relative;
+  background: #f3f3f3;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Safari stability */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.donation-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(135, 206, 250, 0.5);
+  cursor: pointer;
+}
+
+.donation-card-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donation-logo {
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.donation-card:hover .donation-logo {
+  opacity: 1;
+}
+
+/* ============================= */
+/* MOBILE CAROUSEL */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .donations-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 5px;
+    scroll-behavior: smooth;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .donations-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .donation-card {
+    flex: 0 0 44%;
+    min-width: 44%;
+  }
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+.header-3 {
+  font-size: 2rem;
+  font-family: var(--font-cinzel-decorative);
+  background: #fff7da;
+  border: 5px solid #ffb412;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  margin: 2rem auto 4rem auto;
+  width: 75%;
+  max-width: 1200px;
+  box-shadow: 0 4px 8px rgba(77, 190, 255, 0.4);
+}
+
+.header-3 h1 {
+  color: #4c4c4c;
+}
+
+@media (max-width: 768px) {
+  .header-3 {
+    max-width: 90%;
+  }
+
+  .header-3 h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-3 {
+    padding: 0.75rem 1rem;
+    border-width: 4px;
+  }
+
+  .header-3 h1 {
+    font-size: 1.25rem;
+  }
+}
