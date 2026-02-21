@@ -2,7 +2,7 @@ import React from 'react';
 import './Donations.css';
 
 const LOGO_SHAKESHACK = '/img/static/images/donors/Shake-Shack_Logo.png';
-const LOGO_NAMI = '/img/static/images/donors/Nami_Illustrations_Official_Working File_Star Logo + Name_White Text.png';
+const LOGO_NAMI = '/img/static/images/donors/Nami_Illustrations.png';
 const LOGO_CIDERCADE = '/img/static/images/donors/Cidercade.png';
 const LOGO_JENIS = '/img/static/images/donors/Jenis.png';
 
