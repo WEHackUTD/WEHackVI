@@ -5,11 +5,13 @@ const LOGO_SHAKESHACK = '/img/static/images/donors/Shake-Shack_Logo.png';
 const LOGO_NAMI = '/img/static/images/donors/Nami_Illustrations.png';
 const LOGO_CIDERCADE = '/img/static/images/donors/Cidercade.png';
 const LOGO_JENIS = '/img/static/images/donors/Jenis.png';
+const LOGO_FIREFLY = '/img/static/images/donors/SweetFirefly.png';
 
 const SHAKESHACK_LINK = 'https://www.shakeshack.com/';
 const NAMI_LINK = 'https://namimatcha.com/';
 const CIDERCADE_LINK = 'https://www.cidercade.com/';
 const JENIS_LINK = 'https://www.jenis.com/';
+const FIREFLY_LINK = 'https://sweetfirefly.com/';
 
 interface GridItem {
   id: number;
@@ -22,6 +24,7 @@ const donations: GridItem[] = [
   { id: 2, imagePath: LOGO_SHAKESHACK, link: SHAKESHACK_LINK },
   { id: 3, imagePath: LOGO_NAMI, link: NAMI_LINK },
   { id: 4, imagePath: LOGO_JENIS, link: JENIS_LINK },
+  { id: 5, imagePath: LOGO_FIREFLY, link: FIREFLY_LINK },
 ];
 
 const Donations: React.FC = () => {

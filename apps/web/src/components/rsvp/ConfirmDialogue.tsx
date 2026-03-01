@@ -42,8 +42,8 @@ export default function ConfirmDialogue({ hasRsvped }: { hasRsvped: boolean }) {
 				/>
 			)}
 			{hasRsvped ? (
-				<div className="relative flex aspect-video w-96 max-w-[500px] flex-col items-center justify-center rounded-xl bg-[#992444] p-5 backdrop-blur transition dark:bg-white/[0.08]">
-					<h1 className="flex items-center gap-x-2 text-2xl font-bold text-[#A6CDC4]">
+				<div className="relative flex aspect-video w-96 max-w-[500px] flex-col items-center justify-center rounded-xl bg-[#202A42] p-5 backdrop-blur transition dark:bg-white/[0.08]">
+					<h1 className="flex items-center gap-x-2 text-2xl font-bold text-[#E1D4FF]">
 						<CheckCircleIcon />
 						You have RSVPed!
 					</h1>
@@ -51,7 +51,7 @@ export default function ConfirmDialogue({ hasRsvped }: { hasRsvped: boolean }) {
 						We can't wait to see you at the event!
 					</p>
 					<Link href={"/dash"}>
-						<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">
+						<Button className="bg-[#CCBA97] hover:bg-[#c6a562] text-black">
 							Go To Dashboard
 						</Button>
 					</Link>

@@ -13,7 +13,8 @@
 
 .donations-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* Show all donors on one row for desktop */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 2rem;
   width: 100%;
 }
