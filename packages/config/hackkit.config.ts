@@ -832,7 +832,7 @@ const c = {
 	},
 	issueEmail: "wehackutd@gmail.com",
 	links: {
-		discord: "https://discord.gg/VkPPe5FEWQ",
+		discord: "https://discord.gg/4rbcHbkBEH", 
 		instagram: "https://www.instagram.com/wehackutd",
 		facebook: "https://www.facebook.com/WEHackUTD/",
 		twitter: "https://x.com/wehackutd",

@@ -37,8 +37,8 @@ export default async function Page() {
 		"Vegan": 1,
 		"Gluten-Free": 1, 
 		"Vegetarian": 2, 
-		"Halal": 2,
-		"None": 3,
+		"Halal": 3,
+		"None": 4,
 	}
 
 	var groupNumber = 1; // for those who put eggs, wheat, none, etc
@@ -65,11 +65,14 @@ export default async function Page() {
 	if(dietaryRestrictions.includes("Vegan") || dietaryRestrictions.includes("Gluten-Free")) {
 		groupNumber = 1;
 	}
-	else if(dietaryRestrictions.includes("Vegetarian") || dietaryRestrictions.includes("Halal")) {
+	else if(dietaryRestrictions.includes("Vegetarian")) {
 		groupNumber = 2;
 	}
-	else if (dietaryRestrictions.includes("None") && dietaryRestrictions.length == 1) {
+	else if(dietaryRestrictions.includes("Halal")) {
 		groupNumber = 3;
+	}
+	else if (dietaryRestrictions.includes("None") && dietaryRestrictions.length == 1) {
+		groupNumber = 4;
 	}
 	else {
 		groupNumber = 1;
@@ -112,9 +115,10 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 						</h3>
 						<h3 className="text-center font-mono text-sm">
 							{(() => {
-								if (guild === 1) return "Group Cassette";
-								if (guild === 2) return "Group Jukebox";
-								if (guild === 3) return "Group Disco";
+								if (guild === 1) return "Group Hopper";
+								if (guild === 2) return "Group Da Vinci";
+								if (guild === 3) return "Group Vermeer";
+								if (guild === 4) return "Group Hokusai";
 							})()}
 						</h3>
 					</div>
