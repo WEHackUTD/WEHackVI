@@ -2,10 +2,11 @@
 // Server component: no hooks, no client-side state
 import './Stats.css';
 
-const CAT_SCULPTURE = '/img/static/images/Cat_Sculpture.png';
-const CAT_EYES_OPEN = '/img/static/images/Cat_Eyes_Open.png';
-const CAT_EYES_CLOSED = '/img/static/images/Cat_Eyes_Closed.png';
-const TICKET = '/img/static/images/Group 79.webp';
+// served from public/static/images to avoid 404s on /static paths
+const CAT_SCULPTURE = '/static/images/Cat_Sculpture.png';
+const CAT_EYES_OPEN = '/static/images/Cat_Eyes_Open.png';
+const CAT_EYES_CLOSED = '/static/images/Cat_Eyes_Closed.png';
+const TICKET = '/static/images/Group 79.webp';
 
 function Statistics() {
   return (
