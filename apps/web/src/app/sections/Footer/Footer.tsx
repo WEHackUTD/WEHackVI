@@ -31,7 +31,7 @@ function Footer() {
 				<div className="flex flex-row gap-x-20 md:gap-x-10 lg:w-2/3">
 					{/* Navigation */}
 					<div className="navigation-container flex flex-col flex-wrap gap-y-1 lg:w-1/2">
-						<h1 className="about-title text-center text-xl font-medium text-[#FFE9D7]">
+						<h1 className="about-title text-left text-xl font-medium text-[#FFE9D7]">
 							Navigation
 						</h1>
 						<a className="nav-link" href="#home">
