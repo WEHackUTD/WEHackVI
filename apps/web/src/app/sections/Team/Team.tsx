@@ -1,154 +1,208 @@
-// "use client";
-// import React, { useState, useEffect, useTransition } from 'react';
-// import './Team.css';
+"use client";
 
-// const FadeInImage = ({ src, ...props }: { src: string; [key: string]: any }) => {
-//   const [loaded, setLoaded] = useState(false);
+import React, { useState, useCallback, useMemo, useEffect } from "react";
+import NextImage, { StaticImageData } from "next/image";
+import "./Team.css";
 
-//   useEffect(() => {
-//     const img = new Image();
-//     img.src = src;
-//     img.onload = () => setLoaded(true);
-//   }, [src]);
+interface TeamMember {
+  id: number;
+  name: string;
+  title: string;
+  image: string | StaticImageData;
+}
 
-//   return (
-//     <img
-//       {...props}
-//       src={src}
-//       alt={props.alt || ""}
-//       className={`polaroid-image ${loaded ? 'loaded' : 'loading'}`}
-//       style={{
-//         opacity: loaded ? 1 : 0.5, 
-//         transition: 'opacity 0.5s',
-//       }}
-//     />
-//   );
-// };
+// ✅ Static imports ONLY for first page (fast load)
+import member1 from "../../../../public/img/static/images/team/member_1.webp";
+import member2 from "../../../../public/img/static/images/team/member_2.webp";
+import member3 from "../../../../public/img/static/images/team/member_3.webp";
+import member4 from "../../../../public/img/static/images/team/member_4.webp";
+import member5 from "../../../../public/img/static/images/team/member_5.webp";
+import member6 from "../../../../public/img/static/images/team/member_6.webp";
+import member7 from "../../../../public/img/static/images/team/member_7.webp";
+import member8 from "../../../../public/img/static/images/team/member_8.webp";
 
-// const Polaroid = ({ member }: { member: { image: string; name: string; role: string } }) => {
-//   const [imageLoaded, setImageLoaded] = useState(false);
+const STATIC_FIRST_PAGE: Record<number, StaticImageData> = {
+  1: member1,
+  2: member2,
+  3: member3,
+  4: member4,
+  5: member5,
+  6: member6,
+  7: member7,
+  8: member8,
+};
 
-//   const handleImageLoad = () => {
-//     setImageLoaded(true);
-//   };
+// ✅ All members
+const TEAM_MEMBERS: TeamMember[] = [
+  { id: 1, name: "Oviya Selvakumar", title: "Co-Director" },
+  { id: 2, name: "Elisa Paul", title: "Co-Director" },
+  { id: 3, name: "Clowie Garcia", title: "Advisor" },
+  { id: 4, name: "Zubiya Syeda", title: "Development Director" },
+  { id: 5, name: "Sanvi Gudipati", title: "Development Coordinator" },
+  { id: 6, name: "Annie Li", title: "Development Coordinator" },
+  { id: 7, name: "Sameeraa Kandalgaonkar", title: "Development Coordinator" },
+  { id: 8, name: "Kanchan Javalkar", title: "Development Coordinator" },
+  { id: 9, name: "Faith Omoye", title: "Marketing Director" },
+  { id: 10, name: "Taylor Beers", title: "Marketing Coordinator" },
+  { id: 11, name: "Sri Sahasra Danthuluri", title: "Marketing Coordinator" },
+  { id: 12, name: "Meghana Kakani", title: "Marketing Coordinator" },
+  { id: 13, name: "Daisy Gan", title: "Marketing Coordinator" },
+  { id: 14, name: "Toby Estipona", title: "Experience Director" },
+  { id: 15, name: "Oluwawemimo Jayeoba", title: "Experience Coordinator" },
+  { id: 16, name: "Aaryaa Moharir", title: "Experience Coordinator" },
+  { id: 17, name: "Sanjanaa Tiwari", title: "Experience Coordinator" },
+  { id: 18, name: "Ditya Jain", title: "Experience Coordinator" },
+  { id: 19, name: "Sanjana Kotha", title: "Industry Director" },
+  { id: 20, name: "Maryam Tariq", title: "Industry Coordinator" },
+  { id: 21, name: "Mia Sorola Yoshida", title: "Industry Coordinator" },
+  { id: 22, name: "Neeharika Dasaraju", title: "Industry Coordinator" },
+  { id: 23, name: "Dharshini Mahesh", title: "Industry Coordinator" },
+  { id: 24, name: "Nivedha Sreenivasan", title: "Logistics Director" },
+  { id: 25, name: "Zainab Syeda", title: "Logistics Coordinator" },
+  { id: 26, name: "Farah Khalil", title: "Logistics Coordinator" },
+  { id: 27, name: "Anusha Rab", title: "Logistics Coordinator" },
+  { id: 28, name: "Purva Patel", title: "Logistics Coordinator" },
+].map((m) => ({
+  ...m,
+  image: `/img/static/images/team/member_${m.id}.webp`,
+}));
 
-//   return (
-//     <div className={`polaroid ${imageLoaded ? 'loaded' : 'loading'}`}>
-//       <FadeInImage
-//         src={member.image}
-//         alt={member.name}
-//         className="polaroid-image"
-//         loading="lazy"
-//         onLoad={handleImageLoad}
-//       />
-//       <div className="polaroid-text">
-//         <h3 className="position-text font-bold">{member.name}</h3>
-//         <p className="role-text">{member.role}</p>
-//       </div>
-//     </div>
-//   );
-// };
+const ITEMS_PER_PAGE = 8;
 
+// ✅ Pre-split pages
+const PAGED_MEMBERS: TeamMember[][] = Array.from(
+  { length: Math.ceil(TEAM_MEMBERS.length / ITEMS_PER_PAGE) },
+  (_, page) =>
+    TEAM_MEMBERS.slice(
+      page * ITEMS_PER_PAGE,
+      (page + 1) * ITEMS_PER_PAGE
+    )
+);
 
-// function Team() {
-//  const teamMembers = [
-//    { name: 'Maheen Ferdouse', role: 'Co-Director', image: '/img/static/images/team/maheen.webp' },
-//    { name: 'Mansi Patel', role: 'Co-Director', image: '/img/static/images/team/mansi.webp' },   
-//    { name: 'Clowie Garcia', role: 'Advisor', image: '/img/static/images/team/clowie.webp' },
-//    { name: 'Shivani Zala', role: 'Experience Director', image: '/img/static/images/team/shivani.webp' },
-//    { name: 'Gayathri Jeyaraman', role: 'Experience Coordinator', image: '/img/static/images/team/gayathri.webp' },
-// //    { name: 'Timage Abubaker', role: 'Experience Coordinator', image: '/static/images/team/timage.jpg' },
-//    { name: 'Toby Estipona', role: 'Experience Coordinator', image: '/img/static/images/team/toby.webp' },
-//    { name: 'Shreya Ram', role: 'Industry Director', image: '/img/static/images/team/shreya.webp' },
-//    { name: 'Sanjana Kotha', role: 'Industry Coordinator', image: '/img/static/images/team/sanjana.webp' },
-//    { name: 'Mariyam Zaki', role: 'Industry Coordinator', image: '/img/static/images/team/mariyam.webp' },
-//    { name: 'Dharshini Mahesh', role: 'Industry Coordinator', image: '/img/static/images/team/dharshini.webp' },
-//    { name: 'Elisa Paul', role: 'Industry Coordinator', image: '/img/static/images/team/elisa.webp' },
-//    { name: 'Hemal Pathak', role: 'Logistics Director', image: '/img/static/images/team/hemal.webp' },
-//    { name: 'Nivedha Sreenivasan', role: 'Logistics Coordinator', image: '/img/static/images/team/nivedha.webp' },
-//    { name: 'Oviya Selvakumar', role: 'Logistics Coordinator', image: '/img/static/images/team/oviya.webp' },
-//    { name: 'Shriya Rajesh', role: 'Logistics Coordinator', image: '/img/static/images/team/shriya.webp' },
-//    { name: 'Sri Vellanki', role: 'Logistics Coordinator', image: '/img/static/images/team/sri.webp' },
-//    { name: 'Rita Kaushik', role: 'Marketing Directior', image: '/img/static/images/team/rita.webp' },
-//    { name: 'Faith Omoye', role: 'Marketing Coordinator', image: '/img/static/images/team/faith.webp' },
-//    { name: 'Kanchan Javalkar', role: 'Marketing Coordinator', image: '/img/static/images/team/kanchan.webp' },
-//    { name: 'Meghan Grayson', role: 'Marketing Coordinator', image: '/img/static/images/team/meghan.webp' },
-//    { name: 'Nazihah Hossain', role: 'Marketing Coordinator', image: '/img/static/images/team/nazihah.webp' },
-//    // Zara doesn't have a new photo yet
-//    // { name: 'Zara Iqbal', role: 'Marketing Coordinator', image: '/static/images/zara.jpg' },
-//    { name: 'Sneha Bista', role: 'Development Director', image: '/img/static/images/team/sneha.webp' },
-//    { name: 'Annie Li', role: 'Development Coordinator', image: '/img/static/images/team/annie.webp' },
-//    { name: 'Clara Conner', role: 'Development Coordinator', image: '/img/static/images/team/clara.webp' },
-//    { name: 'Safia Sharif', role: 'Development Coordinator', image: '/img/static/images/team/safia.webp' },
-//    { name: 'Zubiya Syeda', role: 'Development Coordinator', image: '/img/static/images/team/zubiya.webp' },
-//  ];
+const imageSizes =
+  "(max-width: 600px) 42vw, (max-width: 1200px) 24vw, 18vw";
 
-//  const [startIndex, setStartIndex] = useState(0);
-//  const [visibleCount, setVisibleCount] = useState(6);
-//  const [isPending, startTransition] = useTransition();
+// ✅ Card component
+const TeamMemberCard = React.memo<{
+  member: TeamMember;
+  priority: boolean;
+}>(({ member, priority }) => {
+  const isStatic = !!STATIC_FIRST_PAGE[member.id];
 
-//  useEffect(() => {
-//    const handleResize = () => {
-//      if (window.innerWidth > 1300) {
-//        setVisibleCount(8);
-//      } else if (window.innerWidth > 600) {
-//        setVisibleCount(6);
-//      } else {
-//        setVisibleCount(6);
-//      }
-//    };
+  return (
+    <div className="frame-wrapper">
+      <div className="ornate-frame">
+        <NextImage
+          src={STATIC_FIRST_PAGE[member.id] ?? member.image}
+          alt={member.name}
+          className="member-image"
+          width={640}
+          height={640}
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+          sizes={imageSizes}
+          placeholder={isStatic ? "blur" : "empty"}
+        />
+      </div>
 
-//    handleResize();
-//    window.addEventListener('resize', handleResize);
+      <div className="member-info">
+        <p className="member-name">{member.name}</p>
+        <p className="member-title">{member.title}</p>
+      </div>
+    </div>
+  );
+});
 
-//    return () => window.removeEventListener('resize', handleResize);
-//  }, []);
+TeamMemberCard.displayName = "TeamMemberCard";
 
-//  const handleNext = () => {
-//    startTransition(() => {
-//      setStartIndex((prevIndex) => (prevIndex + 1) % teamMembers.length);
-//    });
-//  };
+// ✅ Main gallery
+const ImageGallery: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = PAGED_MEMBERS.length;
 
-//  const handlePrev = () => {
-//    startTransition(() => {
-//      setStartIndex((prevIndex) => (prevIndex - 1 + teamMembers.length) % teamMembers.length);
-//    });
-//  };
+  const isFirstPage = currentPage === 0;
 
-//  const visibleMembers = Array.from({ length: visibleCount }, (_, index) => {
-//    const memberIndex = (startIndex + index) % teamMembers.length;
-//    return teamMembers[memberIndex];
-//  });
+  const handleNext = useCallback(() => {
+    setCurrentPage((prev) => (prev + 1) % totalPages);
+  }, [totalPages]);
 
-//  return (
-//    <div className='w-full h-auto flex flex-wrap flex-col items-center justify-center py-40 lg:px-32' id="Team">
-//      <div className="title-container flex flex-col md:flex-row justify-center items-center gap-y-2 md:gap-x-16 lg:gap-x-24 pb-24 md:pb-24 lg:pb-36">
-//        <div className="glow-team">
-//          <h1 className='FAQ-title text-[#992444] text-center text-4xl md:text-5xl lg:text-5xl'>Meet the Team</h1>
-//        </div>
-//      </div>
-//      <div className="polaroid-container">
-//        {visibleMembers.map((member, index) => (
-//          <Polaroid key={member.name} member={member} />
-//        ))}
-//      </div>
-//      <div className="flex justify-center -mt-10 md:-mt-20 w-full max-w-6xl items-center">
-//        <img
-//          src="img/static/images/arrow-left.png"
-//          alt="Previous"
-//          onClick={handlePrev}
-//          className="nav-button cursor-pointer"
-//        />
-//        <img
-//          src="img/static/images/arrow-right.png"
-//          alt="Next"
-//          onClick={handleNext}
-//          className="nav-button cursor-pointer"
-//        />
-//      </div>
-//    </div>
-//  );
-// }
+  const handlePrev = useCallback(() => {
+    setCurrentPage((prev) =>
+      (prev - 1 + totalPages) % totalPages
+    );
+  }, [totalPages]);
 
-// export default Team;
+  const currentMembers = useMemo(
+    () => PAGED_MEMBERS[currentPage],
+    [currentPage]
+  );
+
+  // ✅ Proper preload of next page
+  useEffect(() => {
+    const nextPage = (currentPage + 1) % totalPages;
+
+    PAGED_MEMBERS[nextPage]?.forEach((member) => {
+      const href =
+        typeof member.image === "string"
+          ? member.image
+          : member.image.src;
+
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+
+      document.head.appendChild(link);
+    });
+  }, [currentPage, totalPages]);
+
+  return (
+    <div className="grid-container">
+      <div className="gallery-content">
+        <div className="team-header">
+          <img
+            src="/img/static/images/team/meet_the_team.png"
+            alt="Team"
+            className="team-header-image"
+            loading="eager"
+          />
+        </div>
+
+        <div className="frames-grid">
+          {currentMembers.map((member) => (
+            <TeamMemberCard
+              key={member.id}
+              member={member}
+              priority={isFirstPage}
+            />
+          ))}
+        </div>
+
+        {totalPages > 1 && (
+          <>
+            <button
+              className="nav-arrow nav-arrow-left"
+              onClick={handlePrev}
+              aria-label="Previous page"
+              disabled={currentPage === 0}
+            >
+              ◀
+            </button>
+
+            <button
+              className="nav-arrow nav-arrow-right"
+              onClick={handleNext}
+              aria-label="Next page"
+              disabled={currentPage === totalPages - 1}
+            >
+              ▶
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ImageGallery;

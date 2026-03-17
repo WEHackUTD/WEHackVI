@@ -1,81 +1,175 @@
-.position-text {
-  margin-top: 5px;
-  color: #992444;
-  font-size: 20px;
-}
-
-.role-text {
-  color: #301814;
-  font-size: 18px;
-}
-
-.polaroid-container {
+.grid-container {
+  min-height: 100vh;
+  padding: 40px 0;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding:20px;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
-.polaroid {
-  background-color: white;
-  border-radius: 7px;
-  border: 2px solid #D2AF71;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  padding: 10px 10px 20px 10px;
-  width: 230px;
+.gallery-content {
+  max-width: 1200px;
+  width: 85%;
+  margin: 0 auto;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 80px;
+  box-sizing: border-box;
 }
 
-.polaroid-image {
-  width: 200px;
-  height: 200px;
+.team-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.team-header-image {
+  max-width: 1900px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.frames-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px 22px;
+  margin-bottom: 32px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-items: center;
+}
+
+.frame-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 220px;
+  content-visibility: auto;
+  contain-intrinsic-size: 220px 280px;
+}
+
+.ornate-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* portrait ratio to avoid cropping feet/legs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.22s ease;
+  will-change: transform;
+}
+
+.ornate-frame:hover {
+  transform: translateY(-4px);
+}
+
+.member-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-bottom: 10px;
+  object-position: center center;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22);
 }
 
-.polaroid-text {
+.member-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.member-name {
+  color: #CCBA97;
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
   text-align: center;
-  font-size: 14px;
+  margin: 0;
+}
+
+.member-title {
+  color: #ccba97a7;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  font-weight: 550;
+  text-align: center;
+  margin: 0;
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 57%;
+  transform: translateY(-50%);
+  background: rgba(198, 166, 105, 0.9);
+  border: 1px solid #bfa877;
+  color: #6B5536;
+  width: 56px;
+  height: 76px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  z-index: 10;
+  padding: 0;
+}
+
+.nav-arrow:hover:not(:disabled) {
+  background: rgba(198, 166, 105, 1);
+  transform: translateY(-50%) scale(1.04);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.24);
+}
+
+.nav-arrow:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.97);
+}
+
+.nav-arrow:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.nav-arrow svg {
+  width: 30px;
+  height: 50px;
+}
+
+.nav-arrow-left { left: 10px; }
+.nav-arrow-right { right: 10px; }
+
+@media (max-width: 1200px) {
+  .gallery-content { padding: 0 70px; }
+  .frames-grid { grid-template-columns: repeat(3, 1fr); }
+  .frame-wrapper { max-width: 200px; }
+}
+
+@media (max-width: 900px) {
+  .gallery-content { padding: 0 52px; }
+  .frames-grid { grid-template-columns: repeat(2, 1fr); gap: 22px 18px; }
+  .frame-wrapper { max-width: 180px; }
+  .nav-arrow { width: 50px; height: 70px; }
+  .nav-arrow svg { width: 25px; height: 40px; }
 }
 
 @media (max-width: 600px) {
-  .polaroid {
-    width: calc(50% - 20px); 
-  }
-}
-
-@media (max-width: 400px) {
-  .polaroid {
-    width: 100%;
-  }
-}
-
-.nav-button {
-  width: 250px;
-  height: auto;
-  margin-top: 5px;
-  transition: transform 0.2s ease;
-}
-
-.nav-button:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 5px #D2AF71);
-}
-
-.glow-team {
-  filter: drop-shadow(0 0 20px #992444);
-  transform: rotate(6deg);
-}
-
-.polaroid.loading {
-  opacity: 0.5; 
-  transition: opacity 0.5s;
-}
-
-.polaroid.loaded {
-  opacity: 1; 
+  .grid-container { padding: 22px 0; }
+  .gallery-content { width: 92%; padding: 0 36px; }
+  .frames-grid { gap: 18px 14px; }
+  .frame-wrapper { max-width: 150px; }
+  .member-name { font-size: 0.95rem; }
+  .member-title { font-size: 0.85rem; }
+  .nav-arrow { width: 44px; height: 58px; }
+  .nav-arrow svg { width: 20px; height: 34px; }
 }
