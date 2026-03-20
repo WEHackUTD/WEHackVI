@@ -28,7 +28,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   { id: 8,  name: 'Kanchan Javalkar',      title: 'Development Coordinator' },
   { id: 9,  name: 'Faith Omoye',   title: 'Marketing Director' },
   { id: 10, name: 'Taylor Beers', title: 'Marketing Coordinator' },
-  { id: 11, name: 'Sri Sahasra Danthuluri',  title: 'Marketing Coordinator' },
+  { id: 11, name: 'Sai Sahasra Danthuluri',  title: 'Marketing Coordinator' },
   { id: 12, name: 'Meghana Kakani',   title: 'Marketing Coordinator' },
   { id: 13, name: 'Daisy Gan',   title: 'Marketing Coordinator' },
   { id: 14, name: 'Toby Estipona',     title: 'Experience Director' },
@@ -91,7 +91,7 @@ const ImageGallery: React.FC = () => {
   const nextPageMembers = TEAM_MEMBERS.slice(nextPageStart, nextPageStart + ITEMS_PER_PAGE);
 
   return (
-    <div className="grid-container">
+    <section id="ImageGallery" className="grid-container">
       {/* Preload next page images in background */}
       <div style={{ display: 'none' }} aria-hidden="true">
         {nextPageMembers.map((member) => (
@@ -144,7 +144,7 @@ const ImageGallery: React.FC = () => {
           </>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

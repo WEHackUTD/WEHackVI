@@ -77,7 +77,7 @@ export default async function Navbar({ className }: NavbarProps) {
 							</a>
 							<a
 								className="text-lg font-medium md:text-sm"
-								href="#Team"
+								href="#ImageGallery"
 							>
 								Meet the Team
 							</a>
