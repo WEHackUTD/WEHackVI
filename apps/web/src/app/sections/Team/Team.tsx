@@ -91,7 +91,7 @@ const ImageGallery: React.FC = () => {
   const nextPageMembers = TEAM_MEMBERS.slice(nextPageStart, nextPageStart + ITEMS_PER_PAGE);
 
   return (
-    <div className="grid-container">
+    <section id="ImageGallery" className="grid-container">
       {/* Preload next page images in background */}
       <div style={{ display: 'none' }} aria-hidden="true">
         {nextPageMembers.map((member) => (
@@ -144,7 +144,7 @@ const ImageGallery: React.FC = () => {
           </>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
