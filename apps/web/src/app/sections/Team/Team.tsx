@@ -28,7 +28,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   { id: 8,  name: 'Kanchan Javalkar',      title: 'Development Coordinator' },
   { id: 9,  name: 'Faith Omoye',   title: 'Marketing Director' },
   { id: 10, name: 'Taylor Beers', title: 'Marketing Coordinator' },
-  { id: 11, name: 'Sri Sahasra Danthuluri',  title: 'Marketing Coordinator' },
+  { id: 11, name: 'Sai Sahasra Danthuluri',  title: 'Marketing Coordinator' },
   { id: 12, name: 'Meghana Kakani',   title: 'Marketing Coordinator' },
   { id: 13, name: 'Daisy Gan',   title: 'Marketing Coordinator' },
   { id: 14, name: 'Toby Estipona',     title: 'Experience Director' },
