@@ -832,12 +832,12 @@ const c = {
 	},
 	issueEmail: "wehackutd@gmail.com",
 	links: {
-		discord: "https://discord.gg/4rbcHbkBEH", 
+		discord: "https://discord.gg/C8fdmGySaS", 
 		instagram: "https://www.instagram.com/wehackutd",
 		facebook: "https://www.facebook.com/WEHackUTD/",
 		twitter: "https://x.com/wehackutd",
 		github: "https://github.com/WEHack-UTD2-0",
-		guide: "https://ultra-spell-68d.notion.site/WEHack-2025-Hacker-Guide-1990c607311280d18e2bf8a7795093ba",
+		guide: "https://ultra-spell-68d.notion.site/WEHack-2026-Hacker-Guide-3150c60731128055a92cf2e6e1190852",
 	},
 	icon: {
 		sm: "/img/logo/wehack25-logo.svg",
