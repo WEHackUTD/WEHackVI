@@ -43,7 +43,8 @@ export default async function Page() {
 					{/* More Information Is Coming Soon! */}
 				</h2>
 				<p className="text-center text-xl font-bold text-background">
-					Our registration is closed. However, we still encourage you to show up for walk-ins!
+					Our registration is closed. However, we still encourage you to show up for walk-ins! 
+					Walk-ins will start at 9am until 11:30am. Only for test takers, it will be until 12:30pm.
 					If you have any questions or concerns, feel free to reach out to us at {c.issueEmail}!
 					{/* More information about WEHack 2026 will come out soon. In the meantime, fill out our interest form to get updates from us. */}
 				</p>
