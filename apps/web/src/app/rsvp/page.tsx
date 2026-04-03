@@ -102,7 +102,9 @@ export default async function RsvpPage({
 					</h1>
 					<p className="pb-10 pt-5 text-center">
 						We have currently reached capacity for RSVPs. However,
-						we still encourage you to show up for walk-ins! Walk-ins will start at 9am until 11:30am. Only for test takers, it will be until 12:30pm. If you
+						we still encourage you to show up for walk-ins! Walk-ins
+						 will begin at 9am and close at 11:30am. 
+						 There will be an exception until 12:30pm for those taking the common exam. If you
 						have any questions or concerns, feel free to ask on{" "}
 						<Link href={c.links.discord} className="underline">
 							Discord
