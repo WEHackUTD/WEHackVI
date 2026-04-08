@@ -115,10 +115,10 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 						</h3>
 						<h3 className="text-center font-mono text-sm">
 							{(() => {
-								if (guild === 1) return "Group Hopper";
-								if (guild === 2) return "Group Da Vinci";
-								if (guild === 3) return "Group Vermeer";
-								if (guild === 4) return "Group Hokusai";
+								if (guild === 1) return "Group Nighthawks";
+								if (guild === 2) return "Group Mona Lisa";
+								if (guild === 3) return "Group Pearl Earring";
+								if (guild === 4) return "Group Great Wave";
 							})()}
 						</h3>
 					</div>
