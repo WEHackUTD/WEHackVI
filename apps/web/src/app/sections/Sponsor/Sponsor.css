@@ -25,13 +25,18 @@
 
 /* Vase Item container and background image styling */
 .Vase-item {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    display: block;
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.4));
     width: 100%;
     height: 100%;
     transition: transform 0.3s ease-in-out;
+}
+
+.Vase-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 /* Specific sizing for the vases */

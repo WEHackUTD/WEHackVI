@@ -2,25 +2,63 @@ import React from 'react';
 import './Sponsor.css';
 
 // --- VASE ASSET PATHS (absolute to avoid 404s on nested routes) ---
+// Include both webp and png so older browsers that lack webp support still render.
 
-const VASE_A2 = '/img/static/images/sponsor_vases/A2-trimmed.webp';
-const VASE_A3 = '/img/static/images/sponsor_vases/A3-trimmed.webp';
-const VASE_A4 = '/img/static/images/sponsor_vases/A4-trimmed.webp';
-const VASE_A5 = '/img/static/images/sponsor_vases/A5-trimmed.webp';
-const VASE_A6 = '/img/static/images/sponsor_vases/A6-trimmed.webp';
-const VASE_A7 = '/img/static/images/sponsor_vases/A7-trimmed.webp';
-const VASE_A8 = '/img/static/images/sponsor_vases/A8-trimmed.webp';
+const VASE_A2 = {
+    webp: '/img/static/images/sponsor_vases/A2-trimmed.webp',
+    png: '/img/static/images/sponsor_vases/A2-trimmed.png'
+};
+const VASE_A3 = {
+    webp: '/img/static/images/sponsor_vases/A3-trimmed.webp',
+    png: '/img/static/images/sponsor_vases/A3-trimmed.png'
+};
+const VASE_A4 = {
+    webp: '/img/static/images/sponsor_vases/A4-trimmed.webp',
+    png: '/img/static/images/sponsor_vases/A4-trimmed.png'
+};
+const VASE_A5 = {
+    webp: '/img/static/images/sponsor_vases/A5-trimmed.webp',
+    png: '/img/static/images/sponsor_vases/A5-trimmed.png'
+};
+const VASE_A6 = {
+    webp: '/img/static/images/sponsor_vases/A6-trimmed.webp',
+    png: '/img/static/images/sponsor_vases/A6-trimmed.png'
+};
+const VASE_A7 = {
+    webp: '/img/static/images/sponsor_vases/A7-trimmed.webp',
+    png: '/img/static/images/sponsor_vases/A7-trimmed.png'
+};
+const VASE_A8 = {
+    webp: '/img/static/images/sponsor_vases/A8-trimmed.webp',
+    png: '/img/static/images/sponsor_vases/A8-trimmed.png'
+};
 
-const LOGO_STATEFARM = '/img/static/images/sponsors/statefarm_bronze.webp';
-const LOGO_CBRE = '/img/static/images/sponsors/cbre_gold.webp';
-const LOGO_FIDELITY = '/img/static/images/sponsors/fidelity_logo_white.png';
-const LOGO_CAPITAL_ONE = '/img/static/images/sponsors/capital_one_silver.webp';
+const LOGO_STATEFARM = {
+    webp: '/img/static/images/sponsors/statefarm_bronze.webp',
+    png: '/img/static/images/sponsors/statefarm_bronze.png'
+};
+const LOGO_CBRE = {
+    webp: '/img/static/images/sponsors/cbre_gold.webp',
+    png: '/img/static/images/sponsors/cbre_gold.png'
+};
+const LOGO_FIDELITY = {
+    // Fidelity art is already PNG only.
+    webp: '/img/static/images/sponsors/fidelity_logo_white.png',
+    png: '/img/static/images/sponsors/fidelity_logo_white.png'
+};
+const LOGO_CAPITAL_ONE = {
+    webp: '/img/static/images/sponsors/capital_one_silver.webp',
+    png: '/img/static/images/sponsors/capital_one_silver.png'
+};
 
 // Define grid item structure
 interface GridItem {
     id: number;
     type: 'vase' | 'box';
-    imagePath: string;
+    imagePath: {
+        webp: string;
+        png: string;
+    };
     vaseClass?: string;
 }
 
@@ -34,7 +72,6 @@ const rowTitles: Record<number, string | null> = {
 
 // --- GRID ITEMS ---
 const dummySponsors: GridItem[] = [
-
     { id: 2, type: 'vase', imagePath: VASE_A5, vaseClass: 'vase-style-6' },
     { id: 4, type: 'box', imagePath: LOGO_CBRE },
     { id: 5, type: 'box', imagePath: LOGO_FIDELITY },
@@ -46,7 +83,6 @@ const dummySponsors: GridItem[] = [
     { id: 9, type: 'box', imagePath: LOGO_CAPITAL_ONE },
     { id: 7, type: 'vase', imagePath: VASE_A3, vaseClass: 'vase-style-6' },
     { id: 8, type: 'vase', imagePath: VASE_A8, vaseClass: 'vase-style-6' },
-
 ];
 
 // Size rules
@@ -137,24 +173,26 @@ const Sponsor: React.FC = () => {
                                         >
 
                                             {item.type === 'vase' ? (
-                                                <div
-                                                    className={`Vase-item ${item.vaseClass}`}
-                                                    style={{
-                                                        backgroundImage: `url(${item.imagePath})`,
-                                                        height: '100%',
-                                                        width: '100%',
-                                                        backgroundSize: 'contain',
-                                                        backgroundRepeat: 'no-repeat',
-                                                        backgroundPosition: 'bottom center'
-                                                    }}
-                                                />
+                                                <picture className={`Vase-item ${item.vaseClass}`}>
+                                                    <source srcSet={item.imagePath.webp} type="image/webp" />
+                                                    <source srcSet={item.imagePath.png} type="image/png" />
+                                                    <img
+                                                        src={item.imagePath.png}
+                                                        alt={`Sponsor vase ${item.id}`}
+                                                        className='w-full h-full object-contain'
+                                                    />
+                                                </picture>
                                             ) : (
                                                 <div className="Box-content w-full h-full p-4 flex items-center justify-center">
-                                                    <img
-                                                        src={item.imagePath}
-                                                        alt={`Sponsor ${item.id}`}
-                                                        className='max-w-[90%] max-h-[80%] object-contain opacity-70 transition-opacity duration-300'
-                                                    />
+                                                    <picture>
+                                                        <source srcSet={item.imagePath.webp} type="image/webp" />
+                                                        <source srcSet={item.imagePath.png} type="image/png" />
+                                                        <img
+                                                            src={item.imagePath.png}
+                                                            alt={`Sponsor ${item.id}`}
+                                                            className='max-w-[90%] max-h-[80%] object-contain opacity-70 transition-opacity duration-300'
+                                                        />
+                                                    </picture>
                                                 </div>
                                             )}
 
@@ -184,4 +222,3 @@ const Sponsor: React.FC = () => {
 };
 
 export default Sponsor;
-

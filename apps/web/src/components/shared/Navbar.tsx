@@ -51,12 +51,12 @@ export default async function Navbar({ className }: NavbarProps) {
 							>
 								About
 							</a>
-							<a
+							{/* <a
 								className="text-lg font-medium md:text-sm"
 								href="#Testimonials"
 							>
 								Testimonials
-							</a>
+							</a> */}
 							<a
 								className="text-lg font-medium md:text-sm"
 								href="#Sponsor"
@@ -87,6 +87,13 @@ export default async function Navbar({ className }: NavbarProps) {
 								target="_blank"
 							>
 								MLH Conduct
+							</a>
+							<a
+								className="text-lg font-medium md:text-sm"
+								href="https://ultra-spell-68d.notion.site/WEHack-2026-Hacker-Guide-3150c60731128055a92cf2e6e1190852"
+								target="_blank"
+							>
+								Hackerpack
 							</a>
 						</div>
 						<div className="hidden gap-x-4 lg:flex">
