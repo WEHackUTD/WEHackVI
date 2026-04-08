@@ -117,7 +117,7 @@ function EventPass({ qrPayload, user, clerk, guild }: EventPassProps) {
 							{(() => {
 								if (guild === 1) return "Group Nighthawks";
 								if (guild === 2) return "Group Mona Lisa";
-								if (guild === 3) return "Group Pearl Earing";
+								if (guild === 3) return "Group Pearl Earring";
 								if (guild === 4) return "Group Great Wave";
 							})()}
 						</h3>
