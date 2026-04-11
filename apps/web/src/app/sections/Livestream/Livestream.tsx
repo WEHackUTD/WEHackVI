@@ -9,7 +9,7 @@ function LiveStream() {
         <div className="header-container">
           <div className="header-img-wrap">
             <img
-              src="img/static/images/Live_Stream_Header.png"
+              src="img/static/images/Live_Stream_header.png"
               className="header-img"
               alt="Live Stream"
             />
