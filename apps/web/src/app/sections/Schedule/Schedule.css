@@ -46,6 +46,7 @@
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(6px);
   overflow: hidden;
+  overflow-x: auto;
 }
 
 .schedule-table {
@@ -299,28 +300,66 @@
 
   .schedule-table-wrapper {
     border-radius: 18px;
+    overflow-x: visible;
   }
 
-  .schedule-day-row td {
-    padding: 1rem 1rem 0.5rem;
+  /* Stack rows/cards instead of fixed table layout for small screens */
+  .schedule-table,
+  .schedule-table tbody,
+  .schedule-day-row,
+  .schedule-event-row {
+    display: block;
+    width: 100%;
+  }
+
+  .schedule-day-row td,
+  .schedule-event-row td {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  .schedule-day-row .schedule-time-cell,
+  .schedule-day-row .schedule-axis-cell {
+    display: none;
+  }
+
+  .schedule-day-row .schedule-day-cell {
+    padding: 0.5rem 0.9rem 0.25rem;
   }
 
   .schedule-day-cell h2 {
-    margin-left: 0.5rem;
+    margin-left: 0;
+  }
+
+  .schedule-event-row {
+    margin: 0 0 1rem;
+    padding: 0 0.75rem;
   }
 
   .schedule-time-cell {
-    width: 110px;
-    font-size: 0.95rem;
-    padding: 0.85rem 0.75rem 0.85rem 1rem;
+    width: 100%;
+    text-align: left;
+    font-size: 0.96rem;
+    padding: 0.3rem 0.1rem 0.4rem;
+  }
+
+  .schedule-axis-cell {
+    display: none;
   }
 
   .schedule-detail-cell {
-    padding: 0.65rem 1rem 1.2rem 0.5rem;
+    padding: 0 0 0.25rem;
   }
 
   .schedule-card {
-    padding: 0.9rem 0.95rem;
+    padding: 0.95rem 1rem;
+  }
+
+  .schedule-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
   }
 
   .schedule-title {
@@ -328,17 +367,25 @@
   }
 
   .schedule-desc {
-    font-size: 0.95rem;
+    font-size: 0.96rem;
+  }
+
+  .schedule-badge {
+    font-size: 0.78rem;
   }
 }
 
 @media (max-width: 540px) {
-  .schedule-axis-cell {
-    width: 44px;
-  }
-
   .schedule-headline {
     font-size: 2.15rem;
+  }
+
+  .schedule-event-row {
+    padding: 0 0.4rem;
+  }
+
+  .schedule-card {
+    padding: 0.85rem 0.9rem;
   }
 
   .schedule-title {
@@ -346,6 +393,6 @@
   }
 
   .schedule-badge {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
   }
 }
