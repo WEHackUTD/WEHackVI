@@ -1,0 +1,9 @@
+.ornateDivider {
+  width: 100vw;                    /* full viewport width */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);     /* break out of parent width */
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}

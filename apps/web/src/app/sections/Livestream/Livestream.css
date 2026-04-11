@@ -1,0 +1,190 @@
+.livestream-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem 5rem;
+}
+
+@media (min-width: 1024px) {
+  .livestream-container {
+    padding-bottom: 6rem;
+  }
+}
+
+/* ── Header image ── */
+.title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.25rem;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-container {
+    padding-bottom: 0.5rem;
+  }
+}
+
+.header-img-wrap {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 0.5rem;
+  margin-left: -2rem;
+}
+
+.header-img {
+  height: auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+@media (min-width: 768px) {
+  .header-img {
+    max-width: 1000px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-img {
+    max-width: 1200px;
+  }
+}
+
+/* ── Content block ── */
+.livestream-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  max-width: 36rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+@media (min-width: 1024px) {
+  .livestream-content {
+    margin-top: 0;
+    max-width: 52rem;
+    padding: 0 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .livestream-content {
+    max-width: 64rem;
+    padding: 0 6rem;
+  }
+}
+
+/* ── Description text ── */
+.livestream-text {
+  color: #CCBA97;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .livestream-text {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .livestream-text {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: 0.025em;
+  }
+}
+
+/* ── Button ── */
+.watch-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(90deg, #E39939, #f0b55a, #E39939);
+  background-size: 200% auto;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(227, 153, 57, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-position 0.5s ease;
+}
+
+.watch-btn:hover {
+  box-shadow: #fff rgba(227, 153, 57, 0.5);
+}
+
+@media (min-width: 768px) {
+  .watch-btn {
+    font-size: 1rem;
+  }
+}
+
+.watch-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  animation: shimmer 2.2s infinite;
+}
+
+.watch-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(227, 153, 57, 0.5);
+  background-position: right center;
+}
+
+.watch-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(227, 153, 57, 0.35);
+}
+
+.watch-btn-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ── Shimmer animation ── */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
+}

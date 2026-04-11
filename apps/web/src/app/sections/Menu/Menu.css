@@ -8,7 +8,44 @@
       filter: drop-shadow(-10px 10px #992444);
       box-shadow: 0px 0px 40px #992444;
   }
-  
+
+/* Shared card styling so Menu matches the site-wide navy + gold palette */
+.menu-card {
+  /* background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.06), transparent 38%),
+    linear-gradient(145deg, rgba(31, 34, 51, 0.9), rgba(18, 26, 46, 0.92)); */
+  background: rgba(31, 34, 51, 0.9);
+  border: 2px solid #d7b36b; /* gold accent from schedule section */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  color: #f6f1ea;
+}
+
+.menu-heading {
+  color: #E4CAFF; /* matches hero/subhead tint */
+}
+
+.menu-chip {
+  color: #f6f1ea;
+  background: rgba(228, 202, 255, 0.08);
+}
+
+.menu-note {
+  color: #c9d5e3;
+}
+
+.menu-card h1 {
+  color: #E4CAFF;
+}
+
+.menu-card h2 {
+  color: #f6f1ea;
+}
+
+.menu-card p {
+  color: #FDF5E6;
+}
+
   .vinyl-yellow {
     position: absolute;
     -webkit-animation:spinCC 4s linear infinite;
