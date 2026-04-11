@@ -51,6 +51,24 @@ export default async function Navbar({ className }: NavbarProps) {
 							>
 								About
 							</a>
+							<a
+								className="text-lg font-medium md:text-sm"
+								href="#LiveStream"
+							>
+								Live Stream
+							</a>
+							<a
+								className="text-lg font-medium md:text-sm"
+								href="#Schedule"
+							>
+								Schedule
+							</a>	
+							<a
+								className="text-lg font-medium md:text-sm"
+								href="#Menu"
+							>
+								Menu
+							</a>
 							{/* <a
 								className="text-lg font-medium md:text-sm"
 								href="#Testimonials"
@@ -75,12 +93,12 @@ export default async function Navbar({ className }: NavbarProps) {
 							>
 								FAQ
 							</a>
-							<a
+							{/* <a
 								className="text-lg font-medium md:text-sm"
 								href="#ImageGallery"
 							>
 								Meet the Team
-							</a>
+							</a> */}
 							<a
 								className="text-lg font-medium md:text-sm"
 								href="http://hackp.ac/coc"
