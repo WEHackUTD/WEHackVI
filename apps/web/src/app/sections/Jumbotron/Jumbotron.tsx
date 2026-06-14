@@ -12,8 +12,14 @@ function Jumbotron() {
           <h2 className='jumbo-text font-thin text-[#C9D5E3] text-base sm:text-1xl md:1xl lg:text-4xl'>Spring 2027</h2>
 
                 <div className='jumbo-buttons flex flex-row items-start space-x-4 mt-4 gap-1.3'>
-                  {/* <Button link={'https://events.mlh.io/events/11456-wehack'} buttonText={'Interest Form'}/> */}
-                  {/* <Button link={'https://live.wehackutd.com/'} buttonText={'WEHack Portal'}/> */}
+                <a 
+                  href="https://events.mlh.com/events/14391-wehack-2027" 
+                  className="px-8 py-4 rounded-xl font-bold transition-all duration-200 text-[#1a1a1a] bg-[#FFE9D7] hover:bg-[#CCBA97] transform hover:scale-[1.02] shadow-xl text-lg inline-block"
+                  target="_blank" 
+                  rel="noreferrer"
+                >
+                  Fill out our Interest Form!
+                </a>
                 </div>
         </div>
       </div>
