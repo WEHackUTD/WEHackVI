@@ -1,128 +1,80 @@
 import c from "config";
-import RegisterForm from "@/components/registration/RegisterForm";
-import { auth, currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
 import Link from "next/link";
-import { Redis } from "@upstash/redis";
-import { parseRedisBoolean } from "@/lib/utils/server/redis";
 import { Button } from "@/components/shadcn/ui/button";
-import { getUser } from "db/functions";
 import Image from "next/image";
+import React from "react";
 
-const redis = new Redis({
-	url: process.env.UPSTASH_REDIS_REST_URL,
-	token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+export default function Page() {
+    return (
+        <>
+            {/* Top Navigation Brand Logo Bar */}
+            <div className="z-50 w-screen pt-6">
+                <div className="relative top-0 z-50 h-16 w-screen">
+                    <div className="mx-auto grid h-full w-full max-w-7xl grid-flow-col grid-cols-2 px-2 sm:px-6 lg:max-w-full lg:px-8">
+                        <div className="col-span-3 flex items-center justify-start gap-x-5 pl-4 md:pl-0">
+                            <Link
+                                href={"/"}
+                                className="mr-5 flex items-center gap-x-2"
+                            >
+                                <Image
+                                    src={"/img/static/images/white wehack logo.png"}
+                                    alt={c.hackathonName + " Logo"}
+                                    width={60}
+                                    height={60}
+                                    className={"drop-shadow-[0_0px_0px_rgba(255,255,255,0.90)]"}
+                                />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-export default async function Page() {
-	const { userId } = auth();
-	if (!userId) return redirect("/sign-up");
+            {/* Main Center-Aligned 2027 Season Notice Layout */}
+            <main className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
+                <div className="relative z-10 flex w-full max-w-2xl flex-col items-center justify-center gap-y-6 rounded-2xl border border-[#D09C51] bg-[#1e1e1e] p-8 md:p-12 shadow-2xl">
+                    
+                    {/* Header Title */}
+                    <h1 className="text-4xl font-black text-hackathon md:text-6xl font-cinzel-decorative tracking-wide text-[#FFE9D7]">
+                        WEHack 2027
+                    </h1>
 
-	const user = await currentUser();
-	if (!user) return redirect("/sign-up");
+                    {/* Styled Separator line matching brand guidelines */}
+                    <div className="h-[2px] w-24 bg-[#D09C51] my-1" />
+                    
+                    {/* Required Structural Update Copy */}
+                    <p className="text-lg md:text-xl font-light leading-relaxed text-[#C9D5E3]">
+                        More information about WEHack 2027 will come out soon. In the meantime, 
+                        fill out our interest form to get updates from us.
+                    </p>
 
-	const registration = await getUser(userId);
-	if (registration) return redirect("/dash");
+                    {/* Live MLH Registration Interest Form Link Button Action */}
+                    <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center">
+                        <Link 
+                            href="https://events.mlh.com/events/14391-wehack-2027" 
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <Button className="px-8 py-6 text-lg font-bold text-[#1a1a1a] bg-[#D09C51] hover:bg-[#CCBA97] transition-all duration-200 transform hover:scale-[1.02] rounded-xl shadow-lg">
+                                Fill out the Interest Form!
+                            </Button>
+                        </Link>
 
-	const [defaultRegistrationEnabled, defaultSecretRegistrationEnabled]: (
-		| string
-		| null
-	)[] = await redis.mget(
-		`${process.env.HK_ENV}_config:registration:registrationEnabled`,
-		`${process.env.HK_ENV}_config:registration:secretRegistrationEnabled`,
-	);
+                        <Link href={"/"}>
+                            <Button variant="outline" className="px-8 py-6 text-lg border-white/10 hover:bg-white/5 text-[#C9D5E3] rounded-xl">
+                                Return Home
+                            </Button>
+                        </Link>
+                    </div>
 
-	if (parseRedisBoolean(defaultRegistrationEnabled, true) === true) {
-		return (
-			<>
-				<div className="z-50 w-screen pt-6">
-					<div className="relative top-0 z-50 h-16 w-screen">
-						<div className="mx-auto grid h-full w-full max-w-7xl grid-flow-col grid-cols-2 px-2 sm:px-6 lg:max-w-full lg:px-8">
-							<div className="col-span-3 flex items-center justify-start gap-x-5 pl-4 md:pl-0">
-								<Link
-									href={"/"}
-									className="mr-5 flex items-center gap-x-2"
-								>
-									<Image
-										src={"/img/static/images/white wehack logo.png"}
-										alt={c.hackathonName + " Logo"}
-										width={60}
-										height={60}
-										className={"drop-shadow-[0_0px_0px_rgba(255,255,255,0.90)]"}
-									/>
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-				<main className="dark:bg-[#301814]">
-					<div className="mx-auto min-h-screen max-w-5xl px-5 pb-10 pt-[20vh] font-sans dark:text-[#CCBA97]">
-						<h1 className="text-6xl font-black md:text-8xl text-hackathon font-cinzel-decorative">
-							Register
-						</h1>
-						<p className="mt-5 font-medium text-2xl">
-							<span className="font-bold">Welcome Hacker!</span>{" "}
-							Please fill out the form below to complete your
-							registration for {c.hackathonName}.
-						</p>
-						<p className="pt-5 text-xl font-semibold">
-							Please complete your registration form in one sitting to not lose your progress! 
-							You must click "Submit" at the end for your registration to be officially submitted.
-							<br></br>
-						</p>
-						<h3 className="pt-5 text-lg font-thin tracking-wide underline font-gantari">Once your form is submitted, you will <b>NOT</b> be able to change your responses, so please answer wisely.</h3>
-						<p className="pb-10 pt-5 text-xl">
-							Psttt... Running into a issue? Please let us know by
-							emailing <b>wehackutd@gmail.com</b>
-						</p>
-						<RegisterForm
-							defaultEmail={
-								user.emailAddresses[0]?.emailAddress || ""
-							}
-						/>
-					</div>
-				</main>
-			</>
-		);
-	}
-
-	return (
-		<main className="flex min-h-screen flex-col items-center justify-center px-2">
-			<div className="max-w-screen fixed left-1/2 top-[calc(50%+7rem)] h-[40vh] w-[800px] -translate-x-1/2 -translate-y-1/2 scale-150 overflow-x-hidden bg-background" />
-			<h2 className="text-4xl font-extrabold">{c.hackathonName}</h2>
-			{/* Why is this not a component? This same code is in here and insideo of sign-up */}
-			<h1 className="mb-10 pb-5 text-6xl font-extrabold text-hackathon md:text-8xl">
-				Registration
-			</h1>
-			<div className="relative z-10 flex aspect-video w-full max-w-[500px] flex-col items-center justify-center gap-y-4 rounded-xl px-5 py-4">
-				<h2 className="text-center text-2xl font-black">
-					Registration Is Currently Closed
-					{/* More Information Coming Soon! */}
-				</h2>
-				<p className="text-center font-bold">
-					If you believe this is a mistake or have any questions, feel
-					free to reach out to us at {c.issueEmail}!
-					{/* More information about WEHack 2026 will come out soon. In the meantime, fill out our interest form to get updates from us. */}
-				</p>
-				{/* <Link href="https://events.mlh.io/events/12674-wehack-2026" target="_blank">
-                    <Button className="bg-[#D09C51] hover:bg-[#CCBA97]">
-                        Interest Form!
-                    </Button>
-                </Link> */}
-
-				<Link href={"/"}>
-					<Button className="bg-[#D09C51] hover:bg-[#CCBA97]">Return Home</Button>
-				</Link>
-				<p className="text-center text-sm">
-					Already registered?
-					<Link className="pl-1 underline" href={"/sign-in"}>
-						Sign-in.
-					</Link>
-				</p>
-			</div>
-		</main>
-	);
+                    {/* Operational Support Contact Point footer */}
+                    <p className="text-sm text-[#C9D5E3]/60 mt-4">
+                        Running into an issue? Reach out to us at <b>wehackutd@gmail.com</b>
+                    </p>
+                </div>
+            </main>
+        </>
+    );
 }
 
 export const runtime = "edge";
