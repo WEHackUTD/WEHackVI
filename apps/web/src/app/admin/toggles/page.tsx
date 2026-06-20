@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 export default async function Page() {
 	return (
 		<div className="min-h-[250px] w-full space-y-3 rounded-lg border-2 border-border p-5">
