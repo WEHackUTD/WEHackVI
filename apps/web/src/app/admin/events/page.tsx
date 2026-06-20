@@ -8,6 +8,8 @@ import Link from "next/link";
 import { getAllEvents, getUser } from "db/functions";
 import { auth, redirectToSignIn } from "@clerk/nextjs/server";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
 	const { userId } = auth();
 	if (!userId) {
