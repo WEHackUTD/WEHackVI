@@ -1,5 +1,3 @@
-"use server";
-
 import { EventDataTable } from "@/components/events/shared/EventDataTable";
 import { columns } from "@/components/events/shared/EventColumns";
 import { Button } from "@/components/shadcn/ui/button";
