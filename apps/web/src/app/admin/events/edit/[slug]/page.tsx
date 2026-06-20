@@ -2,6 +2,8 @@ import { getEventById } from "db/functions";
 import { notFound } from "next/navigation";
 import EditEventForm from "@/components/events/admin/EditEventForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function EditEventPage({
 	params,
 }: {
